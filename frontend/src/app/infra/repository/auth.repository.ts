@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseRepository } from './base.repository';
 import { LoginRequest, LoginResponse, Usuario } from '../../core/models/auth.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,19 @@ export class AuthRepository extends BaseRepository {
     super(http);
   }
 
-  async login(credentials: LoginRequest): Promise<LoginResponse> {
+  login(credentials: LoginRequest): Observable<LoginResponse> {
     return this.post<LoginResponse>('/auth/login', credentials);
   }
 
-  async logout(): Promise<void> {
+  logout(): Observable<void> {
     return this.post<void>('/auth/logout', {});
   }
 
-  async validateToken(): Promise<Usuario> {
+  validateToken(): Observable<Usuario> {
     return this.get<Usuario>('/auth/validate');
   }
 
-  async refreshToken(): Promise<LoginResponse> {
+  refreshToken(): Observable<LoginResponse> {
     return this.post<LoginResponse>('/auth/refresh', {});
   }
 }

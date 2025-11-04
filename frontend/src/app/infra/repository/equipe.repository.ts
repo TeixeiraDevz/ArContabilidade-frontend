@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseRepository } from './base.repository';
 import { Membro, EquipeDTO } from '../../core/models/equipe.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +12,27 @@ export class EquipeRepository extends BaseRepository {
     super(http);
   }
 
-  async getAll(): Promise<Membro[]> {
+  getAll(): Observable<Membro[]> {
     return this.get<Membro[]>('/equipe');
   }
 
-  async getById(id: string): Promise<Membro> {
+  getById(id: string): Observable<Membro> {
     return this.get<Membro>(`/equipe/${id}`);
   }
 
-  async create(membro: EquipeDTO): Promise<Membro> {
+  create(membro: EquipeDTO): Observable<Membro> {
     return this.post<Membro>('/equipe', membro);
   }
 
-  async update(id: string, membro: EquipeDTO): Promise<Membro> {
+  update(id: string, membro: EquipeDTO): Observable<Membro> {
     return this.put<Membro>(`/equipe/${id}`, membro);
   }
 
-  async delete(id: string): Promise<void> {
-    return this.delete<void>(`/equipe/${id}`);
+  remove(id: string): Observable<void> {
+    return super.delete<void>(`/equipe/${id}`);
   }
 
-  async getByEspecialidade(especialidade: string): Promise<Membro[]> {
+  getByEspecialidade(especialidade: string): Observable<Membro[]> {
     return this.get<Membro[]>(`/equipe/especialidade/${encodeURIComponent(especialidade)}`);
   }
 }
