@@ -1,22 +1,59 @@
 <!-- Hero Section -->
 <section class="hero-section">
-  <div class="hero-overlay"></div>
+  <!-- Formas roxas suaves e borradas no fundo -->
+  <div class="hero-blur-shapes">
+    <div class="blur-shape shape-1"></div>
+    <div class="blur-shape shape-2"></div>
+    <div class="blur-shape shape-3"></div>
+  </div>
+  
   <div class="container">
-    <div class="row align-items-center min-vh-75">
-      <div class="col-lg-10 col-xl-8 mx-auto text-center">
-        <h1 class="hero-title display-3 fw-bold mb-4">
-          De novos negócios a grandes empresas
-        </h1>
-        <p class="hero-subtitle lead mb-5 fs-4">
-          Cuidamos da sua contabilidade para que você foque no que realmente importa: crescer
-        </p>
-        <div class="hero-buttons d-flex gap-3 justify-content-center flex-wrap">
-          <a href="/clientes" class="btn btn-primary btn-lg px-5 py-3 fw-semibold shadow-lg">
-            Fale com um especialista
-          </a>
-          <a href="/login" class="btn btn-outline-light btn-lg px-5 py-3 fw-semibold border-2">
-            Já sou cliente
-          </a>
+    <div class="row align-items-center min-vh-100">
+      <div class="col-12 text-center">
+        <!-- Logo AR Gestão Contábil e Financeira -->
+        <div class="hero-logo mb-4 animate-fade-in-up">
+          <div class="logo-text-container">
+            <span class="logo-text">AR</span>
+            <span class="logo-subtitle">Gestão Contábil e Financeira</span>
+          </div>
+        </div>
+        
+        <!-- Laptop com preview do site -->
+        <div class="laptop-container animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="laptop-frame">
+            <div class="laptop-screen">
+              <div class="screen-content">
+                <!-- Preview do site dentro do laptop -->
+                <div class="site-preview">
+                  <div class="preview-header">
+                    <div class="preview-logo-small">AR</div>
+                    <div class="preview-nav">
+                      <span>AR</span>
+                      <span>Cliente</span>
+                      <span>Equipe</span>
+                      <span>Planos</span>
+                    </div>
+                  </div>
+                  <div class="preview-content">
+                    <div class="preview-card">
+                      <div class="preview-title">Dashboard</div>
+                      <div class="preview-stats">
+                        <div class="stat-item">
+                          <div class="stat-value">R$ 125.000</div>
+                          <div class="stat-label">Receita Mensal</div>
+                        </div>
+                        <div class="stat-item">
+                          <div class="stat-value">45</div>
+                          <div class="stat-label">Clientes Ativos</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,7 +64,7 @@
 <section class="py-5">
   <div class="container">
     <div class="row mb-5">
-      <div class="col-lg-8 mx-auto text-center">
+      <div class="col-12">
         <h2 class="section-title">Nossos serviços</h2>
         <p class="section-subtitle">
           O que podemos fazer pela sua empresa?
@@ -82,7 +119,7 @@
 <section class="py-5 bg-light">
   <div class="container">
     <div class="row mb-5">
-      <div class="col-lg-8 mx-auto text-center">
+      <div class="col-12">
         <h2 class="section-title">Planos personalizados</h2>
         <p class="section-subtitle">
           Temos soluções personalizadas para todos os momentos da sua empresa, desde novos negócios a grandes empresas
@@ -104,9 +141,9 @@
               <p class="text-muted mb-3">{{ plano.subtitulo }}</p>
               <p class="card-text mb-4">{{ plano.descricao }}</p>
               <ul class="list-unstyled">
-                @for (beneficio of plano.beneficios; track beneficio) {
-                  <li class="mb-2">
-                    <span class="text-success me-2">✓</span>
+                @for (beneficio of plano.beneficios; track beneficio; let i = $index) {
+                  <li class="mb-2 benefit-item" [style.animation-delay]="(i * 0.1) + 's'">
+                    <span class="check-icon me-2">✓</span>
                     {{ beneficio }}
                   </li>
                 }
@@ -128,7 +165,7 @@
 <section class="metrics-section py-5">
   <div class="container">
     <div class="row mb-5">
-      <div class="col-lg-10 mx-auto text-center">
+      <div class="col-12">
         <h2 class="section-title">Por que somos a escolha ideal?</h2>
         <p class="section-subtitle mb-5">
           Com experiência, inovação e compromisso, oferecemos soluções estratégicas que otimizam processos, reduzem custos e impulsionam resultados.
@@ -162,7 +199,7 @@
 <section class="diferenciais-section py-5 bg-light">
   <div class="container">
     <div class="row mb-5">
-      <div class="col-12 text-center">
+      <div class="col-12">
         <h2 class="diferenciais-title">Nossos diferenciais</h2>
       </div>
     </div>

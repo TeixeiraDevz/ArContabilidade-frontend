@@ -1,26 +1,50 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-transparent sticky-top">
+<nav [class]="navbarClass + ' navbar-expand-lg navbar-light'">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center fw-semibold" routerLink="/">
-      <div class="logo-icon me-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect width="40" height="40" rx="8" fill="white"/>
-          <path d="M20 8L12 14V26L20 32L28 26V14L20 8Z" fill="#667eea"/>
-          <path d="M20 12L15 16V24L20 28L25 24V16L20 12Z" fill="#764ba2"/>
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <div class="logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <!-- Triângulo principal -->
+          <path d="M16 4L8 10V22L16 28L24 22V10L16 4Z" fill="url(#logoGradient)"/>
+          <!-- Triângulo menor -->
+          <path d="M16 8L12 11V21L16 24L20 21V11L16 8Z" fill="#764ba2"/>
         </svg>
       </div>
-      <span class="d-none d-md-inline">AR Gestão Contábil</span>
-      <span class="d-md-none">AR Gestão</span>
     </a>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" routerLink="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/clientes">Clientes</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/equipe">Equipe</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
-      </ul>
+    
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <div class="navbar-nav d-flex align-items-center gap-3">
+        <a class="nav-link" routerLink="/sobre">AR</a>
+        <div class="nav-link dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="clienteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Cliente
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="clienteDropdown">
+            <li><a class="dropdown-item" routerLink="/clientes/pessoa-fs">Pessoa FS</a></li>
+            <li><a class="dropdown-item" routerLink="/clientes/pessoa-jr">Pessoa JR</a></li>
+          </ul>
+        </div>
+        <a class="nav-link" routerLink="/equipe">Equipe</a>
+        <a class="nav-link" routerLink="/planos">Planos</a>
+        <div class="nav-link dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+            <li><a class="dropdown-item" routerLink="/login/pessoa-fisica">Pessoa Física</a></li>
+            <li><a class="dropdown-item" routerLink="/login/pessoa-juridica">Pessoa Jurídica</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
