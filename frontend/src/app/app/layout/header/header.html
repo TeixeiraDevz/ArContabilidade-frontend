@@ -1,17 +1,26 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-semibold" routerLink="/">AR Gestão Contábil e Financeira</a>
+    <a class="navbar-brand d-flex align-items-center fw-semibold" routerLink="/">
+      <div class="logo-icon me-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="8" fill="white"/>
+          <path d="M20 8L12 14V26L20 32L28 26V14L20 8Z" fill="#667eea"/>
+          <path d="M20 12L15 16V24L20 28L25 24V16L20 12Z" fill="#764ba2"/>
+        </svg>
+      </div>
+      <span class="d-none d-md-inline">AR Gestão Contábil</span>
+      <span class="d-md-none">AR Gestão</span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+    <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" routerLink="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/clientes">Clientes</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/equipe">Equipe</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
       </ul>
     </div>
   </div>
-  
 </nav>

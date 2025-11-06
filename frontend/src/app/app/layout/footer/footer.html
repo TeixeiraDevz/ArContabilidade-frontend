@@ -1,11 +1,62 @@
-<footer class="border-top py-4 mt-5">
-  <div class="container small text-muted">
-    <div class="row gy-2 align-items-center">
-      <div class="col-12 col-md">
-        © {{ currentYear }} AR Gestão Contábil e Financeira
+<footer class="footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4">
+        <h5 class="footer-title mb-3">AR Gestão Contábil e Financeira</h5>
+        <p class="footer-text">
+          Cuidamos da sua contabilidade para que você foque no que realmente importa: crescer.
+        </p>
       </div>
-      <div class="col-12 col-md text-md-end">
-        Av. Leonardo Malcher, 1661 - Praça 14 de Janeiro - CEP 69020-070 · contato@arcontabilidade-am.com.br · (92) 3642-5207
+      
+      <div class="col-12 col-md-6 col-lg-4">
+        <h6 class="footer-subtitle mb-3">Links Rápidos</h6>
+        <ul class="footer-links list-unstyled">
+          <li><a routerLink="/" class="footer-link">Home</a></li>
+          <li><a routerLink="/clientes" class="footer-link">Clientes</a></li>
+          <li><a routerLink="/equipe" class="footer-link">Equipe</a></li>
+          <li><a routerLink="/login" class="footer-link">Login</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-12 col-md-12 col-lg-4">
+        <h6 class="footer-subtitle mb-3">Contato</h6>
+        <div class="footer-contact">
+          <p class="footer-text mb-2 d-flex align-items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="me-2 mt-1 flex-shrink-0">
+              <path d="M12.166 8.94c-.524 1.137-1.35 2.12-2.365 2.936l-.679-.679c-1.137-1.137-1.137-2.978 0-4.115l.679-.679c.816-1.015 1.799-1.841 2.936-2.365l-.289-.289a1.5 1.5 0 0 0-2.121 0l-.707.707a1.5 1.5 0 0 1-2.121 0l-.707-.707a1.5 1.5 0 0 0-2.121 0l-.289.289c-1.137.524-2.12 1.35-2.936 2.365l-.679.679c-1.137 1.137-1.137 2.978 0 4.115l.679.679c.816 1.015 1.799 1.841 2.936 2.365l-.289.289a1.5 1.5 0 0 0 0 2.121l.707.707a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 0 2.121 0l.707-.707a1.5 1.5 0 0 0 0-2.121l-.289-.289z"/>
+            </svg>
+            <span>Av. Leonardo Malcher, 1661 - Praça 14 de Janeiro<br>CEP 69020-070 - Manaus/AM</span>
+          </p>
+          <p class="footer-text mb-2 d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="me-2 flex-shrink-0">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.561-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.056ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+            </svg>
+            <a href="mailto:contato@arcontabilidade-am.com.br" class="footer-link">
+              contato@arcontabilidade-am.com.br
+            </a>
+          </p>
+          <p class="footer-text d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="me-2 flex-shrink-0">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122L9.05 10.5a.678.678 0 0 1-.555-.37L5.714 5.732a.678.678 0 0 1-.37-.555l-.122-1.38a.678.678 0 0 0-.122-.58z"/>
+            </svg>
+            <a href="tel:+559236425207" class="footer-link">(92) 3642-5207</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-divider my-4"></div>
+    
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
+        <p class="footer-copyright mb-0">
+          © {{ currentYear }} AR Gestão Contábil e Financeira. Todos os direitos reservados.
+        </p>
+      </div>
+      <div class="col-12 col-md-6 text-center text-md-end">
+        <p class="footer-copyright mb-0">
+          Desenvolvido com dedicação para seu sucesso
+        </p>
       </div>
     </div>
   </div>

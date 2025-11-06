@@ -1,1 +1,234 @@
-<p>home works!</p>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-10 col-xl-8 mx-auto text-center">
+        <h1 class="hero-title display-3 fw-bold mb-4">
+          De novos negócios a grandes empresas
+        </h1>
+        <p class="hero-subtitle lead mb-5 fs-4">
+          Cuidamos da sua contabilidade para que você foque no que realmente importa: crescer
+        </p>
+        <div class="hero-buttons d-flex gap-3 justify-content-center flex-wrap">
+          <a href="/clientes" class="btn btn-primary btn-lg px-5 py-3 fw-semibold shadow-lg">
+            Fale com um especialista
+          </a>
+          <a href="/login" class="btn btn-outline-light btn-lg px-5 py-3 fw-semibold border-2">
+            Já sou cliente
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nossos Serviços -->
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="section-title">Nossos serviços</h2>
+        <p class="section-subtitle">
+          O que podemos fazer pela sua empresa?
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      @for (servico of servicos; track servico.titulo) {
+        <div class="col-md-6 col-lg-4">
+          <div class="card servico-card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="servico-icon mb-3">
+                @if (servico.icone === 'chart') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
+                    <path d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.576l-3.5 4.5a.5.5 0 0 1-.79.01l-2.5-3.5a.5.5 0 0 1 .037-.65l3-3a.5.5 0 0 1 .577-.06z"/>
+                  </svg>
+                } @else if (servico.icone === 'users') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.933-3.674A3.74 3.74 0 0 1 8 9c2.71 0 5.238 1.221 5.784 3H1.784Z"/>
+                  </svg>
+                } @else if (servico.icone === 'file') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
+                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                  </svg>
+                } @else if (servico.icone === 'building') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
+                    <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10.341a.5.5 0 0 1 .224-.39l8.5-6a.5.5 0 0 1 .552 0l8.5 6a.5.5 0 0 1 .287.47V.5a.5.5 0 0 1 .763-.425z"/>
+                  </svg>
+                } @else if (servico.icone === 'link') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
+                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                  </svg>
+                } @else if (servico.icone === 'monitor') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
+                    <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM13 7V1.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1H12v5.5a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5V7zM3 5.5a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-6zm1.5 0a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-6zm1.5 0a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-6z"/>
+                  </svg>
+                }
+              </div>
+              <h5 class="card-title fw-bold mb-3">{{ servico.titulo }}</h5>
+              <p class="card-text text-muted">{{ servico.descricao }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Planos -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="section-title">Planos personalizados</h2>
+        <p class="section-subtitle">
+          Temos soluções personalizadas para todos os momentos da sua empresa, desde novos negócios a grandes empresas
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      @for (plano of planos; track plano.nome) {
+        <div class="col-lg-4">
+          <div class="card plano-card h-100" [class.featured]="plano.destacado">
+            @if (plano.destacado) {
+              <div class="card-header bg-primary text-white text-center py-3">
+                <span class="badge bg-light text-primary">Mais Popular</span>
+              </div>
+            }
+            <div class="card-body p-4">
+              <h3 class="card-title fw-bold mb-2">{{ plano.nome }}</h3>
+              <p class="text-muted mb-3">{{ plano.subtitulo }}</p>
+              <p class="card-text mb-4">{{ plano.descricao }}</p>
+              <ul class="list-unstyled">
+                @for (beneficio of plano.beneficios; track beneficio) {
+                  <li class="mb-2">
+                    <span class="text-success me-2">✓</span>
+                    {{ beneficio }}
+                  </li>
+                }
+              </ul>
+            </div>
+            <div class="card-footer bg-transparent border-0 p-4">
+              <a href="/clientes" class="btn btn-primary w-100">
+                Saiba mais
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Métricas e Diferenciais -->
+<section class="metrics-section py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto text-center">
+        <h2 class="section-title">Por que somos a escolha ideal?</h2>
+        <p class="section-subtitle mb-5">
+          Com experiência, inovação e compromisso, oferecemos soluções estratégicas que otimizam processos, reduzem custos e impulsionam resultados.
+        </p>
+      </div>
+    </div>
+    
+    <div class="metrics-container">
+      <div class="metrics-arrow mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#667eea" viewBox="0 0 16 16" class="arrow-down">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+        </svg>
+      </div>
+      
+      <div class="row g-4 justify-content-center">
+        @for (metrica of metricas; track metrica.descricao) {
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="metric-card">
+              <div class="metric-number">{{ metrica.numero }}</div>
+              <p class="metric-label">{{ metrica.descricao }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Diferenciais -->
+<section class="diferenciais-section py-5 bg-light">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="diferenciais-title">Nossos diferenciais</h2>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="diferencial-card">
+          <div class="diferencial-icon mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+          </div>
+          <h5 class="diferencial-subtitle">Gestão estratégica</h5>
+          <p class="diferencial-text">
+            Mais do que números, ajudamos você a tomar decisões inteligentes com informações ágeis e seguras.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="diferencial-card">
+          <div class="diferencial-icon mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
+              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm-1 2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+            </svg>
+          </div>
+          <h5 class="diferencial-subtitle">Tecnologia</h5>
+          <p class="diferencial-text">
+            Usamos tecnologia de ponta para otimizar processos e oferecer soluções eficientes.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="diferencial-card">
+          <div class="diferencial-icon mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
+              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.933-3.674A3.74 3.74 0 0 1 8 9c2.71 0 5.238 1.221 5.784 3H1.784Z"/>
+            </svg>
+          </div>
+          <h5 class="diferencial-subtitle">Atendimento diferenciado</h5>
+          <p class="diferencial-text">
+            Entendemos as dificuldades operacionais do seu negócio com uma equipe de especialistas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-8 mx-auto text-center">
+        <h2 class="cta-title">Pronto para transformar sua gestão contábil?</h2>
+        <p class="cta-subtitle">
+          Conheça mais sobre nossos planos e descubra qual é o ideal para sua empresa.
+        </p>
+        <div class="cta-buttons">
+          <a href="/clientes" class="btn cta-btn-primary">
+            Fale com um especialista
+          </a>
+          <a href="/equipe" class="btn cta-btn-secondary">
+            Conheça nossa equipe
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
