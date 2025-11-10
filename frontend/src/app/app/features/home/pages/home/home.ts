@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -74,6 +74,10 @@ import { Component } from '@angular/core';
       z-index: 2;
     }
     
+    .services-section {
+      margin-top: 5rem;
+    }
+    
     .hero-logo {
       margin-bottom: 5rem;
       margin-top: 2rem;
@@ -106,8 +110,14 @@ import { Component } from '@angular/core';
       margin: 0 auto;
       perspective: 1000px;
       opacity: 0;
-      transform: translateY(50px);
-      animation: laptopAppear 2s ease-out forwards;
+      transform: translateY(80px);
+      transition: opacity 1s ease-out, transform 1.1s ease-out;
+      will-change: transform, opacity;
+    }
+    
+    .laptop-container.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .laptop-frame {
@@ -115,6 +125,11 @@ import { Component } from '@angular/core';
       transform-style: preserve-3d;
       animation: laptopFloat 8s ease-in-out infinite;
       animation-delay: 2s;
+      animation-play-state: paused;
+    }
+    
+    .laptop-container.is-visible .laptop-frame {
+      animation-play-state: running;
     }
     
     .laptop-screen {
@@ -142,6 +157,7 @@ import { Component } from '@angular/core';
       overflow: hidden;
       aspect-ratio: 16/10;
       position: relative;
+      box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.08);
     }
     
     .site-preview {
@@ -149,6 +165,9 @@ import { Component } from '@angular/core';
       display: flex;
       flex-direction: column;
       background: var(--color-white);
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
     }
     
     .preview-header {
@@ -184,10 +203,124 @@ import { Component } from '@angular/core';
     
     .preview-content {
       flex: 1;
-      padding: 2rem;
-      background: var(--color-gray-light);
+      background: linear-gradient(180deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.18) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
+    .ceo-artwork {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    
+    .ceo-artwork::before,
+    .ceo-artwork::after {
+      content: '';
+      position: absolute;
+      bottom: -8%;
+      width: 38%;
+      max-width: 300px;
+      aspect-ratio: 1/1.25;
+      background: radial-gradient(circle at 50% 20%, rgba(255, 218, 195, 0.95) 0%, rgba(245, 182, 169, 0.85) 30%, rgba(102, 126, 234, 0.3) 100%);
+      border-radius: 48% 48% 36% 36%;
+      filter: drop-shadow(0 28px 45px rgba(102, 126, 234, 0.45));
+      animation: float 7s ease-in-out infinite;
+    }
+    
+    .ceo-artwork::before {
+      left: 12%;
+      transform: rotate(-6deg);
+      animation-delay: 0.6s;
+    }
+    
+    .ceo-artwork::after {
+      right: 12%;
+      transform: rotate(6deg);
+      animation-delay: 1.1s;
+    }
+    
+    .ceo-head {
+      position: absolute;
+      bottom: 32%;
+      width: 22%;
+      max-width: 170px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f8c7bc 0%, #f2a59c 100%);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      animation: float 7s ease-in-out infinite;
+    }
+    
+    .ceo-head.left {
+      left: 20%;
+      transform: rotate(-4deg);
+      animation-delay: 0.3s;
+    }
+    
+    .ceo-head.right {
+      right: 20%;
+      transform: rotate(4deg);
+      animation-delay: 0.9s;
+    }
+    
+    .ceo-hair {
+      position: absolute;
+      inset: -16%;
+      border-radius: 48% 48% 36% 36%;
+      background: linear-gradient(135deg, #2d2a44 0%, #504a82 100%);
+      box-shadow: 0 22px 35px rgba(45, 42, 68, 0.45);
+      animation: floatReverse 9s ease-in-out infinite;
+    }
+    
+    .ceo-hair.right {
+      background: linear-gradient(135deg, #4b2f54 0%, #7a46a4 100%);
+    }
+    
+    .ceo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 620px;
+      height: 65%;
+      border-radius: 42% 42% 28% 28%;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 55%, rgba(118, 75, 162, 0.15) 100%);
+      filter: blur(0);
+      box-shadow:
+        inset 0 12px 25px rgba(255, 255, 255, 0.45),
+        0 25px 40px rgba(102, 126, 234, 0.35);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    
+    .ceo-overlay::before,
+    .ceo-overlay::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      filter: blur(15px);
+      animation: float 9s ease-in-out infinite;
+    }
+    
+    .ceo-overlay::before {
+      top: 18%;
+      left: 12%;
+      animation-delay: 0.4s;
+    }
+    
+    .ceo-overlay::after {
+      top: 24%;
+      right: 10%;
+      animation-delay: 1.2s;
+    }
     .preview-card {
       background: var(--color-white);
       border-radius: 12px;
@@ -285,6 +418,38 @@ import { Component } from '@angular/core';
       .preview-stats {
         grid-template-columns: 1fr;
       }
+
+      .preview-content {
+        padding: 2rem 1.75rem 1.75rem;
+      }
+
+      .preview-hero {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.75rem;
+      }
+
+      .ceo-illustration {
+        width: 280px;
+        height: 220px;
+      }
+
+      .ceo {
+        width: 140px;
+        height: 210px;
+        bottom: -15px;
+      }
+
+      .preview-dialog {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .preview-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
     }
     
     @media (max-width: 576px) {
@@ -305,6 +470,41 @@ import { Component } from '@angular/core';
       .preview-nav {
         flex-wrap: wrap;
         gap: 0.75rem;
+      }
+
+      .preview-content {
+        padding: 1.75rem 1.25rem 1.5rem;
+      }
+
+      .ceo-illustration {
+        width: 220px;
+        height: 190px;
+      }
+
+      .ceo {
+        width: 120px;
+        height: 190px;
+        bottom: -10px;
+      }
+
+      .preview-dialog {
+        padding: 1.25rem 1.1rem;
+      }
+
+      .preview-dialog-title {
+        font-size: 1.15rem;
+      }
+
+      .preview-dialog-text {
+        font-size: 0.9rem;
+      }
+
+      .preview-footer {
+        margin-top: 1.75rem;
+      }
+
+      .preview-pill {
+        padding: 0.5rem 1rem;
       }
     }
     
@@ -437,6 +637,24 @@ import { Component } from '@angular/core';
       border-color: var(--color-purple);
     }
     
+    .servico-card .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .servico-card .card-title {
+      font-size: 1.2rem;
+      margin-bottom: -1px;
+      color: var(--color-black);
+    }
+    
+    .servico-card .card-text {
+      color: var(--color-gray-dark);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    
     .servico-icon {
       display: flex;
       align-items: center;
@@ -453,6 +671,36 @@ import { Component } from '@angular/core';
     .servico-card:hover .servico-icon svg {
       fill: var(--color-purple);
       filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+    }
+    
+    .planos-section {
+      margin-top: 4.5rem;
+      padding-top: 5rem;
+      background: var(--color-white);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.08);
+    }
+    
+    .planos-section .section-title {
+      margin-top: 0;
+    }
+    
+    .planos-section .section-subtitle {
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .planos-section {
+        margin-top: 3.5rem;
+        padding-top: 4rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .planos-section {
+        margin-top: 3rem;
+        padding-top: 3.5rem;
+      }
     }
     
     .plano-card {
@@ -500,6 +748,36 @@ import { Component } from '@angular/core';
       box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
     }
     
+    .plano-card .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    
+    .plano-card .card-title {
+      font-size: 1.45rem;
+      color: var(--color-black);
+      margin-bottom: 0;
+    }
+    
+    .plano-card .text-muted {
+      color: var(--color-gray);
+      margin-bottom: 0;
+    }
+    
+    .plano-card .card-text {
+      color: var(--color-gray-dark);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    
+    .plano-card .list-unstyled {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 0;
+    }
+    
     .benefit-item {
       animation: slideIn 0.5s ease-out forwards;
       opacity: 0;
@@ -523,152 +801,6 @@ import { Component } from '@angular/core';
     .benefit-item:hover {
       transform: translateX(5px);
       color: var(--color-black);
-    }
-    
-    .metrics-section {
-      margin-top: 4rem;
-      padding-top: 5rem;
-    }
-    
-    .metrics-container {
-      position: relative;
-      text-align: center;
-    }
-    
-    .metrics-arrow {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: bounce 2s infinite;
-    }
-    
-    .metrics-arrow svg {
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    
-    .metrics-arrow:hover svg {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-    
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-    
-    .metric-card {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      transition: all var(--transition-normal);
-      border-radius: 16px;
-      background: var(--color-white);
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
-      animation: scaleIn 0.6s ease-out;
-    }
-    
-    .metric-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at center, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity var(--transition-normal);
-    }
-    
-    .metric-card:hover::before {
-      opacity: 1;
-    }
-    
-    .metric-card:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: var(--shadow-xl);
-    }
-    
-    .metric-number {
-      font-size: 3rem;
-      font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.75rem;
-      line-height: 1;
-      animation: countUp 1s ease-out;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .metric-number::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 3px;
-      background: var(--gradient-primary);
-      animation: write 1.5s ease-out 0.5s forwards;
-    }
-    
-    .metric-label {
-      font-size: 1rem;
-      color: var(--color-gray);
-      margin-bottom: 0;
-      font-weight: 500;
-      line-height: 1.5;
-      letter-spacing: 0.01em;
-    }
-    
-    @media (max-width: 991px) {
-      .metric-number {
-        font-size: 2rem;
-      }
-      
-      .metric-label {
-        font-size: 0.85rem;
-      }
-      
-      .metrics-arrow svg {
-        width: 50px;
-        height: 50px;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .metrics-section {
-        margin-top: 2rem;
-        padding-top: 3rem;
-      }
-      
-      .metric-number {
-        font-size: 1.75rem;
-      }
-      
-      .metric-label {
-        font-size: 0.8rem;
-      }
-      
-      .metric-card {
-        padding: 1.5rem 1rem;
-      }
-      
-      .metrics-arrow svg {
-        width: 40px;
-        height: 40px;
-      }
     }
     
     .section-title {
@@ -719,6 +851,9 @@ import { Component } from '@angular/core';
       box-shadow: var(--shadow-sm);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
     }
     
     .diferencial-card::before {
@@ -765,15 +900,15 @@ import { Component } from '@angular/core';
       font-size: 1.6rem;
       font-weight: 700;
       color: var(--color-black);
-      margin-bottom: 1.25rem;
+      margin-bottom: 0;
       line-height: 1.3;
       letter-spacing: -0.01em;
     }
     
     .diferencial-text {
       font-size: 1.1rem;
-      color: var(--color-gray);
-      line-height: 1.8;
+      color: var(--color-gray-dark);
+      line-height: 1.7;
       margin-bottom: 0;
       text-align: left;
       font-weight: 400;
@@ -841,8 +976,9 @@ import { Component } from '@angular/core';
     .cta-section {
       background: var(--gradient-primary);
       color: white;
-      padding: 6rem 0;
-      margin-top: 5rem;
+      padding: 6rem 0 4rem;
+      margin-top: 4rem;
+      margin-bottom: 0;
       position: relative;
       overflow: hidden;
     }
@@ -862,13 +998,13 @@ import { Component } from '@angular/core';
     .cta-section::after {
       content: '';
       position: absolute;
-      bottom: -30%;
-      left: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      bottom: -80%;
+      left: -25%;
+      width: 680px;
+      height: 680px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 85%);
       border-radius: 50%;
-      animation: pulse 5s ease-in-out infinite;
+      animation: pulse 6s ease-in-out infinite;
       animation-delay: 1s;
     }
     
@@ -997,7 +1133,7 @@ import { Component } from '@angular/core';
     
     @media (max-width: 991px) {
       .cta-section {
-        padding: 4rem 0;
+        padding: 4rem 0 3rem;
       }
       
       .cta-title {
@@ -1021,7 +1157,7 @@ import { Component } from '@angular/core';
     
     @media (max-width: 576px) {
       .cta-section {
-        padding: 3rem 0;
+        padding: 3rem 0 2.5rem;
         margin-top: 2rem;
       }
       
@@ -1051,8 +1187,36 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class Home {
-  currentYear = new Date().getFullYear();
+export class Home implements OnInit, OnDestroy {
+  @ViewChild('laptopRef', { static: true }) laptopRef?: ElementRef<HTMLElement>;
+  screenVisible = false;
+  private screenObserver?: IntersectionObserver;
+
+  ngOnInit(): void {
+    const laptopEl = this.laptopRef?.nativeElement;
+    if (laptopEl && typeof IntersectionObserver !== 'undefined') {
+      this.screenObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.screenVisible = true;
+              this.screenObserver?.disconnect();
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+
+      this.screenObserver.observe(laptopEl);
+    } else {
+      // Fallback: exibe diretamente caso IntersectionObserver não esteja disponível
+      this.screenVisible = true;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.screenObserver?.disconnect();
+  }
 
   servicos = [
     {
@@ -1142,12 +1306,4 @@ export class Home {
     }
   ];
 
-  metricas = [
-    { numero: '35+', descricao: 'Anos de empresa' },
-    { numero: '1200+', descricao: 'Colaboradores' },
-    { numero: '400+', descricao: 'Softwares integrados' },
-    { numero: '50k+', descricao: 'Folhas processadas' },
-    { numero: '9.5', descricao: 'Na pesquisa de satisfação' },
-    { numero: '2BI+', descricao: 'Receita administrada' }
-  ];
 }

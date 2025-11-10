@@ -7,10 +7,22 @@ import { RouterLink } from '@angular/router';
   templateUrl: './footer.html',
   styles: [`
     .footer {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      background: var(--gradient-primary);
       color: white;
-      padding: 4rem 0 2rem;
-      margin-top: 5rem;
+      padding: 3.5rem 0 2rem;
+      margin-top: -1px;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--gradient-primary);
+      filter: blur(8px);
     }
     
     .footer-title {

@@ -136,11 +136,36 @@ import { RouterLink } from '@angular/router';
       color: var(--color-black);
       transition: all var(--transition-fast);
       font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
     
     .dropdown-item:hover {
       background: var(--color-gray-light);
       color: var(--color-purple);
+    }
+    
+    .dropdown-item-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(102, 126, 234, 0.12);
+      flex-shrink: 0;
+      transition: all var(--transition-fast);
+    }
+    
+    .dropdown-item:hover .dropdown-item-icon {
+      background: rgba(102, 126, 234, 0.2);
+    }
+    
+    .dropdown-item-text {
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: var(--color-black);
     }
     
     .external-icon {
