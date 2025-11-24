@@ -1,8 +1,11 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { PlanosService } from '../../../planos/services/planos.service';
+import { Plano } from '../../../../../core/models/plano.model';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home.html',
   styles: [`
     :host {
@@ -14,12 +17,20 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
     .hero-section {
       position: relative;
       background: var(--color-white);
-      min-height: 100vh;
+      min-height: 75vh;
       display: flex;
       align-items: center;
       overflow: hidden;
-      padding-top: 100px;
+      padding-top: 120px;
       padding-bottom: 80px;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: 60vh;
+        padding-top: 100px;
+        padding-bottom: 60px;
+      }
     }
     
     .hero-blur-shapes {
@@ -79,8 +90,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
     }
     
     .hero-logo {
-      margin-bottom: 5rem;
-      margin-top: 2rem;
+      margin-bottom: 3rem;
     }
     
     .logo-text-container {
@@ -105,292 +115,24 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
       letter-spacing: 0.02em;
     }
     
-    .laptop-container {
-      max-width: 900px;
-      margin: 0 auto;
-      perspective: 1000px;
-      opacity: 0;
-      transform: translateY(80px);
-      transition: opacity 1s ease-out, transform 1.1s ease-out;
-      will-change: transform, opacity;
+    .hero-content {
+      animation: fadeInUp 0.8s ease-out;
     }
     
-    .laptop-container.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .laptop-frame {
-      position: relative;
-      transform-style: preserve-3d;
-      animation: laptopFloat 8s ease-in-out infinite;
-      animation-delay: 2s;
-      animation-play-state: paused;
-    }
-    
-    .laptop-container.is-visible .laptop-frame {
-      animation-play-state: running;
-    }
-    
-    .laptop-screen {
-      background: #1a1a1a;
-      border-radius: 12px 12px 0 0;
-      padding: 8px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transform: rotateX(5deg) rotateY(-2deg);
-    }
-    
-    @keyframes laptopAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    
-    .screen-content {
-      background: var(--color-white);
-      border-radius: 6px;
-      overflow: hidden;
-      aspect-ratio: 16/10;
-      position: relative;
-      box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.08);
-    }
-    
-    .site-preview {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      background: var(--color-white);
-      position: relative;
-      overflow: hidden;
-      border-radius: 6px;
-    }
-    
-    .preview-header {
-      background: var(--color-white);
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #e9ecef;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .preview-logo-small {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--color-purple);
-    }
-    
-    .preview-nav {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.85rem;
-      color: var(--color-gray);
-    }
-    
-    .preview-nav span {
-      transition: color var(--transition-fast);
-    }
-    
-    .preview-nav span:first-child {
-      color: var(--color-purple);
-      font-weight: 600;
-    }
-    
-    .preview-content {
-      flex: 1;
-      background: linear-gradient(180deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.18) 100%);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .ceo-artwork {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    
-    .ceo-artwork::before,
-    .ceo-artwork::after {
-      content: '';
-      position: absolute;
-      bottom: -8%;
-      width: 38%;
-      max-width: 300px;
-      aspect-ratio: 1/1.25;
-      background: radial-gradient(circle at 50% 20%, rgba(255, 218, 195, 0.95) 0%, rgba(245, 182, 169, 0.85) 30%, rgba(102, 126, 234, 0.3) 100%);
-      border-radius: 48% 48% 36% 36%;
-      filter: drop-shadow(0 28px 45px rgba(102, 126, 234, 0.45));
-      animation: float 7s ease-in-out infinite;
-    }
-    
-    .ceo-artwork::before {
-      left: 12%;
-      transform: rotate(-6deg);
-      animation-delay: 0.6s;
-    }
-    
-    .ceo-artwork::after {
-      right: 12%;
-      transform: rotate(6deg);
-      animation-delay: 1.1s;
-    }
-    
-    .ceo-head {
-      position: absolute;
-      bottom: 32%;
-      width: 22%;
-      max-width: 170px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f8c7bc 0%, #f2a59c 100%);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-      animation: float 7s ease-in-out infinite;
-    }
-    
-    .ceo-head.left {
-      left: 20%;
-      transform: rotate(-4deg);
-      animation-delay: 0.3s;
-    }
-    
-    .ceo-head.right {
-      right: 20%;
-      transform: rotate(4deg);
-      animation-delay: 0.9s;
-    }
-    
-    .ceo-hair {
-      position: absolute;
-      inset: -16%;
-      border-radius: 48% 48% 36% 36%;
-      background: linear-gradient(135deg, #2d2a44 0%, #504a82 100%);
-      box-shadow: 0 22px 35px rgba(45, 42, 68, 0.45);
-      animation: floatReverse 9s ease-in-out infinite;
-    }
-    
-    .ceo-hair.right {
-      background: linear-gradient(135deg, #4b2f54 0%, #7a46a4 100%);
-    }
-    
-    .ceo-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 620px;
-      height: 65%;
-      border-radius: 42% 42% 28% 28%;
-      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 55%, rgba(118, 75, 162, 0.15) 100%);
-      filter: blur(0);
-      box-shadow:
-        inset 0 12px 25px rgba(255, 255, 255, 0.45),
-        0 25px 40px rgba(102, 126, 234, 0.35);
-      animation: pulse 8s ease-in-out infinite;
-    }
-    
-    .ceo-overlay::before,
-    .ceo-overlay::after {
-      content: '';
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
-      filter: blur(15px);
-      animation: float 9s ease-in-out infinite;
-    }
-    
-    .ceo-overlay::before {
-      top: 18%;
-      left: 12%;
-      animation-delay: 0.4s;
-    }
-    
-    .ceo-overlay::after {
-      top: 24%;
-      right: 10%;
-      animation-delay: 1.2s;
-    }
-    .preview-card {
-      background: var(--color-white);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .preview-title {
-      font-size: 1.5rem;
+    .hero-title {
+      font-size: 3.5rem;
       font-weight: 700;
       color: var(--color-black);
+      line-height: 1.2;
       margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
     }
     
-    .preview-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    
-    .stat-item {
-      padding: 1.5rem;
-      background: var(--color-gray-light);
-      border-radius: 8px;
-    }
-    
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--color-purple);
-      margin-bottom: 0.5rem;
-    }
-    
-    .stat-label {
-      font-size: 0.9rem;
+    .hero-subtitle {
+      font-size: 1.3rem;
       color: var(--color-gray);
-    }
-    
-    .laptop-base {
-      width: 100%;
-      height: 20px;
-      background: #2a2a2a;
-      border-radius: 0 0 8px 8px;
-      margin-top: -4px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    .laptop-base {
-      position: relative;
-    }
-    
-    .laptop-base::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 4px;
-      background: #1a1a1a;
-      border-radius: 0 0 4px 4px;
-    }
-    
-    @keyframes laptopFloat {
-      0%, 100% {
-        transform: translateY(0) rotateX(5deg) rotateY(-2deg);
-      }
-      50% {
-        transform: translateY(-10px) rotateX(5deg) rotateY(-2deg);
-      }
+      line-height: 1.7;
+      margin-bottom: 2rem;
     }
     
     @media (max-width: 991px) {
@@ -402,53 +144,40 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
         font-size: 1.25rem;
       }
       
-      .laptop-container {
-        max-width: 100%;
-        padding: 0 1rem;
+      .hero-title {
+        font-size: 2.5rem;
       }
       
-      .laptop-screen {
-        transform: rotateX(0deg) rotateY(0deg);
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-text {
+        font-size: 2.5rem;
       }
       
-      .laptop-frame {
-        animation: none;
+      .logo-subtitle {
+        font-size: 1rem;
       }
       
-      .preview-stats {
-        grid-template-columns: 1fr;
+      .hero-title {
+        font-size: 2rem;
       }
-
-      .preview-content {
-        padding: 2rem 1.75rem 1.75rem;
+      
+      .hero-subtitle {
+        font-size: 1rem;
       }
-
-      .preview-hero {
+      
+      .hero-buttons {
         flex-direction: column;
-        align-items: center;
-        gap: 1.75rem;
+        width: 100%;
       }
-
-      .ceo-illustration {
-        width: 280px;
-        height: 220px;
-      }
-
-      .ceo {
-        width: 140px;
-        height: 210px;
-        bottom: -15px;
-      }
-
-      .preview-dialog {
-        max-width: 100%;
-        text-align: center;
-      }
-
-      .preview-footer {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
+      
+      .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
       }
     }
     
@@ -560,46 +289,17 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
       }
     }
     
-    @media (max-width: 768px) {
-      .hero-section {
-        min-height: 80vh;
-        background-attachment: scroll;
-      }
-      
-      .hero-title {
-        font-size: 2rem !important;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.1rem !important;
-      }
-      
-      .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-      }
-      
-      .hero-buttons .btn {
-        width: 100%;
-        max-width: 300px;
-      }
-      
-      .min-vh-75 {
-        min-height: 60vh;
-      }
-    }
-    
     @media (max-width: 576px) {
       .hero-title {
-        font-size: 1.75rem !important;
+        font-size: 1.75rem;
       }
       
       .hero-subtitle {
-        font-size: 1rem !important;
+        font-size: 0.95rem;
       }
       
       .hero-buttons .btn {
-        padding: 0.75rem 2rem !important;
+        padding: 0.75rem 1.5rem;
         font-size: 0.95rem;
       }
     }
@@ -1187,35 +887,68 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
     }
   `]
 })
-export class Home implements OnInit, OnDestroy {
-  @ViewChild('laptopRef', { static: true }) laptopRef?: ElementRef<HTMLElement>;
-  screenVisible = false;
-  private screenObserver?: IntersectionObserver;
+export class Home implements OnInit {
+  planos: Plano[] = [];
+
+  constructor(private planosService: PlanosService) {}
 
   ngOnInit(): void {
-    const laptopEl = this.laptopRef?.nativeElement;
-    if (laptopEl && typeof IntersectionObserver !== 'undefined') {
-      this.screenObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.screenVisible = true;
-              this.screenObserver?.disconnect();
-            }
-          });
-        },
-        { threshold: 0.35 }
-      );
-
-      this.screenObserver.observe(laptopEl);
-    } else {
-      // Fallback: exibe diretamente caso IntersectionObserver não esteja disponível
-      this.screenVisible = true;
-    }
+    this.carregarPlanos();
   }
 
-  ngOnDestroy(): void {
-    this.screenObserver?.disconnect();
+  carregarPlanos(): void {
+    this.planosService.listarPlanos().subscribe({
+      next: (planos) => {
+        // Se não houver planos do backend, usar dados mockados
+        if (planos.length === 0) {
+          this.planos = this.getPlanosMockados();
+        } else {
+          this.planos = planos;
+        }
+      },
+      error: () => {
+        // Em caso de erro, usar dados mockados
+        this.planos = this.getPlanosMockados();
+      }
+    });
+  }
+
+  private getPlanosMockados(): Plano[] {
+    return [
+      {
+        id: '1',
+        nome: 'Básico',
+        publicoIdeal: 'Micro e Pequenas Empresas (ME/EPP)',
+        regimesAtendidos: ['Simples Nacional', 'Lucro Presumido'],
+        faturamentoMedioMensal: 'Até R$ 100.000,00',
+        atividadeEmpresa: ['Comércio', 'Serviço'],
+        canaisAtendimento: ['WhatsApp', 'E-mail', 'Telefone'],
+        relatoriosGerenciais: 'Padrão',
+        recursos: []
+      },
+      {
+        id: '2',
+        nome: 'Intermediário',
+        publicoIdeal: 'Empresas em crescimento',
+        regimesAtendidos: ['Simples Nacional', 'Lucro Presumido', 'Lucro Real'],
+        faturamentoMedioMensal: 'Acima de R$ 100.000,00',
+        atividadeEmpresa: ['Comércio', 'Serviço', 'Indústria'],
+        canaisAtendimento: ['WhatsApp', 'E-mail', 'Telefone', 'Portal do cliente'],
+        relatoriosGerenciais: 'Personalizados com dashboards (BI)',
+        recursos: []
+      },
+      {
+        id: '3',
+        nome: 'Personalizado',
+        publicoIdeal: 'Médias e grandes empresas',
+        regimesAtendidos: ['Lucro Presumido', 'Lucro Real'],
+        faturamentoMedioMensal: 'Acima de R$ 400.000,00',
+        atividadeEmpresa: ['Comércio', 'Serviço', 'Indústria'],
+        canaisAtendimento: ['WhatsApp', 'E-mail', 'Telefone', 'Portal do cliente', 'Atendimento personalizado'],
+        relatoriosGerenciais: 'Personalizados com dashboards (BI)',
+        recursos: []
+      }
+    ];
   }
 
   servicos = [
@@ -1248,61 +981,6 @@ export class Home implements OnInit, OnDestroy {
       titulo: 'Portal do cliente',
       descricao: 'Acesso 24/7 com checklist, documentos digitais e relatórios',
       icone: 'monitor'
-    }
-  ];
-
-  planos = [
-    {
-      nome: 'Smart',
-      subtitulo: 'Ideal para novos negócios',
-      descricao: 'Perfeito para empresas em fase inicial de crescimento',
-      destacado: false,
-      beneficios: [
-        'ME (Microempresas) ou EPP (Empresas de Pequeno Porte)',
-        'Empresas do Simples Nacional e Lucro Presumido',
-        'Todos os segmentos (Comércio, Serviço, Indústria)',
-        'Portal do Cliente on-line (24 horas disponível)',
-        'Atendimento com especialistas em seu segmento',
-        'Suporte via WhatsApp, e-mail e telefone',
-        'Folha de pagamento e encargos',
-        'Apuração das obrigações fiscais',
-        'Contabilidade e relatórios gerenciais'
-      ]
-    },
-    {
-      nome: 'Agile',
-      subtitulo: 'Ideal para empresas em crescimento',
-      descricao: 'Para empresas que precisam de um parceiro estratégico',
-      destacado: true,
-      beneficios: [
-        'Todos os benefícios do plano Smart e mais:',
-        'Empresas do Simples Nacional, Lucro Presumido e Lucro Real',
-        'Contabilidade e relatórios gerenciais personalizados',
-        'Gestão de Folha com plataforma administrativa',
-        'Integração com o software financeiro da sua empresa',
-        'Suporte contínuo com especialistas',
-        'Reuniões estratégicas quando necessário',
-        'Planejamento Tributário',
-        'Diagnóstico Fiscal',
-        'Relatórios e Dashboard (B.I) personalizados'
-      ]
-    },
-    {
-      nome: 'Outsourcing',
-      subtitulo: 'Ideal para grandes empresas',
-      descricao: 'Atendimento consultivo e personalizado para empresas em constante desenvolvimento',
-      destacado: false,
-      beneficios: [
-        'Todos os benefícios do plano Agile e mais:',
-        'Empresas do Lucro Presumido e Lucro Real',
-        'Contabilidade consultiva para gestores',
-        'Relatórios gerenciais personalizados com dashboard',
-        'Trabalhamos no seu ERP com profissionais especializados',
-        'Atendimento consultivo com especialistas',
-        'Gestor de projeto dedicado',
-        'Atendimento a auditorias externas',
-        'Report Internacional para operações globais'
-      ]
     }
   ];
 

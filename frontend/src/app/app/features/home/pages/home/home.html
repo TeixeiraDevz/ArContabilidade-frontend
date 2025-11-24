@@ -8,50 +8,29 @@
   </div>
   
   <div class="container">
-    <div class="row align-items-center min-vh-100">
+    <div class="row align-items-center min-vh-75">
       <div class="col-12 text-center">
         <!-- Logo AR Gestão Contábil e Financeira -->
-        <div class="hero-logo mb-4 animate-fade-in-up">
+        <div class="hero-logo mb-5 animate-fade-in-up">
           <div class="logo-text-container">
             <span class="logo-text">AR</span>
             <span class="logo-subtitle">Gestão Contábil e Financeira</span>
           </div>
         </div>
         
-        <!-- Laptop com preview do site -->
-        <div #laptopRef class="laptop-container" [class.is-visible]="screenVisible">
-          <div class="laptop-frame">
-            <div class="laptop-screen">
-              <div class="screen-content">
-                <!-- Preview do site dentro do laptop -->
-                <div class="site-preview">
-                  <div class="preview-header">
-                    <div class="preview-logo-small">AR</div>
-                    <div class="preview-nav">
-                      <span>AR</span>
-                      <span>Cliente</span>
-                      <span>Equipe</span>
-                      <span>Planos</span>
-                    </div>
-                  </div>
-                  <div class="preview-content">
-                    <div class="preview-content">
-                      <div class="ceo-artwork">
-                        <span class="ceo-head left">
-                          <span class="ceo-hair"></span>
-                        </span>
-                        <span class="ceo-head right">
-                          <span class="ceo-hair right"></span>
-                        </span>
-                        <div class="ceo-overlay"></div>
-                      </div>
-                    </div>
-                    <div class="preview-footer"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="laptop-base"></div>
+        <!-- Título e subtítulo do hero -->
+        <div class="hero-content animate-fade-in-up" style="animation-delay: 0.2s">
+          <h1 class="hero-title mb-4">
+            Soluções contábeis completas<br>
+            para sua empresa crescer
+          </h1>
+          <p class="hero-subtitle mb-5">
+            Gestão contábil, fiscal e de folha de pagamento com tecnologia de ponta<br>
+            e atendimento especializado para empresas de todos os portes
+          </p>
+          <div class="hero-buttons d-flex gap-3 justify-content-center flex-wrap">
+            <a href="/planos" class="btn btn-primary btn-lg">Conheça nossos planos</a>
+            <a href="/clientes" class="btn btn-outline-light btn-lg">Fale com especialista</a>
           </div>
         </div>
       </div>
@@ -78,29 +57,96 @@
             <div class="card-body p-4">
               <div class="servico-icon mb-3">
                 @if (servico.icone === 'chart') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
-                    <path d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.576l-3.5 4.5a.5.5 0 0 1-.79.01l-2.5-3.5a.5.5 0 0 1 .037-.65l3-3a.5.5 0 0 1 .577-.06z"/>
+                  <!-- Ícone de gráfico/contabilidade -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                      <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="3" y="3" width="18" height="18" rx="2" fill="url(#chartGradient)" opacity="0.1"/>
+                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="url(#chartGradient)" stroke-width="2"/>
+                    <circle cx="7" cy="13" r="1.5" fill="#667eea"/>
+                    <circle cx="12" cy="9" r="1.5" fill="#667eea"/>
+                    <circle cx="17" cy="11" r="1.5" fill="#667eea"/>
                   </svg>
                 } @else if (servico.icone === 'users') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
-                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.933-3.674A3.74 3.74 0 0 1 8 9c2.71 0 5.238 1.221 5.784 3H1.784Z"/>
+                  <!-- Ícone de pessoas/folha de pagamento -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                      <linearGradient id="usersGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="3" y="3" width="18" height="18" rx="2" fill="url(#usersGradient)" opacity="0.1"/>
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="url(#usersGradient)" stroke-width="2"/>
+                    <circle cx="9" cy="7" r="4" stroke="url(#usersGradient)" stroke-width="2"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="url(#usersGradient)" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'file') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
-                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                  <!-- Ícone de documento fiscal -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                      <linearGradient id="fileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="url(#fileGradient)" opacity="0.1"/>
+                    <polyline points="14 2 14 8 20 8" stroke="url(#fileGradient)" stroke-width="2"/>
+                    <line x1="9" y1="15" x2="15" y2="15" stroke="url(#fileGradient)" stroke-width="2"/>
+                    <line x1="9" y1="12" x2="15" y2="12" stroke="url(#fileGradient)" stroke-width="2"/>
+                    <line x1="9" y1="18" x2="12" y2="18" stroke="url(#fileGradient)" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'building') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
-                    <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10.341a.5.5 0 0 1 .224-.39l8.5-6a.5.5 0 0 1 .552 0l8.5 6a.5.5 0 0 1 .287.47V.5a.5.5 0 0 1 .763-.425z"/>
+                  <!-- Ícone de empresa/gestão societária -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                      <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M3 21h18" stroke="url(#buildingGradient)" stroke-width="2"/>
+                    <path d="M5 21V7l8-4v18" fill="url(#buildingGradient)" opacity="0.1"/>
+                    <path d="M5 21V7l8-4v18" stroke="url(#buildingGradient)" stroke-width="2"/>
+                    <path d="M13 21V9l8-4v16" stroke="url(#buildingGradient)" stroke-width="2"/>
+                    <line x1="9" y1="9" x2="9" y2="9.01" stroke="url(#buildingGradient)" stroke-width="2"/>
+                    <line x1="9" y1="12" x2="9" y2="12.01" stroke="url(#buildingGradient)" stroke-width="2"/>
+                    <line x1="9" y1="15" x2="9" y2="15.01" stroke="url(#buildingGradient)" stroke-width="2"/>
+                    <line x1="9" y1="18" x2="9" y2="18.01" stroke="url(#buildingGradient)" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'link') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
-                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                  <!-- Ícone de integração/ERP -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                      <linearGradient id="linkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="3" y="3" width="18" height="18" rx="2" fill="url(#linkGradient)" opacity="0.1"/>
+                    <path d="M8 12h8M12 8v8" stroke="url(#linkGradient)" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="3" stroke="url(#linkGradient)" stroke-width="2" fill="none"/>
+                    <path d="M7 7l2 2M15 7l-2 2M7 17l2-2M15 17l-2-2" stroke="url(#linkGradient)" stroke-width="1.5"/>
                   </svg>
                 } @else if (servico.icone === 'monitor') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#667eea" viewBox="0 0 16 16">
-                    <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM13 7V1.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1H12v5.5a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5V7zM3 5.5a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-6zm1.5 0a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-6zm1.5 0a.5.5 0 0 1 .5-.5h.5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-.5a.5.5 0 0 1-.5-.5v-6z"/>
+                  <!-- Ícone de portal/monitor -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                      <linearGradient id="monitorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="2" y="3" width="20" height="14" rx="2" fill="url(#monitorGradient)" opacity="0.1"/>
+                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="url(#monitorGradient)" stroke-width="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21" stroke="url(#monitorGradient)" stroke-width="2"/>
+                    <line x1="12" y1="17" x2="12" y2="21" stroke="url(#monitorGradient)" stroke-width="2"/>
+                    <circle cx="12" cy="10" r="2" fill="#667eea" opacity="0.3"/>
+                    <path d="M9 10l1.5 1.5L15 7" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 }
               </div>
@@ -115,7 +161,7 @@
 </section>
 
 <!-- Planos -->
-<section class="planos-section py-5 bg-light">
+<section class="planos-section py-5">
   <div class="container">
     <div class="row mb-5">
       <div class="col-12">
@@ -127,31 +173,21 @@
     </div>
     
     <div class="row g-4">
-      @for (plano of planos; track plano.nome) {
+      @for (plano of planos; track plano.id) {
         <div class="col-lg-4">
-          <div class="card plano-card h-100" [class.featured]="plano.destacado">
-            @if (plano.destacado) {
+          <div class="card plano-card h-100" [class.featured]="plano.id === '2'">
+            @if (plano.id === '2') {
               <div class="card-header bg-primary text-white text-center py-3">
                 <span class="badge bg-light text-primary">Mais Popular</span>
               </div>
             }
-            <div class="card-body p-4">
-              <h3 class="card-title fw-bold mb-2">{{ plano.nome }}</h3>
-              <p class="text-muted mb-3">{{ plano.subtitulo }}</p>
-              <p class="card-text mb-4">{{ plano.descricao }}</p>
-              <ul class="list-unstyled">
-                @for (beneficio of plano.beneficios; track beneficio; let i = $index) {
-                  <li class="mb-2 benefit-item" [style.animation-delay]="(i * 0.1) + 's'">
-                    <span class="check-icon me-2">✓</span>
-                    {{ beneficio }}
-                  </li>
-                }
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent border-0 p-4">
-              <a href="/clientes" class="btn btn-primary w-100">
-                Saiba mais
-              </a>
+            <div class="card-body p-4 d-flex flex-column">
+              <h3 class="card-title fw-bold mb-3">{{ plano.nome }}</h3>
+              <div class="mt-auto">
+                <a routerLink="/planos" class="btn btn-primary w-100">
+                  Ver detalhes do plano
+                </a>
+              </div>
             </div>
           </div>
         </div>

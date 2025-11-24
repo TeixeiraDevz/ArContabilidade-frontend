@@ -21,17 +21,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    <div class="collapse navbar-collapse" id="mainNavbar">
+    <div class="collapse navbar-collapse" id="mainNavbar" #navbarCollapse>
       <div class="navbar-nav d-flex align-items-center gap-3">
-        <a class="nav-link" routerLink="/clientes">Cliente</a>
-        <a class="nav-link" routerLink="/planos">Planos</a>
+        <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Cliente</a>
+        <a class="nav-link" routerLink="/planos" (click)="closeNavbar()">Planos</a>
         <div class="nav-link dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login
           </a>
           <ul class="dropdown-menu" aria-labelledby="loginDropdown">
             <li>
-              <a class="dropdown-item" routerLink="/login/pessoa-fisica">
+              <a class="dropdown-item" routerLink="/login/pessoa-fisica" (click)="closeNavbar()">
                 <span class="dropdown-item-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
                     <path d="M12 12c2.7614 0 5-2.2386 5-5s-2.2386-5-5-5-5 2.2386-5 5 2.2386 5 5 5z" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -42,7 +42,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/login/pessoa-juridica">
+              <a class="dropdown-item" routerLink="/login/pessoa-juridica" (click)="closeNavbar()">
                 <span class="dropdown-item-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
                     <path d="M4 22V8a1 1 0 0 1 1-1h5V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v18" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

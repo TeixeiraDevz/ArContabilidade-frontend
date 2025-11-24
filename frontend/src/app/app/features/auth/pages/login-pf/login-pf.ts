@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-pf',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './login-pf.html',
   styles: [`
     :host {

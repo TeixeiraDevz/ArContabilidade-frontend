@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+/* 
+ * Note: Bootstrap 5.3.x still uses @import internally in its SCSS files.
+ * The deprecation warnings shown during build are from Bootstrap's internal @import usage,
+ * not from our code. These warnings are expected and will be resolved when Bootstrap migrates to @use.
+ * 
+ * We're importing Bootstrap components individually to have better control over what's included.
+ * When Bootstrap 6 is released with full @use support, we can migrate to that.
+ */
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/maps";

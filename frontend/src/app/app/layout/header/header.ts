@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -193,21 +194,66 @@ import { RouterLink } from '@angular/router';
     }
     
     @media (max-width: 991px) {
+      .navbar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1030;
+      }
+      
       .navbar .container {
         border-radius: 20px;
         padding: 0.75rem 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
       }
       
       .navbar-collapse {
         margin-top: 1rem;
         padding-top: 1rem;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        margin-top: 0.75rem;
+      }
+      
+      .navbar-collapse.show {
+        display: block !important;
       }
       
       .navbar-nav {
         flex-direction: column;
         align-items: flex-start !important;
         gap: 0.5rem !important;
+        width: 100%;
+      }
+      
+      .nav-link {
+        width: 100%;
+        padding: 0.75rem 1rem !important;
+        border-radius: 8px;
+        transition: background-color var(--transition-fast);
+      }
+      
+      .nav-link:hover {
+        background-color: var(--color-gray-light);
+      }
+      
+      .dropdown-menu {
+        position: static !important;
+        float: none;
+        width: 100%;
+        margin-top: 0.5rem;
+        border: none;
+        box-shadow: none;
+        background: var(--color-gray-light);
       }
     }
     
@@ -215,23 +261,72 @@ import { RouterLink } from '@angular/router';
       .navbar .container {
         border-radius: 16px;
         padding: 0.625rem 1rem;
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+      }
+      
+      .navbar-collapse {
+        padding: 0.75rem;
       }
     }
   `]
 })
 export class Header implements OnInit, OnDestroy {
+  @ViewChild('navbarCollapse') navbarCollapse?: ElementRef<HTMLElement>;
   private scrollTimeout: any;
   private lastScrollY = 0;
   private isScrolling = false;
   navbarClass = 'navbar visible';
   
+  constructor(private router: Router) {}
+  
   ngOnInit() {
     this.lastScrollY = window.scrollY;
+    
+    // Fechar navbar ao navegar
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.closeNavbar();
+      });
   }
   
   ngOnDestroy() {
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
+    }
+  }
+  
+  closeNavbar(): void {
+    const collapseElement = document.getElementById('mainNavbar');
+    if (collapseElement && collapseElement.classList.contains('show')) {
+      // Usar Bootstrap para fechar o collapse
+      const bsCollapse = (window as any).bootstrap?.Collapse?.getInstance(collapseElement);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      } else {
+        // Fallback: remover classe show manualmente e adicionar aria-expanded
+        collapseElement.classList.remove('show');
+        const toggler = document.querySelector('.navbar-toggler') as HTMLElement;
+        if (toggler) {
+          toggler.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+  }
+  
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const navbar = document.querySelector('.navbar');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('mainNavbar');
+    
+    // Se clicou fora da navbar e ela está aberta, fechar
+    if (navbarCollapse?.classList.contains('show') && 
+        !navbar?.contains(target) && 
+        !navbarToggler?.contains(target)) {
+      this.closeNavbar();
     }
   }
   
