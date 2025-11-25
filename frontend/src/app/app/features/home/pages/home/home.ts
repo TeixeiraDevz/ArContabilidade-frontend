@@ -10,13 +10,13 @@ import { Plano } from '../../../../../core/models/plano.model';
   styles: [`
     :host {
       display: block;
-      background: var(--color-gray-light);
+      background: #ffffff;
       min-height: 100vh;
     }
     
     .hero-section {
       position: relative;
-      background: var(--color-white);
+      background: #ffffff;
       min-height: 75vh;
       display: flex;
       align-items: center;
@@ -47,15 +47,15 @@ import { Plano } from '../../../../../core/models/plano.model';
     .blur-shape {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.3;
+      filter: blur(120px);
+      opacity: 0.15;
       animation: float 8s ease-in-out infinite;
     }
     
     .shape-1 {
       width: 400px;
       height: 400px;
-      background: var(--color-purple);
+      background: #667eea;
       top: -100px;
       left: -100px;
       animation-delay: 0s;
@@ -64,7 +64,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     .shape-2 {
       width: 500px;
       height: 500px;
-      background: var(--color-blue);
+      background: #2563eb;
       top: 50%;
       right: -150px;
       transform: translateY(-50%);
@@ -74,7 +74,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     .shape-3 {
       width: 350px;
       height: 350px;
-      background: var(--color-purple-dark);
+      background: #764ba2;
       bottom: -100px;
       left: 20%;
       animation-delay: 4s;
@@ -89,32 +89,6 @@ import { Plano } from '../../../../../core/models/plano.model';
       margin-top: 5rem;
     }
     
-    .hero-logo {
-      margin-bottom: 3rem;
-    }
-    
-    .logo-text-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    
-    .logo-text {
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--color-black);
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
-    
-    .logo-subtitle {
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--color-gray);
-      letter-spacing: 0.02em;
-    }
-    
     .hero-content {
       animation: fadeInUp 0.8s ease-out;
     }
@@ -122,17 +96,32 @@ import { Plano } from '../../../../../core/models/plano.model';
     .hero-title {
       font-size: 3.5rem;
       font-weight: 700;
-      color: var(--color-black);
+      color: #1a1a1a;
       line-height: 1.2;
       margin-bottom: 1.5rem;
       letter-spacing: -0.02em;
     }
     
     .hero-subtitle {
-      font-size: 1.3rem;
-      color: var(--color-gray);
+      font-size: 1.15rem;
+      color: #6c757d;
       line-height: 1.7;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+    
+    .hero-illustration {
+      animation: fadeInUp 0.8s ease-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    
+    .hero-illustration svg {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.08));
     }
     
     @media (max-width: 991px) {
@@ -153,7 +142,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       }
     }
     
-    @media (max-width: 768px) {
+    @media (max-width: 780px) {
       .logo-text {
         font-size: 2.5rem;
       }
@@ -173,11 +162,13 @@ import { Plano } from '../../../../../core/models/plano.model';
       .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 1.25rem;
       }
       
       .hero-buttons .btn {
         width: 100%;
-        max-width: 300px;
+        max-width: 100%;
+        min-width: auto;
       }
     }
     
@@ -237,11 +228,17 @@ import { Plano } from '../../../../../core/models/plano.model';
       }
     }
     
+    .hero-buttons {
+      gap: 1.5rem;
+    }
+    
     .hero-buttons .btn {
       transition: all var(--transition-normal);
-      min-width: 200px;
-      border-radius: 8px;
+      min-width: 220px;
+      padding: 0.875rem 2rem;
+      border-radius: 10px;
       font-weight: 600;
+      font-size: 1.05rem;
       box-shadow: var(--shadow-md);
     }
     
@@ -251,26 +248,29 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .hero-buttons .btn-primary {
-      background: var(--color-white);
-      color: var(--color-purple);
-      border: 2px solid var(--color-white);
+      background: linear-gradient(90deg, #ffb347, #ff6b6b);
+      color: #120f23;
+      border: none;
+      box-shadow: 0 18px 35px rgba(255, 107, 107, 0.25);
     }
     
     .hero-buttons .btn-primary:hover {
-      background: rgba(255, 255, 255, 0.95);
-      color: var(--color-purple-dark);
+      background: linear-gradient(90deg, #ffc066, #ff7a7a);
+      color: #120f23;
       transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 25px 45px rgba(255, 107, 107, 0.35);
     }
     
-    .hero-buttons .btn-outline-light {
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      color: white;
+    .hero-buttons .btn-outline-primary {
+      border: 2px solid #667eea;
+      color: #667eea;
       background: transparent;
     }
     
-    .hero-buttons .btn-outline-light:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: white;
+    .hero-buttons .btn-outline-primary:hover {
+      background: #667eea;
+      border-color: #667eea;
+      color: white;
       transform: translateY(-3px) scale(1.02);
     }
     
@@ -304,81 +304,208 @@ import { Plano } from '../../../../../core/models/plano.model';
       }
     }
     
-    .servico-card {
-      transition: all var(--transition-normal);
-      height: 100%;
-      border-radius: 12px;
-      background: var(--color-white);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      position: relative;
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
     }
     
-    .servico-card::before {
+    .services-shell {
+      background: #ffffff;
+      border: 1px solid #e9ecef;
+      border-radius: 32px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+    
+    .services-shell::before,
+    .services-shell::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-      transform: scaleX(0);
-      transition: transform var(--transition-normal);
-      transform-origin: left;
+      inset: 0;
+      border-radius: 32px;
+      background: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.05), transparent 65%);
+      pointer-events: none;
     }
     
-    .servico-card:hover::before {
-      transform: scaleX(1);
+    .services-shell::after {
+      background: radial-gradient(circle at 80% 0%, rgba(255, 179, 71, 0.05), transparent 55%);
+    }
+
+    @media (max-width: 768px) {
+      .services-shell {
+        padding: 2rem;
+      }
     }
     
-    .servico-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--color-purple);
+    .services-title {
+      color: #1a1a1a;
+      font-size: 2.75rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
     
-    .servico-card .card-body {
+    .services-description {
+      color: #6c757d;
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .services-list {
       display: flex;
       flex-direction: column;
+      gap: 1.25rem;
+    }
+    
+    .service-item {
+      display: flex;
       gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid #e9ecef;
     }
     
-    .servico-card .card-title {
-      font-size: 1.2rem;
-      margin-bottom: -1px;
-      color: var(--color-black);
+    .service-item:last-child {
+      border-bottom: none;
     }
     
-    .servico-card .card-text {
-      color: var(--color-gray-dark);
-      line-height: 1.6;
+    .service-item h5 {
+      color: #1a1a1a;
+      margin-bottom: 0.35rem;
+      font-size: 1.1rem;
+    }
+    
+    .service-item p {
+      color: #6c757d;
       margin-bottom: 0;
+      font-size: 0.95rem;
     }
     
-    .servico-icon {
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(140deg, rgba(102, 126, 234, 0.1), rgba(255, 179, 71, 0.1));
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all var(--transition-normal);
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .services-preview {
+      background: #f8f9fa;
+      border-radius: 28px;
+      border: 1px solid #e9ecef;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       position: relative;
+      overflow: hidden;
     }
     
-    .servico-card:hover .servico-icon {
-      transform: scale(1.15) rotate(5deg);
-      animation: calculatorType 0.5s ease-in-out;
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-bottom: 1.75rem;
     }
     
-    .servico-card:hover .servico-icon svg {
-      fill: var(--color-purple);
-      filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+    .preview-dots span {
+      display: inline-flex;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #dee2e6;
+      margin-left: 0.35rem;
     }
+    
+    .preview-body {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+    
+    .preview-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid #e9ecef;
+    }
+    
+    .preview-card ul {
+      margin: 0;
+      padding-left: 1rem;
+      color: #6c757d;
+    }
+    
+    .preview-card h4 {
+      color: #1a1a1a;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .preview-label {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      color: #6c757d;
+      margin-bottom: 0.25rem;
+    }
+    
+    .preview-board {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px dashed #dee2e6;
+    }
+    
+    .tag {
+      display: inline-flex;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+    }
+    
+    .preview-graph {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+      align-items: end;
+      height: 120px;
+    }
+    
+    .preview-graph .bar {
+      background: linear-gradient(180deg, #ffb347 0%, #ff6b6b 100%);
+      border-radius: 12px 12px 4px 4px;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    .bar-1 { height: 40%; animation-delay: 0.2s; }
+    .bar-2 { height: 60%; animation-delay: 0.4s; }
+    .bar-3 { height: 80%; animation-delay: 0.6s; }
+    .bar-4 { height: 55%; animation-delay: 0.8s; }
     
     .planos-section {
       margin-top: 4.5rem;
       padding-top: 5rem;
-      background: var(--color-white);
+      background: #f8f9fa;
       border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.08);
     }
     
     .planos-section .section-title {
@@ -408,8 +535,8 @@ import { Plano } from '../../../../../core/models/plano.model';
       transition: all var(--transition-normal);
       height: 100%;
       border-radius: 16px;
-      background: var(--color-white);
-      box-shadow: var(--shadow-sm);
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: relative;
       overflow: hidden;
     }
@@ -431,21 +558,21 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .plano-card:hover {
-      border-color: var(--color-purple);
-      box-shadow: var(--shadow-xl);
+      border-color: rgba(255, 179, 71, 0.5);
+      box-shadow: 0 20px 50px rgba(255, 107, 107, 0.25);
       transform: translateY(-8px) scale(1.02);
     }
     
     .plano-card.featured {
-      border-color: var(--color-purple);
-      box-shadow: var(--shadow-xl);
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+      border-color: rgba(255, 179, 71, 0.6);
+      box-shadow: 0 20px 50px rgba(255, 107, 107, 0.3);
+      background: linear-gradient(135deg, rgba(255, 179, 71, 0.15) 0%, rgba(255, 107, 107, 0.15) 100%);
       animation: pulse 3s ease-in-out infinite;
     }
     
     .plano-card.featured:hover {
       transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 25px 60px rgba(255, 107, 107, 0.4);
     }
     
     .plano-card .card-body {
@@ -454,19 +581,43 @@ import { Plano } from '../../../../../core/models/plano.model';
       gap: 1.25rem;
     }
     
+    .plano-card .btn-primary {
+      background: linear-gradient(90deg, #ffb347, #ff6b6b);
+      color: #120f23;
+      border: none;
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+      font-weight: 600;
+    }
+    
+    .plano-card .btn-primary:hover {
+      background: linear-gradient(90deg, #ffc066, #ff7a7a);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 107, 107, 0.3);
+    }
+    
+    .plano-card .card-header {
+      background: linear-gradient(90deg, rgba(255, 179, 71, 0.2), rgba(255, 107, 107, 0.2)) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .plano-card .badge {
+      background: rgba(255, 255, 255, 0.95) !important;
+      color: #ff6b6b !important;
+    }
+    
     .plano-card .card-title {
       font-size: 1.45rem;
-      color: var(--color-black);
+      color: #1a1a1a;
       margin-bottom: 0;
     }
     
     .plano-card .text-muted {
-      color: var(--color-gray);
+      color: #6c757d;
       margin-bottom: 0;
     }
     
     .plano-card .card-text {
-      color: var(--color-gray-dark);
+      color: #495057;
       line-height: 1.6;
       margin-bottom: 0;
     }
@@ -485,7 +636,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .check-icon {
-      color: var(--color-purple);
+      color: #ffb347;
       font-weight: 700;
       font-size: 1.2rem;
       display: inline-block;
@@ -495,19 +646,19 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .benefit-item:hover .check-icon {
       transform: scale(1.3) rotate(15deg);
-      color: var(--color-blue);
+      color: #ff6b6b;
     }
     
     .benefit-item:hover {
       transform: translateX(5px);
-      color: var(--color-black);
+      color: #1a1a1a;
     }
     
     .section-title {
       font-size: 2.75rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
-      color: var(--color-black);
+      color: #1a1a1a;
       letter-spacing: -0.02em;
       line-height: 1.2;
       text-align: center;
@@ -515,7 +666,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .section-subtitle {
       font-size: 1.3rem;
-      color: var(--color-gray);
+      color: #6c757d;
       margin-bottom: 3.5rem;
       line-height: 1.7;
       max-width: 700px;
@@ -528,13 +679,13 @@ import { Plano } from '../../../../../core/models/plano.model';
     .diferenciais-section {
       padding-top: 5rem;
       padding-bottom: 5rem;
-      background: var(--color-gray-light);
+      background: #f8f9fa;
     }
     
     .diferenciais-title {
       font-size: 2.75rem;
       font-weight: 700;
-      color: var(--color-black);
+      color: #1a1a1a;
       margin-bottom: 3.5rem;
       text-align: center;
       letter-spacing: -0.02em;
@@ -546,9 +697,10 @@ import { Plano } from '../../../../../core/models/plano.model';
       padding: 2.5rem;
       height: 100%;
       transition: all var(--transition-normal);
-      background: var(--color-white);
+      background: #ffffff;
+      border: 1px solid #e9ecef;
       border-radius: 16px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -563,7 +715,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       left: 0;
       width: 4px;
       height: 100%;
-      background: var(--gradient-primary);
+      background: linear-gradient(135deg, #ffb347, #ff6b6b);
       transform: scaleY(0);
       transition: transform var(--transition-normal);
       transform-origin: top;
@@ -575,7 +727,8 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .diferencial-card:hover {
       transform: translateY(-8px) scale(1.02);
-      box-shadow: var(--shadow-xl);
+      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.15);
+      border-color: rgba(255, 179, 71, 0.3);
     }
     
     .diferencial-icon {
@@ -592,14 +745,14 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .diferencial-card:hover .diferencial-icon svg {
-      fill: var(--color-purple);
-      filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.3));
+      fill: #ffb347;
+      filter: drop-shadow(0 4px 12px rgba(255, 179, 71, 0.4));
     }
     
     .diferencial-subtitle {
       font-size: 1.6rem;
       font-weight: 700;
-      color: var(--color-black);
+      color: #1a1a1a;
       margin-bottom: 0;
       line-height: 1.3;
       letter-spacing: -0.01em;
@@ -607,7 +760,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .diferencial-text {
       font-size: 1.1rem;
-      color: var(--color-gray-dark);
+      color: #6c757d;
       line-height: 1.7;
       margin-bottom: 0;
       text-align: left;
@@ -674,143 +827,106 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .cta-section {
-      background: var(--gradient-primary);
-      color: white;
-      padding: 6rem 0 4rem;
-      margin-top: 4rem;
-      margin-bottom: 0;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      padding: 6rem 0;
+      overflow: hidden;
       position: relative;
+    }
+    
+    .cta-card {
+      position: relative;
+      border-radius: 32px;
+      padding: 3.5rem 2.5rem;
+      background: #ffffff;
+      border: 1px solid #e9ecef;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
       overflow: hidden;
     }
     
-    .cta-section::before {
-      content: '';
+    .cta-rays {
       position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: pulse 4s ease-in-out infinite;
+      inset: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 4rem;
+      opacity: 0.4;
     }
     
-    .cta-section::after {
-      content: '';
-      position: absolute;
-      bottom: -80%;
-      left: -25%;
-      width: 680px;
-      height: 680px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 85%);
-      border-radius: 50%;
-      animation: pulse 6s ease-in-out infinite;
-      animation-delay: 1s;
+    .cta-rays span {
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(255, 179, 71, 0.3), transparent);
+      animation: pulse 5s ease-in-out infinite;
     }
     
-    .cta-section .container {
+    .cta-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    
+    .cta-badge {
+      display: inline-flex;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
     }
     
     .cta-title {
-      font-size: 3rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 1.75rem;
-      line-height: 1.2;
-      text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-      letter-spacing: -0.02em;
+      font-size: 2.75rem;
+      color: #1a1a1a;
+      margin-bottom: 1.25rem;
     }
     
     .cta-subtitle {
-      font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.95);
-      margin-bottom: 3rem;
-      line-height: 1.7;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 400;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+      color: #6c757d;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
     }
     
     .cta-buttons {
       display: flex;
-      gap: 1.5rem;
       justify-content: center;
+      gap: 1.25rem;
       flex-wrap: wrap;
     }
     
     .cta-btn-primary,
     .cta-btn-secondary {
-      padding: 1.125rem 2.75rem;
-      font-size: 1.15rem;
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
       font-weight: 600;
-      border-radius: 12px;
-      transition: all var(--transition-normal);
-      min-width: 240px;
-      text-decoration: none;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    
-    .cta-btn-primary::before,
-    .cta-btn-secondary::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-    }
-    
-    .cta-btn-primary:hover::before,
-    .cta-btn-secondary:hover::before {
-      width: 300px;
-      height: 300px;
+      font-size: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
     .cta-btn-primary {
-      background: var(--color-white);
-      color: var(--color-purple);
-      border: 2px solid var(--color-white);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .cta-btn-primary:hover {
-      background: rgba(255, 255, 255, 0.95);
-      color: var(--color-purple-dark);
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-    }
-    
-    .cta-btn-primary:active {
-      transform: translateY(-2px) scale(1.01);
+      background: linear-gradient(90deg, #ffb347, #ff6b6b);
+      color: #120f23;
+      border: none;
+      box-shadow: 0 18px 35px rgba(255, 107, 107, 0.25);
     }
     
     .cta-btn-secondary {
+      border: 2px solid #667eea;
+      color: #667eea;
       background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
     }
     
     .cta-btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: white;
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25);
+      background: #667eea;
+      color: white;
     }
     
-    .cta-btn-secondary:active {
-      transform: translateY(-2px) scale(1.01);
+    .cta-btn-primary:hover,
+    .cta-btn-secondary:hover {
+      transform: translateY(-4px);
     }
     
     /* Micro-interações em links e botões */

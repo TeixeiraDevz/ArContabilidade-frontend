@@ -9,29 +9,105 @@
   
   <div class="container">
     <div class="row align-items-center min-vh-75">
-      <div class="col-12 text-center">
-        <!-- Logo AR Gestão Contábil e Financeira -->
-        <div class="hero-logo mb-5 animate-fade-in-up">
-          <div class="logo-text-container">
-            <span class="logo-text">AR</span>
-            <span class="logo-subtitle">Gestão Contábil e Financeira</span>
-          </div>
-        </div>
-        
-        <!-- Título e subtítulo do hero -->
-        <div class="hero-content animate-fade-in-up" style="animation-delay: 0.2s">
+      <div class="col-12 col-lg-6">
+        <!-- Conteúdo do hero -->
+        <div class="hero-content animate-fade-in-up">
           <h1 class="hero-title mb-4">
             Soluções contábeis completas<br>
             para sua empresa crescer
           </h1>
           <p class="hero-subtitle mb-5">
-            Gestão contábil, fiscal e de folha de pagamento com tecnologia de ponta<br>
-            e atendimento especializado para empresas de todos os portes
+            Gestão contábil completa com tecnologia e atendimento especializado.
           </p>
-          <div class="hero-buttons d-flex gap-3 justify-content-center flex-wrap">
-            <a href="/planos" class="btn btn-primary btn-lg">Conheça nossos planos</a>
-            <a href="/clientes" class="btn btn-outline-light btn-lg">Fale com especialista</a>
+          <div class="hero-buttons d-flex gap-4 flex-wrap">
+            <a routerLink="/planos" class="btn btn-primary btn-lg">Conheça nossos planos</a>
+            <a routerLink="/equipe" class="btn btn-outline-primary btn-lg">Fale com nossa equipe</a>
           </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <!-- Ilustração de empresa em crescimento e dinheiro -->
+        <div class="hero-illustration animate-fade-in-up" style="animation-delay: 0.3s">
+          <svg width="100%" height="450" viewBox="0 0 550 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#667eea" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#764ba2" stop-opacity="0.2"/>
+              </linearGradient>
+              <linearGradient id="moneyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffb347"/>
+                <stop offset="100%" stop-color="#ff6b6b"/>
+              </linearGradient>
+              <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#667eea" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#ffb347" stop-opacity="0.4"/>
+              </linearGradient>
+            </defs>
+            
+            <!-- Prédio/empresa principal -->
+            <g transform="translate(50, 200)">
+              <rect x="0" y="0" width="140" height="200" rx="10" fill="url(#buildingGradient)" stroke="#667eea" stroke-width="2.5"/>
+              <rect x="20" y="20" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
+              <rect x="85" y="20" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
+              <rect x="20" y="75" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
+              <rect x="85" y="75" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
+              <rect x="20" y="130" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
+              <rect x="85" y="130" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
+              <!-- Porta -->
+              <rect x="50" y="170" width="40" height="30" rx="5" fill="#667eea" opacity="0.7"/>
+            </g>
+            
+            <!-- Gráfico de crescimento ascendente -->
+            <g transform="translate(220, 150)">
+              <rect x="0" y="200" width="280" height="4" rx="2" fill="#e9ecef"/>
+              <rect x="0" y="150" width="4" height="54" rx="2" fill="#e9ecef"/>
+              
+              <!-- Barras do gráfico -->
+              <rect x="20" y="170" width="30" height="30" rx="4" fill="url(#chartGradient)"/>
+              <rect x="70" y="150" width="30" height="50" rx="4" fill="url(#chartGradient)"/>
+              <rect x="120" y="130" width="30" height="70" rx="4" fill="url(#chartGradient)"/>
+              <rect x="170" y="110" width="30" height="90" rx="4" fill="url(#chartGradient)"/>
+              <rect x="220" y="80" width="30" height="120" rx="4" fill="url(#moneyGradient)"/>
+              
+              <!-- Linha de tendência -->
+              <path d="M35 185 L85 165 L135 145 L185 125 L235 95" stroke="#ffb347" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              
+              <!-- Pontos na linha -->
+              <circle cx="35" cy="185" r="4" fill="#ffb347"/>
+              <circle cx="85" cy="165" r="4" fill="#ffb347"/>
+              <circle cx="135" cy="145" r="4" fill="#ffb347"/>
+              <circle cx="185" cy="125" r="4" fill="#ffb347"/>
+              <circle cx="235" cy="95" r="6" fill="#ff6b6b"/>
+            </g>
+            
+            <!-- Moeda principal (R$) -->
+            <g transform="translate(380, 50)">
+              <circle cx="0" cy="0" r="50" fill="url(#moneyGradient)" stroke="#ff6b6b" stroke-width="3"/>
+              <text x="0" y="8" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff" text-anchor="middle">R$</text>
+              <circle cx="0" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.3"/>
+            </g>
+            
+            <!-- Moedas pequenas flutuantes -->
+            <g transform="translate(100, 80)">
+              <circle cx="0" cy="0" r="22" fill="#ffb347" opacity="0.8"/>
+              <text x="0" y="6" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
+            </g>
+            
+            <g transform="translate(180, 50)">
+              <circle cx="0" cy="0" r="20" fill="#ff6b6b" opacity="0.8"/>
+              <text x="0" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
+            </g>
+            
+            <!-- Seta de crescimento -->
+            <g transform="translate(200, 250)">
+              <path d="M0 0 L20 -20 L40 0" stroke="#ffb347" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M20 -20 L20 -50" stroke="#ffb347" stroke-width="5" stroke-linecap="round"/>
+            </g>
+            
+            <!-- Linhas de conexão sutis -->
+            <path d="M190 300 L240 280" stroke="#667eea" stroke-width="2" stroke-dasharray="6,6" opacity="0.3"/>
+            <path d="M190 330 L260 300" stroke="#667eea" stroke-width="2" stroke-dasharray="6,6" opacity="0.3"/>
+          </svg>
         </div>
       </div>
     </div>
@@ -41,121 +117,94 @@
 <!-- Nossos Serviços -->
 <section class="services-section py-5">
   <div class="container">
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2 class="section-title">Nossos serviços</h2>
-        <p class="section-subtitle">
-          O que podemos fazer pela sua empresa?
+    <div class="services-shell row align-items-center g-5">
+      <div class="col-12 col-lg-6">
+        <span class="section-pill">Serviços completos</span>
+        <h2 class="services-title">Código quando precisar, time especializado quando preferir</h2>
+        <p class="services-description">
+          Unimos consultoria contábil com ferramentas digitais para cuidar de impostos, folha, integrações e relatórios estratégicos sem fricção.
         </p>
-      </div>
-    </div>
-    
-    <div class="row g-4">
-      @for (servico of servicos; track servico.titulo) {
-        <div class="col-md-6 col-lg-4">
-          <div class="card servico-card h-100 border-0 shadow-sm">
-            <div class="card-body p-4">
-              <div class="servico-icon mb-3">
+        <ul class="services-list list-unstyled">
+          @for (servico of servicos; track servico.titulo) {
+            <li class="service-item">
+              <div class="service-icon">
                 @if (servico.icone === 'chart') {
-                  <!-- Ícone de gráfico/contabilidade -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <defs>
-                      <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <rect x="3" y="3" width="18" height="18" rx="2" fill="url(#chartGradient)" opacity="0.1"/>
-                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="url(#chartGradient)" stroke-width="2"/>
-                    <circle cx="7" cy="13" r="1.5" fill="#667eea"/>
-                    <circle cx="12" cy="9" r="1.5" fill="#667eea"/>
-                    <circle cx="17" cy="11" r="1.5" fill="#667eea"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
+                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="#ffb347" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'users') {
-                  <!-- Ícone de pessoas/folha de pagamento -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <defs>
-                      <linearGradient id="usersGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <rect x="3" y="3" width="18" height="18" rx="2" fill="url(#usersGradient)" opacity="0.1"/>
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="url(#usersGradient)" stroke-width="2"/>
-                    <circle cx="9" cy="7" r="4" stroke="url(#usersGradient)" stroke-width="2"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="url(#usersGradient)" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="#a0b5ff" stroke-width="2"/>
+                    <circle cx="12" cy="9" r="3.5" stroke="#a0b5ff" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'file') {
-                  <!-- Ícone de documento fiscal -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <defs>
-                      <linearGradient id="fileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="url(#fileGradient)" opacity="0.1"/>
-                    <polyline points="14 2 14 8 20 8" stroke="url(#fileGradient)" stroke-width="2"/>
-                    <line x1="9" y1="15" x2="15" y2="15" stroke="url(#fileGradient)" stroke-width="2"/>
-                    <line x1="9" y1="12" x2="15" y2="12" stroke="url(#fileGradient)" stroke-width="2"/>
-                    <line x1="9" y1="18" x2="12" y2="18" stroke="url(#fileGradient)" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
+                    <path d="M14 2H8a2 2 0 0 0-2 2v16" stroke="#67d6ff" stroke-width="2"/>
+                    <polyline points="14 2 14 8 20 8" stroke="#67d6ff" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'building') {
-                  <!-- Ícone de empresa/gestão societária -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <defs>
-                      <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M3 21h18" stroke="url(#buildingGradient)" stroke-width="2"/>
-                    <path d="M5 21V7l8-4v18" fill="url(#buildingGradient)" opacity="0.1"/>
-                    <path d="M5 21V7l8-4v18" stroke="url(#buildingGradient)" stroke-width="2"/>
-                    <path d="M13 21V9l8-4v16" stroke="url(#buildingGradient)" stroke-width="2"/>
-                    <line x1="9" y1="9" x2="9" y2="9.01" stroke="url(#buildingGradient)" stroke-width="2"/>
-                    <line x1="9" y1="12" x2="9" y2="12.01" stroke="url(#buildingGradient)" stroke-width="2"/>
-                    <line x1="9" y1="15" x2="9" y2="15.01" stroke="url(#buildingGradient)" stroke-width="2"/>
-                    <line x1="9" y1="18" x2="9" y2="18.01" stroke="url(#buildingGradient)" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
+                    <path d="M6 20V8l6-4v16" stroke="#ffb347" stroke-width="2"/>
+                    <path d="M12 20v-8l6-3v11" stroke="#ffb347" stroke-width="2"/>
                   </svg>
                 } @else if (servico.icone === 'link') {
-                  <!-- Ícone de integração/ERP -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <defs>
-                      <linearGradient id="linkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <rect x="3" y="3" width="18" height="18" rx="2" fill="url(#linkGradient)" opacity="0.1"/>
-                    <path d="M8 12h8M12 8v8" stroke="url(#linkGradient)" stroke-width="2"/>
-                    <circle cx="12" cy="12" r="3" stroke="url(#linkGradient)" stroke-width="2" fill="none"/>
-                    <path d="M7 7l2 2M15 7l-2 2M7 17l2-2M15 17l-2-2" stroke="url(#linkGradient)" stroke-width="1.5"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
+                    <path d="M8 12h8M12 8v8" stroke="#a0b5ff" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="3" stroke="#a0b5ff" stroke-width="2"/>
                   </svg>
-                } @else if (servico.icone === 'monitor') {
-                  <!-- Ícone de portal/monitor -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <defs>
-                      <linearGradient id="monitorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <rect x="2" y="3" width="20" height="14" rx="2" fill="url(#monitorGradient)" opacity="0.1"/>
-                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="url(#monitorGradient)" stroke-width="2"/>
-                    <line x1="8" y1="21" x2="16" y2="21" stroke="url(#monitorGradient)" stroke-width="2"/>
-                    <line x1="12" y1="17" x2="12" y2="21" stroke="url(#monitorGradient)" stroke-width="2"/>
-                    <circle cx="12" cy="10" r="2" fill="#667eea" opacity="0.3"/>
-                    <path d="M9 10l1.5 1.5L15 7" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
+                } @else {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
+                    <rect x="5" y="6" width="14" height="10" rx="3" stroke="#a0b5ff" stroke-width="2"/>
+                    <line x1="9" y1="20" x2="15" y2="20" stroke="#a0b5ff" stroke-width="2"/>
                   </svg>
                 }
               </div>
-              <h5 class="card-title fw-bold mb-3">{{ servico.titulo }}</h5>
-              <p class="card-text text-muted">{{ servico.descricao }}</p>
+              <div>
+                <h5>{{ servico.titulo }}</h5>
+                <p>{{ servico.descricao }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="services-preview">
+          <div class="preview-header">
+            <span>Financeiro • Workflow</span>
+            <div class="preview-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-card">
+              <p class="preview-label">Fechamento mensal</p>
+              <h4>Fluxo automatizado</h4>
+              <ul>
+                <li>Conciliação bancária com alertas</li>
+                <li>Folha integrada ao eSocial</li>
+                <li>Dashboard com tributos futuros</li>
+              </ul>
+            </div>
+            <div class="preview-board">
+              <span class="tag">Simples</span>
+              <span class="tag">Lucro Presumido</span>
+              <span class="tag">Lucro Real</span>
+              <div class="preview-graph">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+                <div class="bar bar-4"></div>
+              </div>
             </div>
           </div>
         </div>
-      }
+      </div>
     </div>
   </div>
 </section>
@@ -252,18 +301,22 @@
 <!-- CTA Final -->
 <section class="cta-section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-8 mx-auto text-center">
+    <div class="cta-card">
+      <div class="cta-rays" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="cta-content text-center">
+        <span class="cta-badge">Atendimento consultivo</span>
         <h2 class="cta-title">Pronto para transformar sua gestão contábil?</h2>
         <p class="cta-subtitle">
-          Conheça mais sobre nossos planos e descubra qual é o ideal para sua empresa.
+          Unimos especialistas e tecnologia para implantar rotinas financeiras completas, com a segurança que seu negócio precisa.
         </p>
         <div class="cta-buttons">
-          <a href="/clientes" class="btn cta-btn-primary">
-            Fale com um especialista
+          <a routerLink="/clientes" class="btn cta-btn-primary">
+            Comece gratuitamente
           </a>
-          <a href="/equipe" class="btn cta-btn-secondary">
-            Conheça nossa equipe
+          <a routerLink="/equipe" class="btn cta-btn-secondary">
+            Fale com nossa equipe
           </a>
         </div>
       </div>

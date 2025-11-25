@@ -8,10 +8,11 @@ import { RouterLink } from '@angular/router';
   styles: [`
     .footer {
       position: relative;
-      background: var(--gradient-primary);
-      color: white;
+      background: #ffffff;
+      color: #1a1a1a;
       padding: 3.5rem 0 2rem;
       margin-top: -1px;
+      border-top: 1px solid #e9ecef;
     }
     
     .footer::before {
@@ -21,29 +22,43 @@ import { RouterLink } from '@angular/router';
       left: 0;
       right: 0;
       height: 8px;
-      background: var(--gradient-primary);
-      filter: blur(8px);
+      background: rgba(102, 126, 234, 0.1);
+      filter: blur(12px);
     }
     
     .footer-title {
-      color: white;
-      font-size: 1.5rem;
+      color: #1a1a1a;
+      font-size: 1.35rem;
       font-weight: 700;
       margin-bottom: 1rem;
+      max-width: 18rem;
     }
     
     .footer-subtitle {
-      color: white;
+      color: #1a1a1a;
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 1rem;
     }
     
     .footer-text {
-      color: rgba(255, 255, 255, 0.9);
+      color: #6c757d;
       font-size: 0.95rem;
       line-height: 1.6;
       margin-bottom: 0.5rem;
+      max-width: 21rem;
+    }
+
+    .footer-illustration {
+      width: 180px;
+      height: 140px;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
     
     .footer-links {
@@ -56,7 +71,7 @@ import { RouterLink } from '@angular/router';
     }
     
     .footer-link {
-      color: rgba(255, 255, 255, 0.85);
+      color: #6c757d;
       text-decoration: none;
       font-size: 0.95rem;
       transition: all 0.3s ease;
@@ -64,34 +79,34 @@ import { RouterLink } from '@angular/router';
     }
     
     .footer-link:hover {
-      color: white;
+      color: #667eea;
       transform: translateX(5px);
       text-decoration: underline;
     }
     
     .footer-contact .footer-link {
-      color: rgba(255, 255, 255, 0.9);
+      color: #6c757d;
     }
     
     .footer-contact .footer-link:hover {
-      color: white;
+      color: #667eea;
       text-decoration: underline;
     }
     
     .footer-divider {
       height: 1px;
-      background: rgba(255, 255, 255, 0.2);
+      background: #e9ecef;
       border: none;
       margin: 2rem 0;
     }
     
     .footer-copyright {
-      color: rgba(255, 255, 255, 0.8);
+      color: #6c757d;
       font-size: 0.875rem;
     }
     
     .footer-contact svg {
-      color: rgba(255, 255, 255, 0.9);
+      color: #6c757d;
       flex-shrink: 0;
     }
     
@@ -101,7 +116,7 @@ import { RouterLink } from '@angular/router';
       }
       
       .footer-title {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         text-align: center;
       }
       
@@ -121,6 +136,12 @@ import { RouterLink } from '@angular/router';
       
       .footer-text {
         font-size: 0.9rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-illustration {
+        margin: 1.5rem auto 0;
       }
     }
     

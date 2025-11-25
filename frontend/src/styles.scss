@@ -255,8 +255,9 @@ body {
   display: flex;
   flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: var(--color-black);
   line-height: 1.6;
+  background: #ffffff;
+  color: #1a1a1a;
 }
 
 app-root {

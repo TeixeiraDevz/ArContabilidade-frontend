@@ -40,17 +40,50 @@ import { catchError, map } from 'rxjs/operators';
       margin: 0 auto;
     }
 
-    .carousel-section {
-      padding: 4rem 0;
-      background: var(--color-white, #ffffff);
+    .partners-section {
+      padding: 5rem 0;
+      background: #ffffff;
     }
-
+    
+    .partners-wrapper {
+      border-radius: 32px;
+      padding: 2.5rem;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .partners-copy {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1a1a1a;
+    }
+    
+    .partners-pill {
+      display: inline-flex;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      border: 1px solid #e9ecef;
+      background: rgba(102, 126, 234, 0.1);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #667eea;
+      margin-bottom: 0.75rem;
+    }
+    
     .section-title {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--color-black, #212529);
+      color: #1a1a1a;
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .partners-wrapper p {
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+      color: #6c757d;
     }
 
     @media (max-width: 768px) {

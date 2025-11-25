@@ -23,7 +23,7 @@ export interface CarouselItem {
 
     .carousel-track {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       width: max-content;
       animation: scroll 120s linear infinite;
     }
@@ -42,30 +42,33 @@ export interface CarouselItem {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 150px;
-      height: 100px;
+      min-width: 120px;
+      height: 90px;
       padding: 1rem;
-      background: var(--color-white, #ffffff);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid #e9ecef;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-
+    
     .carousel-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border-color: rgba(102, 126, 234, 0.3);
     }
-
+    
     .carousel-item img {
       max-width: 100%;
-      max-height: 80px;
+      max-height: 60px;
       object-fit: contain;
-      filter: grayscale(20%);
-      transition: filter 0.3s ease;
+      filter: grayscale(10%);
+      transition: filter 0.3s ease, transform 0.4s ease;
     }
-
+    
     .carousel-item:hover img {
       filter: grayscale(0%);
+      transform: scale(1.12);
     }
 
     .logo-placeholder {

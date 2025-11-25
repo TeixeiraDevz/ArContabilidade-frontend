@@ -1,14 +1,35 @@
 <footer class="footer">
   <div class="container">
-    <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-4">
-        <h5 class="footer-title mb-3">AR Gestão Contábil e Financeira</h5>
+    <div class="row g-4 align-items-center">
+      <div class="col-12 col-lg-5">
+        <h5 class="footer-title mb-3">Cuidamos do financeiro para você crescer</h5>
         <p class="footer-text">
-          Cuidamos da sua contabilidade para que você foque no que realmente importa: crescer.
+          Operações contábeis seguras, atendimento humano e tecnologia para manter seu negócio sempre pronto para avançar.
         </p>
       </div>
+      <div class="col-12 col-lg-3 d-flex justify-content-lg-center">
+        <div class="footer-illustration" aria-hidden="true">
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="footerGrowthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#a0b5ff" stop-opacity="0.8"/>
+              </linearGradient>
+            </defs>
+            <rect x="10" y="90" width="20" height="40" rx="4" fill="url(#footerGrowthGradient)" opacity="0.7"/>
+            <rect x="50" y="70" width="25" height="60" rx="4" fill="url(#footerGrowthGradient)" opacity="0.8"/>
+            <rect x="95" y="55" width="28" height="75" rx="4" fill="url(#footerGrowthGradient)" opacity="0.9"/>
+            <rect x="140" y="35" width="30" height="95" rx="4" fill="url(#footerGrowthGradient)"/>
+            <path d="M15 100 L70 65 L105 80 L165 30" stroke="#ffb347" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M155 35 L172 28 L165 45" fill="#ffb347"/>
+            <circle cx="62" cy="64" r="5" fill="#ffffff" opacity="0.8"/>
+            <circle cx="103" cy="82" r="5" fill="#ffffff" opacity="0.8"/>
+            <circle cx="165" cy="30" r="6" fill="#ffcf6f"/>
+          </svg>
+        </div>
+      </div>
       
-      <div class="col-12 col-md-6 col-lg-4">
+      <div class="col-12 col-md-6 col-lg-2">
         <h6 class="footer-subtitle mb-3">Links Rápidos</h6>
         <ul class="footer-links list-unstyled">
           <li><a routerLink="/" class="footer-link">Home</a></li>
@@ -17,7 +38,7 @@
         </ul>
       </div>
       
-      <div class="col-12 col-md-12 col-lg-4">
+      <div class="col-12 col-md-6 col-lg-2 ms-lg-auto">
         <h6 class="footer-subtitle mb-3">Contato</h6>
         <div class="footer-contact">
           <p class="footer-text mb-2 d-flex align-items-start">
@@ -49,7 +70,7 @@
     <div class="row align-items-center">
       <div class="col-12 text-center">
         <p class="footer-copyright mb-0">
-          © {{ 2025 }} AR Gestão Contábil e Financeira. Todos os direitos reservados.
+          © {{ currentYear }} AR Gestão Contábil e Financeira. Todos os direitos reservados.
         </p>
       </div>
     </div>
