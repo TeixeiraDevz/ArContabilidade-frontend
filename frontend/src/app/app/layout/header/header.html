@@ -1,4 +1,16 @@
-<nav [class]="navbarClass + ' navbar-expand-lg navbar-light'">
+<button
+  class="navbar-toggler floating-navbar-toggler"
+  type="button"
+  aria-controls="mainNavbar"
+  [attr.aria-expanded]="isNavOpen"
+  aria-label="Toggle navigation"
+  [class.d-none]="!showFloatingToggler"
+  (click)="toggleNavbar()"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<nav #navbarRoot [class]="navbarClass + ' navbar-expand-lg navbar-light'">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" routerLink="/">
       <div class="logo-container">
@@ -17,19 +29,39 @@
       </div>
     </a>
     
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="mainNavbar"
+      [attr.aria-expanded]="isNavOpen"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    <div class="collapse navbar-collapse" id="mainNavbar" #navbarCollapse>
+    <div
+      class="navbar-collapse"
+      id="mainNavbar"
+      #navbarCollapse
+      [class.collapse]="true"
+      [class.show]="isNavOpen"
+    >
       <div class="navbar-nav d-flex align-items-center gap-3">
         <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Cliente</a>
         <a class="nav-link" routerLink="/planos" (click)="closeNavbar()">Planos</a>
         <div class="nav-link dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="loginDropdown"
+            role="button"
+            [attr.aria-expanded]="isLoginDropdownOpen"
+            (click)="toggleLoginDropdown($event)"
+          >
             Login
           </a>
-          <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+          <ul class="dropdown-menu" aria-labelledby="loginDropdown" [class.show]="isLoginDropdownOpen">
             <li>
               <a class="dropdown-item" routerLink="/login/pessoa-fisica" (click)="closeNavbar()">
                 <span class="dropdown-item-icon">

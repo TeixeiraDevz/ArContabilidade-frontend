@@ -19,9 +19,9 @@
           <p class="hero-subtitle mb-5">
             Gestão contábil completa com tecnologia e atendimento especializado.
           </p>
-          <div class="hero-buttons d-flex gap-4 flex-wrap">
-            <a routerLink="/planos" class="btn btn-primary btn-lg">Conheça nossos planos</a>
-            <a routerLink="/equipe" class="btn btn-outline-primary btn-lg">Fale com nossa equipe</a>
+          <div class="hero-buttons">
+            <a routerLink="/planos" class="btn btn-primary btn-lg hero-btn-planos">Conheça nossos planos</a>
+            <a routerLink="/equipe" class="btn btn-outline-primary btn-lg hero-btn-equipe">Fale com nossa equipe</a>
           </div>
         </div>
       </div>
@@ -119,7 +119,6 @@
   <div class="container">
     <div class="services-shell row align-items-center g-5">
       <div class="col-12 col-lg-6">
-        <span class="section-pill">Serviços completos</span>
         <h2 class="services-title">Código quando precisar, time especializado quando preferir</h2>
         <p class="services-description">
           Unimos consultoria contábil com ferramentas digitais para cuidar de impostos, folha, integrações e relatórios estratégicos sem fricção.
@@ -210,7 +209,7 @@
 </section>
 
 <!-- Planos -->
-<section class="planos-section py-5">
+<section id="planos" class="planos-section py-5">
   <div class="container">
     <div class="row mb-5">
       <div class="col-12">
@@ -224,16 +223,11 @@
     <div class="row g-4">
       @for (plano of planos; track plano.id) {
         <div class="col-lg-4">
-          <div class="card plano-card h-100" [class.featured]="plano.id === '2'">
-            @if (plano.id === '2') {
-              <div class="card-header bg-primary text-white text-center py-3">
-                <span class="badge bg-light text-primary">Mais Popular</span>
-              </div>
-            }
+          <div class="card plano-card h-100" [class.featured]="plano.id === '2'" (click)="scrollToPlanos()" style="cursor: pointer;">
             <div class="card-body p-4 d-flex flex-column">
               <h3 class="card-title fw-bold mb-3">{{ plano.nome }}</h3>
               <div class="mt-auto">
-                <a routerLink="/planos" class="btn btn-primary w-100">
+                <a routerLink="/planos" class="btn btn-primary w-100" (click)="$event.stopPropagation()">
                   Ver detalhes do plano
                 </a>
               </div>
@@ -298,28 +292,3 @@
   </div>
 </section>
 
-<!-- CTA Final -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-card">
-      <div class="cta-rays" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="cta-content text-center">
-        <span class="cta-badge">Atendimento consultivo</span>
-        <h2 class="cta-title">Pronto para transformar sua gestão contábil?</h2>
-        <p class="cta-subtitle">
-          Unimos especialistas e tecnologia para implantar rotinas financeiras completas, com a segurança que seu negócio precisa.
-        </p>
-        <div class="cta-buttons">
-          <a routerLink="/clientes" class="btn cta-btn-primary">
-            Comece gratuitamente
-          </a>
-          <a routerLink="/equipe" class="btn cta-btn-secondary">
-            Fale com nossa equipe
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>

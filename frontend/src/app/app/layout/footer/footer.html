@@ -1,6 +1,8 @@
 <footer class="footer">
-  <div class="container">
-    <div class="row g-4 align-items-center">
+  <!-- Conteúdo do footer -->
+  <div class="footer-content" [class.no-cta]="!isHomePage">
+    <div class="container">
+      <div class="row g-4 align-items-center">
       <div class="col-12 col-lg-5">
         <h5 class="footer-title mb-3">Cuidamos do financeiro para você crescer</h5>
         <p class="footer-text">
@@ -33,7 +35,7 @@
         <h6 class="footer-subtitle mb-3">Links Rápidos</h6>
         <ul class="footer-links list-unstyled">
           <li><a routerLink="/" class="footer-link">Home</a></li>
-          <li><a routerLink="/clientes" class="footer-link">Clientes</a>
+          <li><a routerLink="/clientes" class="footer-link">Clientes</a></li>
           <li><a routerLink="/login" class="footer-link">Login</a></li>
         </ul>
       </div>
@@ -73,6 +75,7 @@
           © {{ currentYear }} AR Gestão Contábil e Financeira. Todos os direitos reservados.
         </p>
       </div>
+    </div>
     </div>
   </div>
 </footer>

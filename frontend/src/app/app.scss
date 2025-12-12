@@ -1,0 +1,28 @@
+/* Variáveis compartilhadas entre CTA e Footer (herdam para os componentes filhos) */
+:host {
+  --cta-overlap: 9.5rem;     /* quanto o CTA sobe para "invadir" a seção acima */
+  --footer-bg-pull: 6.5rem;  /* quanto o fundo roxo sobe por trás do CTA */
+}
+
+@media (max-width: 991px) {
+  :host {
+    --cta-overlap: 9rem;
+    --footer-bg-pull: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    --cta-overlap: 8.25rem;
+    --footer-bg-pull: 5.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  :host {
+    --cta-overlap: 7.5rem;
+    --footer-bg-pull: 5rem;
+  }
+}
+
+

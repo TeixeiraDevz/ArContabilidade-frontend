@@ -18,10 +18,18 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
     }
 
     .planos-hero {
-      padding: 7rem 0 4rem;
+      padding: 7rem 0 5rem;
       background: linear-gradient(140deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.18) 100%);
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      min-height: 60vh;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .planos-hero::before,
@@ -68,32 +76,42 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
       font-size: 3rem;
       font-weight: 700;
       color: var(--color-black);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
       letter-spacing: -0.025em;
-      line-height: 1.2;
+      line-height: 1.3;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-subtitle {
       font-size: 1.2rem;
       color: var(--color-gray);
-      line-height: 1.75;
-      max-width: 750px;
-      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-weight: 400;
     }
 
     .hero-actions {
       display: flex;
       gap: 1rem;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
+      width: 100%;
     }
 
     .hero-actions .btn {
-      min-width: 200px;
-      padding: 0.95rem 2.5rem;
+      min-width: 220px;
+      padding: 1rem 2.75rem;
       border-radius: 14px;
       font-weight: 600;
+      font-size: 1.05rem;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .hero-actions .btn-primary {

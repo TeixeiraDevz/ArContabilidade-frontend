@@ -192,6 +192,23 @@ import { filter } from 'rxjs/operators';
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
+
+    .floating-navbar-toggler {
+      position: fixed;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 1100;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      border-radius: 12px;
+      padding: 0.5rem 0.6rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .floating-navbar-toggler:hover {
+      background: rgba(255, 255, 255, 1);
+    }
     
     @media (max-width: 991px) {
       .navbar {
@@ -273,15 +290,19 @@ import { filter } from 'rxjs/operators';
 })
 export class Header implements OnInit, OnDestroy {
   @ViewChild('navbarCollapse') navbarCollapse?: ElementRef<HTMLElement>;
-  private scrollTimeout: any;
+  @ViewChild('navbarRoot') navbarRoot?: ElementRef<HTMLElement>;
   private lastScrollY = 0;
-  private isScrolling = false;
   navbarClass = 'navbar visible';
+
+  isNavOpen = false;
+  isLoginDropdownOpen = false;
+  showFloatingToggler = false;
   
   constructor(private router: Router) {}
   
   ngOnInit() {
     this.lastScrollY = window.scrollY;
+    this.updateFloatingToggler(window.scrollY);
     
     // Fechar navbar ao navegar
     this.router.events
@@ -292,77 +313,103 @@ export class Header implements OnInit, OnDestroy {
   }
   
   ngOnDestroy() {
-    if (this.scrollTimeout) {
-      clearTimeout(this.scrollTimeout);
-    }
   }
   
   closeNavbar(): void {
-    const collapseElement = document.getElementById('mainNavbar');
-    if (collapseElement && collapseElement.classList.contains('show')) {
-      // Usar Bootstrap para fechar o collapse
-      const bsCollapse = (window as any).bootstrap?.Collapse?.getInstance(collapseElement);
-      if (bsCollapse) {
-        bsCollapse.hide();
+    this.isNavOpen = false;
+    this.isLoginDropdownOpen = false;
+
+    const scrollY = window.scrollY;
+    if (this.isMobileOrTablet() && scrollY >= 50) {
+      this.navbarClass = 'navbar scrolling hidden';
+    }
+
+    this.updateFloatingToggler(scrollY);
+  }
+
+  toggleNavbar(): void {
+    const nextOpen = !this.isNavOpen;
+    const scrollY = window.scrollY;
+
+    this.isNavOpen = nextOpen;
+
+    if (this.isNavOpen) {
+      // Ao abrir (especialmente quando estava escondida no mobile/tablet), garantir que a navbar apareça
+      if (scrollY >= 50) {
+        this.navbarClass = 'navbar scrolling visible';
       } else {
-        // Fallback: remover classe show manualmente e adicionar aria-expanded
-        collapseElement.classList.remove('show');
-        const toggler = document.querySelector('.navbar-toggler') as HTMLElement;
-        if (toggler) {
-          toggler.setAttribute('aria-expanded', 'false');
-        }
+        this.navbarClass = 'navbar visible';
+      }
+    } else {
+      // Ao fechar, recolher e esconder novamente no mobile/tablet para não atrapalhar a tela
+      this.isLoginDropdownOpen = false;
+      if (this.isMobileOrTablet() && scrollY >= 50) {
+        this.navbarClass = 'navbar scrolling hidden';
       }
     }
+
+    this.updateFloatingToggler(scrollY);
+  }
+
+  toggleLoginDropdown(event: MouseEvent): void {
+    event.preventDefault();
+    this.isLoginDropdownOpen = !this.isLoginDropdownOpen;
+  }
+
+  private isMobileOrTablet(): boolean {
+    return window.matchMedia('(max-width: 991px)').matches;
+  }
+
+  private updateFloatingToggler(scrollY: number): void {
+    const beyondTop = scrollY >= 50;
+    const navbarHidden = this.navbarClass.includes('hidden');
+    this.showFloatingToggler = this.isMobileOrTablet() && beyondTop && navbarHidden && !this.isNavOpen;
   }
   
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-    const navbar = document.querySelector('.navbar');
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.getElementById('mainNavbar');
-    
-    // Se clicou fora da navbar e ela está aberta, fechar
-    if (navbarCollapse?.classList.contains('show') && 
-        !navbar?.contains(target) && 
-        !navbarToggler?.contains(target)) {
+    const clickedInsideNavbar = this.navbarRoot?.nativeElement.contains(target) ?? false;
+    const clickedFloatingToggler = !!target.closest('.floating-navbar-toggler');
+
+    // Se clicou fora do header, fechar menu + dropdown (mobile/tablet)
+    if ((this.isNavOpen || this.isLoginDropdownOpen) && !clickedInsideNavbar && !clickedFloatingToggler) {
       this.closeNavbar();
     }
+  }
+
+  @HostListener('window:resize', [])
+  onWindowResize(): void {
+    this.updateFloatingToggler(window.scrollY);
   }
   
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const currentScrollY = window.scrollY;
     const scrollingDown = currentScrollY > this.lastScrollY;
-    
-    // Limpar timeout anterior
-    if (this.scrollTimeout) {
-      clearTimeout(this.scrollTimeout);
-    }
-    
+
     // Se está no topo, mostrar navbar transparente (sem classe scrolling)
     if (currentScrollY < 50) {
       this.navbarClass = 'navbar visible';
-      this.isScrolling = false;
     } else {
-      // Se está rolando para baixo, esconder navbar
-      if (scrollingDown && currentScrollY > 50) {
-        this.isScrolling = true;
-        this.navbarClass = 'navbar scrolling hidden';
-      } else if (!scrollingDown) {
-        // Se está rolando para cima, mostrar navbar opaca
-        this.navbarClass = 'navbar scrolling visible';
-        this.isScrolling = false;
-      }
-      
-      // Após parar de rolar (150ms sem scroll), mostrar navbar novamente
-      this.scrollTimeout = setTimeout(() => {
-        if (this.isScrolling) {
+      // Mobile/tablet: não reaparecer ao rolar pra cima; só mostrar ao clicar no hambúrguer.
+      if (this.isMobileOrTablet()) {
+        if (!this.isNavOpen) {
+          this.navbarClass = 'navbar scrolling hidden';
+        } else {
           this.navbarClass = 'navbar scrolling visible';
-          this.isScrolling = false;
         }
-      }, 150);
+      } else {
+        // Desktop: manter comportamento padrão (esconde descendo, mostra subindo)
+        if (scrollingDown) {
+          this.navbarClass = 'navbar scrolling hidden';
+        } else {
+          this.navbarClass = 'navbar scrolling visible';
+        }
+      }
     }
+
+    this.updateFloatingToggler(currentScrollY);
     
     this.lastScrollY = currentScrollY;
   }

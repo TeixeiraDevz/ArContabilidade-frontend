@@ -1,33 +1,56 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './footer.html',
   styles: [`
     .footer {
       position: relative;
-      background: #ffffff;
-      color: #1a1a1a;
-      padding: 3.5rem 0 2rem;
+      background: transparent;
+      color: #f5f6fa;
       margin-top: -1px;
-      border-top: 1px solid #e9ecef;
+      overflow: visible;
     }
     
-    .footer::before {
+    .footer-content {
+      /* Sobe o fundo roxo por trás do CTA (sem cortar o card) */
+      margin-top: calc(-1 * var(--footer-bg-pull));
+      padding: calc(var(--footer-bg-pull) + 4.25rem) 0 2.25rem;
+      background: linear-gradient(135deg, #160c3a 0%, #2c0f6d 45%, #1a0f3f 100%);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .footer-content::before {
       content: '';
       position: absolute;
-      top: -4px;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: rgba(102, 126, 234, 0.1);
-      filter: blur(12px);
+      inset: 0;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.08), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(255,255,255,0.06), transparent 40%),
+                  radial-gradient(circle at 50% 100%, rgba(255,255,255,0.05), transparent 35%);
+      pointer-events: none;
+      z-index: 0;
     }
     
+    .footer-content > .container,
+    .footer-content .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer-content.no-cta {
+      margin-top: 0;
+      padding-top: 4.5rem;
+    }
+    
+    
     .footer-title {
-      color: #1a1a1a;
+      color: #f5f6fa;
       font-size: 1.35rem;
       font-weight: 700;
       margin-bottom: 1rem;
@@ -35,14 +58,14 @@ import { RouterLink } from '@angular/router';
     }
     
     .footer-subtitle {
-      color: #1a1a1a;
+      color: #f5f6fa;
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 1rem;
     }
     
     .footer-text {
-      color: #6c757d;
+      color: #d5d8e6;
       font-size: 0.95rem;
       line-height: 1.6;
       margin-bottom: 0.5rem;
@@ -71,7 +94,7 @@ import { RouterLink } from '@angular/router';
     }
     
     .footer-link {
-      color: #6c757d;
+      color: #d5d8e6;
       text-decoration: none;
       font-size: 0.95rem;
       transition: all 0.3s ease;
@@ -79,39 +102,43 @@ import { RouterLink } from '@angular/router';
     }
     
     .footer-link:hover {
-      color: #667eea;
+      color: #ffb347;
       transform: translateX(5px);
       text-decoration: underline;
     }
     
     .footer-contact .footer-link {
-      color: #6c757d;
+      color: #d5d8e6;
     }
     
     .footer-contact .footer-link:hover {
-      color: #667eea;
+      color: #ffb347;
       text-decoration: underline;
     }
     
     .footer-divider {
       height: 1px;
-      background: #e9ecef;
+      background: rgba(255, 255, 255, 0.12);
       border: none;
       margin: 2rem 0;
     }
     
     .footer-copyright {
-      color: #6c757d;
+      color: #cdd2e3;
       font-size: 0.875rem;
     }
     
     .footer-contact svg {
-      color: #6c757d;
+      color: #d5d8e6;
       flex-shrink: 0;
     }
     
+    @media (max-width: 991px) {
+      /* responsivo do footer apenas */
+    }
+    
     @media (max-width: 768px) {
-      .footer {
+      .footer-content {
         padding: 3rem 0 1.5rem;
       }
       
@@ -146,7 +173,7 @@ import { RouterLink } from '@angular/router';
     }
     
     @media (max-width: 576px) {
-      .footer {
+      .footer-content {
         padding: 2.5rem 0 1.25rem;
       }
       
@@ -170,4 +197,16 @@ import { RouterLink } from '@angular/router';
 })
 export class Footer {
   currentYear = new Date().getFullYear();
+  isHomePage = false;
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.isHomePage = this.router.url === '/' || this.router.url === '/home';
+      });
+    
+    // Verificar rota inicial
+    this.isHomePage = this.router.url === '/' || this.router.url === '/home';
+  }
 }

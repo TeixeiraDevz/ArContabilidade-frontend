@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { PlanosService } from '../../../planos/services/planos.service';
 import { Plano } from '../../../../../core/models/plano.model';
 
@@ -229,6 +229,9 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 1.5rem;
     }
     
@@ -240,6 +243,23 @@ import { Plano } from '../../../../../core/models/plano.model';
       font-weight: 600;
       font-size: 1.05rem;
       box-shadow: var(--shadow-md);
+      margin: 0 !important;
+      flex-shrink: 0;
+    }
+    
+    @media (min-width: 992px) {
+      .hero-buttons {
+        gap: 0;
+        justify-content: flex-start;
+      }
+      
+      .hero-btn-planos {
+        margin-right: 3rem !important;
+      }
+      
+      .hero-btn-equipe {
+        margin-left: 0 !important;
+      }
     }
     
     .hero-buttons .btn:hover {
@@ -678,7 +698,8 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .diferenciais-section {
       padding-top: 5rem;
-      padding-bottom: 5rem;
+      /* Espaço extra para o CTA do footer "invadir" sem cobrir o conteúdo */
+      padding-bottom: 14rem;
       background: #f8f9fa;
     }
     
@@ -794,7 +815,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     @media (max-width: 576px) {
       .diferenciais-section {
         padding-top: 3rem;
-        padding-bottom: 3rem;
+        padding-bottom: 11rem;
       }
       
       .diferenciais-title {
@@ -826,109 +847,6 @@ import { Plano } from '../../../../../core/models/plano.model';
       }
     }
     
-    .cta-section {
-      background: #f8f9fa;
-      color: #1a1a1a;
-      padding: 6rem 0;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .cta-card {
-      position: relative;
-      border-radius: 32px;
-      padding: 3.5rem 2.5rem;
-      background: #ffffff;
-      border: 1px solid #e9ecef;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-    }
-    
-    .cta-rays {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 4rem;
-      opacity: 0.4;
-    }
-    
-    .cta-rays span {
-      width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(255, 179, 71, 0.3), transparent);
-      animation: pulse 5s ease-in-out infinite;
-    }
-    
-    .cta-content {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    
-    .cta-badge {
-      display: inline-flex;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      background: rgba(102, 126, 234, 0.1);
-      color: #667eea;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
-    }
-    
-    .cta-title {
-      font-size: 2.75rem;
-      color: #1a1a1a;
-      margin-bottom: 1.25rem;
-    }
-    
-    .cta-subtitle {
-      color: #6c757d;
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-    }
-    
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
-    
-    .cta-btn-primary,
-    .cta-btn-secondary {
-      padding: 1rem 2.5rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .cta-btn-primary {
-      background: linear-gradient(90deg, #ffb347, #ff6b6b);
-      color: #120f23;
-      border: none;
-      box-shadow: 0 18px 35px rgba(255, 107, 107, 0.25);
-    }
-    
-    .cta-btn-secondary {
-      border: 2px solid #667eea;
-      color: #667eea;
-      background: transparent;
-    }
-    
-    .cta-btn-secondary:hover {
-      background: #667eea;
-      color: white;
-    }
-    
-    .cta-btn-primary:hover,
-    .cta-btn-secondary:hover {
-      transform: translateY(-4px);
-    }
-    
     /* Micro-interações em links e botões */
     a, button {
       transition: all var(--transition-normal);
@@ -946,67 +864,15 @@ import { Plano } from '../../../../../core/models/plano.model';
     .btn:not(:disabled):active {
       transform: translateY(0) scale(0.98);
     }
-    
-    @media (max-width: 991px) {
-      .cta-section {
-        padding: 4rem 0 3rem;
-      }
-      
-      .cta-title {
-        font-size: 2.25rem;
-      }
-      
-      .cta-subtitle {
-        font-size: 1.15rem;
-      }
-      
-      .cta-buttons {
-        gap: 1rem;
-      }
-      
-      .cta-btn-primary,
-      .cta-btn-secondary {
-        min-width: 200px;
-        padding: 0.875rem 2rem;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .cta-section {
-        padding: 3rem 0 2.5rem;
-        margin-top: 2rem;
-      }
-      
-      .cta-title {
-        font-size: 1.75rem;
-        margin-bottom: 1.25rem;
-      }
-      
-      .cta-subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
-      }
-      
-      .cta-btn-primary,
-      .cta-btn-secondary {
-        width: 100%;
-        max-width: 300px;
-        padding: 0.875rem 1.5rem;
-        font-size: 1rem;
-      }
-    }
   `]
 })
 export class Home implements OnInit {
   planos: Plano[] = [];
 
-  constructor(private planosService: PlanosService) {}
+  constructor(
+    private planosService: PlanosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.carregarPlanos();
@@ -1099,5 +965,25 @@ export class Home implements OnInit {
       icone: 'monitor'
     }
   ];
+
+  scrollToPlanos(): void {
+    // Se já estiver na home, fazer scroll suave até a seção de planos
+    if (this.router.url === '/' || this.router.url === '/home') {
+      const planosSection = document.getElementById('planos');
+      if (planosSection) {
+        planosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // Se estiver em outra página, navegar para home e depois fazer scroll
+      this.router.navigate(['/']).then(() => {
+        setTimeout(() => {
+          const planosSection = document.getElementById('planos');
+          if (planosSection) {
+            planosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      });
+    }
+  }
 
 }
