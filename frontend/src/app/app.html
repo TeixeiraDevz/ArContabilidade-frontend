@@ -2,6 +2,7 @@
 <div class="page-container">
   <router-outlet />
 </div>
+<app-footer-cta [isHomePage]="isHomePage()" />
 @if (isHomePage()) {
   <div class="footer-cta-card">
     <div class="footer-cta-content text-center">
@@ -21,6 +22,5 @@
     </div>
   </div>
 }
-<app-footer-cta [isHomePage]="isHomePage()" />
 <app-footer />
 <app-assistant-widget />

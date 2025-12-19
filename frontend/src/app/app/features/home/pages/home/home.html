@@ -9,7 +9,7 @@
   
   <div class="container">
     <div class="row align-items-center min-vh-75">
-      <div class="col-12 col-lg-6">
+      <div class="col-12 col-lg-6 order-1 order-lg-1">
         <!-- Conteúdo do hero -->
         <div class="hero-content animate-fade-in-up">
           <h1 class="hero-title mb-4">
@@ -35,12 +35,12 @@
                 <stop offset="100%" stop-color="#764ba2" stop-opacity="0.2"/>
               </linearGradient>
               <linearGradient id="moneyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffb347"/>
-                <stop offset="100%" stop-color="#ff6b6b"/>
+                <stop offset="0%" stop-color="#667eea"/>
+                <stop offset="100%" stop-color="#764ba2"/>
               </linearGradient>
               <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#667eea" stop-opacity="0.3"/>
-                <stop offset="100%" stop-color="#ffb347" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#667eea" stop-opacity="0.4"/>
               </linearGradient>
             </defs>
             
@@ -70,38 +70,38 @@
               <rect x="220" y="80" width="30" height="120" rx="4" fill="url(#moneyGradient)"/>
               
               <!-- Linha de tendência -->
-              <path d="M35 185 L85 165 L135 145 L185 125 L235 95" stroke="#ffb347" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <path d="M35 185 L85 165 L135 145 L185 125 L235 95" stroke="#667eea" stroke-width="3.5" stroke-linecap="round" fill="none"/>
               
               <!-- Pontos na linha -->
-              <circle cx="35" cy="185" r="4" fill="#ffb347"/>
-              <circle cx="85" cy="165" r="4" fill="#ffb347"/>
-              <circle cx="135" cy="145" r="4" fill="#ffb347"/>
-              <circle cx="185" cy="125" r="4" fill="#ffb347"/>
-              <circle cx="235" cy="95" r="6" fill="#ff6b6b"/>
+              <circle cx="35" cy="185" r="4" fill="#667eea"/>
+              <circle cx="85" cy="165" r="4" fill="#667eea"/>
+              <circle cx="135" cy="145" r="4" fill="#667eea"/>
+              <circle cx="185" cy="125" r="4" fill="#667eea"/>
+              <circle cx="235" cy="95" r="6" fill="#764ba2"/>
             </g>
             
             <!-- Moeda principal (R$) -->
             <g transform="translate(380, 50)">
-              <circle cx="0" cy="0" r="50" fill="url(#moneyGradient)" stroke="#ff6b6b" stroke-width="3"/>
+              <circle cx="0" cy="0" r="50" fill="url(#moneyGradient)" stroke="#764ba2" stroke-width="3"/>
               <text x="0" y="8" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff" text-anchor="middle">R$</text>
               <circle cx="0" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.3"/>
             </g>
             
             <!-- Moedas pequenas flutuantes -->
             <g transform="translate(100, 80)">
-              <circle cx="0" cy="0" r="22" fill="#ffb347" opacity="0.8"/>
+              <circle cx="0" cy="0" r="22" fill="#667eea" opacity="0.8"/>
               <text x="0" y="6" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
             </g>
             
             <g transform="translate(180, 50)">
-              <circle cx="0" cy="0" r="20" fill="#ff6b6b" opacity="0.8"/>
+              <circle cx="0" cy="0" r="20" fill="#764ba2" opacity="0.8"/>
               <text x="0" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
             </g>
             
             <!-- Seta de crescimento -->
             <g transform="translate(200, 250)">
-              <path d="M0 0 L20 -20 L40 0" stroke="#ffb347" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M20 -20 L20 -50" stroke="#ffb347" stroke-width="5" stroke-linecap="round"/>
+              <path d="M0 0 L20 -20 L40 0" stroke="#667eea" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M20 -20 L20 -50" stroke="#667eea" stroke-width="5" stroke-linecap="round"/>
             </g>
             
             <!-- Linhas de conexão sutis -->
@@ -118,49 +118,48 @@
 <section class="services-section py-5">
   <div class="container">
     <div class="services-shell row align-items-center g-5">
-      <div class="col-12 col-lg-6">
-        <h2 class="services-title">Código quando precisar, time especializado quando preferir</h2>
+      <div class="col-12 col-lg-6 order-2 order-lg-1">
+        <h2 class="services-title">Atendimento especializado quando você precisar</h2>
         <p class="services-description">
-          Unimos consultoria contábil com ferramentas digitais para cuidar de impostos, folha, integrações e relatórios estratégicos sem fricção.
+          Unimos consultoria contábil com tecnologia para cuidar de impostos, folha de pagamento, integrações e relatórios estratégicos de forma eficiente e personalizada.
         </p>
         <ul class="services-list list-unstyled">
           @for (servico of servicos; track servico.titulo) {
             <li class="service-item">
               <div class="service-icon">
                 @if (servico.icone === 'chart') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
-                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="#ffb347" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="#667eea" stroke-width="2.5" stroke-linecap="round"/>
                   </svg>
                 } @else if (servico.icone === 'users') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="#a0b5ff" stroke-width="2"/>
-                    <circle cx="12" cy="9" r="3.5" stroke="#a0b5ff" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="#667eea" stroke-width="2.5"/>
+                    <circle cx="12" cy="9" r="3.5" stroke="#667eea" stroke-width="2.5"/>
                   </svg>
                 } @else if (servico.icone === 'file') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
-                    <path d="M14 2H8a2 2 0 0 0-2 2v16" stroke="#67d6ff" stroke-width="2"/>
-                    <polyline points="14 2 14 8 20 8" stroke="#67d6ff" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M14 2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8z" stroke="#667eea" stroke-width="2.5"/>
+                    <polyline points="14 2 14 8 20 8" stroke="#667eea" stroke-width="2.5"/>
                   </svg>
                 } @else if (servico.icone === 'building') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
-                    <path d="M6 20V8l6-4v16" stroke="#ffb347" stroke-width="2"/>
-                    <path d="M12 20v-8l6-3v11" stroke="#ffb347" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M6 20V8l6-4v16M12 20v-8l6-3v11" stroke="#667eea" stroke-width="2.5"/>
                   </svg>
                 } @else if (servico.icone === 'link') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
-                    <path d="M8 12h8M12 8v8" stroke="#a0b5ff" stroke-width="2"/>
-                    <circle cx="12" cy="12" r="3" stroke="#a0b5ff" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M8 12h8M12 8v8" stroke="#667eea" stroke-width="2.5"/>
+                    <circle cx="12" cy="12" r="3.5" stroke="#667eea" stroke-width="2.5" fill="rgba(102, 126, 234, 0.1)"/>
                   </svg>
                 } @else {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="6" fill="rgba(255,255,255,0.1)"/>
-                    <rect x="5" y="6" width="14" height="10" rx="3" stroke="#a0b5ff" stroke-width="2"/>
-                    <line x1="9" y1="20" x2="15" y2="20" stroke="#a0b5ff" stroke-width="2"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <rect x="5" y="6" width="14" height="10" rx="2" stroke="#667eea" stroke-width="2.5"/>
+                    <line x1="9" y1="20" x2="15" y2="20" stroke="#667eea" stroke-width="2.5"/>
                   </svg>
                 }
               </div>
@@ -172,7 +171,7 @@
           }
         </ul>
       </div>
-      <div class="col-12 col-lg-6">
+      <div class="col-12 col-lg-6 order-1 order-lg-2">
         <div class="services-preview">
           <div class="preview-header">
             <span>Financeiro • Workflow</span>
@@ -223,11 +222,11 @@
     <div class="row g-4">
       @for (plano of planos; track plano.id) {
         <div class="col-lg-4">
-          <div class="card plano-card h-100" [class.featured]="plano.id === '2'" (click)="scrollToPlanos()" style="cursor: pointer;">
+          <div class="card plano-card h-100" [class.featured]="plano.id === '2'" routerLink="/planos" style="cursor: pointer;">
             <div class="card-body p-4 d-flex flex-column">
               <h3 class="card-title fw-bold mb-3">{{ plano.nome }}</h3>
               <div class="mt-auto">
-                <a routerLink="/planos" class="btn btn-primary w-100" (click)="$event.stopPropagation()">
+                <a routerLink="/planos" class="btn btn-primary w-100">
                   Ver detalhes do plano
                 </a>
               </div>

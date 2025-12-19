@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -20,6 +20,14 @@ import { filter } from 'rxjs/operators';
       width: 100%;
       display: flex;
       justify-content: center;
+    }
+    
+    .navbar.hidden {
+      pointer-events: none;
+    }
+    
+    .navbar.hidden .container {
+      pointer-events: auto;
     }
     
     .navbar .container {
@@ -121,52 +129,119 @@ import { filter } from 'rxjs/operators';
     
     .dropdown-toggle {
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+    
+    /* Remove a seta padrão do Bootstrap */
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+    
+    .dropdown-arrow {
+      transition: transform var(--transition-normal);
+      color: currentColor;
+      flex-shrink: 0;
+    }
+    
+    .dropdown-arrow.rotated {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown-toggle:hover .dropdown-arrow {
+      color: var(--color-purple);
     }
     
     .dropdown-menu {
-      border: none;
-      box-shadow: var(--shadow-lg);
-      border-radius: 8px;
-      padding: 0.5rem 0;
-      margin-top: 0.5rem;
-      min-width: 180px;
+      border: 1px solid rgba(102, 126, 234, 0.15);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border-radius: 12px;
+      padding: 0.5rem;
+      margin-top: 0.75rem;
+      min-width: 220px;
+      left: 71px;
+      top: 7px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      animation: dropdownFadeIn 0.2s ease-out;
+    }
+    
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
     .dropdown-item {
-      padding: 0.625rem 1.25rem;
+      padding: 0.875rem 1rem;
       color: var(--color-black);
       transition: all var(--transition-fast);
       font-size: 0.9rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.875rem;
+      border-radius: 8px;
+      text-decoration: none;
     }
     
     .dropdown-item:hover {
-      background: var(--color-gray-light);
+      background: linear-gradient(90deg, rgba(102, 126, 234, 0.08) 0%, rgba(102, 126, 234, 0.05) 100%);
       color: var(--color-purple);
+      transform: translateX(4px);
     }
     
     .dropdown-item-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(102, 126, 234, 0.12);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
       flex-shrink: 0;
       transition: all var(--transition-fast);
     }
     
     .dropdown-item:hover .dropdown-item-icon {
-      background: rgba(102, 126, 234, 0.2);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.2));
+      transform: scale(1.1);
     }
     
-    .dropdown-item-text {
-      font-weight: 500;
-      font-size: 0.88rem;
+    .dropdown-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+    
+    .dropdown-item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
       color: var(--color-black);
+      line-height: 1.3;
+    }
+    
+    .dropdown-item-subtitle {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: var(--color-gray);
+      line-height: 1.2;
+    }
+    
+    .dropdown-item:hover .dropdown-item-title {
+      color: var(--color-purple);
+    }
+    
+    .dropdown-item:hover .dropdown-item-subtitle {
+      color: var(--color-purple);
+      opacity: 0.8;
     }
     
     .external-icon {
@@ -196,7 +271,7 @@ import { filter } from 'rxjs/operators';
     .floating-navbar-toggler {
       position: fixed;
       top: 0.75rem;
-      right: 0.75rem;
+      left: 0.75rem;
       z-index: 1100;
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid rgba(102, 126, 234, 0.2);
@@ -204,11 +279,14 @@ import { filter } from 'rxjs/operators';
       padding: 0.5rem 0.6rem;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
       backdrop-filter: blur(8px);
+      /* Visibilidade controlada via [class.d-none] no template */
     }
 
     .floating-navbar-toggler:hover {
       background: rgba(255, 255, 255, 1);
     }
+    
+    /* Floating toggler controlado via showFloatingToggler no componente */
     
     @media (max-width: 991px) {
       .navbar {
@@ -228,6 +306,17 @@ import { filter } from 'rxjs/operators';
         margin: 0.5rem;
         width: calc(100% - 1rem);
       }
+      
+      /* Esconder o hambúrguer normal quando a navbar está escondida */
+      .navbar .navbar-toggler {
+        display: block;
+      }
+      
+      .navbar.hidden .navbar-toggler {
+        display: none !important;
+      }
+      
+      /* Floating toggler controlado via [class.d-none] no template baseado em showFloatingToggler */
       
       .navbar-collapse {
         margin-top: 1rem;
@@ -268,9 +357,23 @@ import { filter } from 'rxjs/operators';
         float: none;
         width: 100%;
         margin-top: 0.5rem;
-        border: none;
-        box-shadow: none;
-        background: var(--color-gray-light);
+        margin-left: 0;
+        border: 1px solid rgba(102, 126, 234, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.98);
+        left: 0 !important;
+        top: auto !important;
+        border-radius: 12px;
+        padding: 0.5rem;
+      }
+      
+      .dropdown-item {
+        padding: 1rem;
+      }
+      
+      .dropdown-item-icon {
+        width: 36px;
+        height: 36px;
       }
     }
     
@@ -298,10 +401,23 @@ export class Header implements OnInit, OnDestroy {
   isLoginDropdownOpen = false;
   showFloatingToggler = false;
   
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
   
   ngOnInit() {
     this.lastScrollY = window.scrollY;
+    
+    // No mobile, sempre iniciar com navbar escondida
+    if (this.isMobileOrTablet()) {
+      if (window.scrollY < 50) {
+        this.navbarClass = 'navbar hidden';
+      } else {
+        this.navbarClass = 'navbar scrolling hidden';
+      }
+    } else {
+      this.navbarClass = 'navbar visible';
+    }
+    
+    // Atualizar floating toggler após definir o estado inicial da navbar
     this.updateFloatingToggler(window.scrollY);
     
     // Fechar navbar ao navegar
@@ -320,8 +436,20 @@ export class Header implements OnInit, OnDestroy {
     this.isLoginDropdownOpen = false;
 
     const scrollY = window.scrollY;
-    if (this.isMobileOrTablet() && scrollY >= 50) {
-      this.navbarClass = 'navbar scrolling hidden';
+    if (this.isMobileOrTablet()) {
+      // No mobile, sempre esconder quando fecha
+      if (scrollY >= 50) {
+        this.navbarClass = 'navbar scrolling hidden';
+      } else {
+        this.navbarClass = 'navbar hidden';
+      }
+    } else {
+      // Desktop: manter estado baseado no scroll
+      if (scrollY >= 50) {
+        this.navbarClass = 'navbar scrolling visible';
+      } else {
+        this.navbarClass = 'navbar visible';
+      }
     }
 
     this.updateFloatingToggler(scrollY);
@@ -330,21 +458,38 @@ export class Header implements OnInit, OnDestroy {
   toggleNavbar(): void {
     const nextOpen = !this.isNavOpen;
     const scrollY = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
+    const isNearFooter = scrollPercentage > 80;
 
     this.isNavOpen = nextOpen;
 
     if (this.isNavOpen) {
-      // Ao abrir (especialmente quando estava escondida no mobile/tablet), garantir que a navbar apareça
-      if (scrollY >= 50) {
+      // Ao abrir, garantir que a navbar apareça
+      if (scrollY >= 50 || isNearFooter) {
         this.navbarClass = 'navbar scrolling visible';
       } else {
         this.navbarClass = 'navbar visible';
       }
     } else {
-      // Ao fechar, recolher e esconder novamente no mobile/tablet para não atrapalhar a tela
+      // Ao fechar, sempre esconder no mobile/tablet
       this.isLoginDropdownOpen = false;
-      if (this.isMobileOrTablet() && scrollY >= 50) {
-        this.navbarClass = 'navbar scrolling hidden';
+      if (this.isMobileOrTablet()) {
+        // No mobile, sempre esconder quando fecha
+        if (scrollY >= 50 || isNearFooter) {
+          this.navbarClass = 'navbar scrolling hidden';
+        } else {
+          // No topo, esconder também
+          this.navbarClass = 'navbar hidden';
+        }
+      } else {
+        // Desktop: manter estado baseado no scroll
+        if (scrollY >= 50) {
+          this.navbarClass = 'navbar scrolling visible';
+        } else {
+          this.navbarClass = 'navbar visible';
+        }
       }
     }
 
@@ -361,9 +506,21 @@ export class Header implements OnInit, OnDestroy {
   }
 
   private updateFloatingToggler(scrollY: number): void {
-    const beyondTop = scrollY >= 50;
-    const navbarHidden = this.navbarClass.includes('hidden');
-    this.showFloatingToggler = this.isMobileOrTablet() && beyondTop && navbarHidden && !this.isNavOpen;
+    if (!this.isMobileOrTablet()) {
+      this.showFloatingToggler = false;
+      this.cdr.detectChanges();
+      return;
+    }
+    
+    const isAtTop = scrollY < 50;
+    // No mobile, mostrar o floating toggler APENAS no topo (scrollY < 50)
+    // Quando rolar para baixo (scrollY >= 50), o hambúrguer desaparece para não atrapalhar
+    const shouldShow = isAtTop && !this.isNavOpen;
+    
+    if (this.showFloatingToggler !== shouldShow) {
+      this.showFloatingToggler = shouldShow;
+      this.cdr.detectChanges();
+    }
   }
   
   @HostListener('document:click', ['$event'])
@@ -387,20 +544,34 @@ export class Header implements OnInit, OnDestroy {
   onWindowScroll() {
     const currentScrollY = window.scrollY;
     const scrollingDown = currentScrollY > this.lastScrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const scrollPercentage = (documentHeight - windowHeight > 0) ? (currentScrollY / (documentHeight - windowHeight)) * 100 : 0;
+    const isNearFooter = scrollPercentage > 80; // Se está nos últimos 20% da página (próximo do footer)
 
-    // Se está no topo, mostrar navbar transparente (sem classe scrolling)
-    if (currentScrollY < 50) {
-      this.navbarClass = 'navbar visible';
-    } else {
-      // Mobile/tablet: não reaparecer ao rolar pra cima; só mostrar ao clicar no hambúrguer.
-      if (this.isMobileOrTablet()) {
-        if (!this.isNavOpen) {
-          this.navbarClass = 'navbar scrolling hidden';
-        } else {
+    // Mobile/tablet: comportamento especial
+    if (this.isMobileOrTablet()) {
+      // No mobile, sempre esconder a navbar, só mostrar se o menu estiver aberto
+      if (this.isNavOpen) {
+        // Menu aberto: mostrar
+        if (currentScrollY >= 50 || isNearFooter) {
           this.navbarClass = 'navbar scrolling visible';
+        } else {
+          this.navbarClass = 'navbar visible';
         }
       } else {
-        // Desktop: manter comportamento padrão (esconde descendo, mostra subindo)
+        // Menu fechado: sempre esconder
+        if (currentScrollY >= 50 || isNearFooter) {
+          this.navbarClass = 'navbar scrolling hidden';
+        } else {
+          this.navbarClass = 'navbar hidden';
+        }
+      }
+    } else {
+      // Desktop: comportamento padrão
+      if (currentScrollY < 50) {
+        this.navbarClass = 'navbar visible';
+      } else {
         if (scrollingDown) {
           this.navbarClass = 'navbar scrolling hidden';
         } else {

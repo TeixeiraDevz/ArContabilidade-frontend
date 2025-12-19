@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { PlanosService } from '../../../planos/services/planos.service';
 import { Plano } from '../../../../../core/models/plano.model';
 
@@ -10,13 +10,13 @@ import { Plano } from '../../../../../core/models/plano.model';
   styles: [`
     :host {
       display: block;
-      background: #ffffff;
+      background: transparent;
       min-height: 100vh;
     }
     
     .hero-section {
       position: relative;
-      background: #ffffff;
+      background: transparent;
       min-height: 75vh;
       display: flex;
       align-items: center;
@@ -94,19 +94,19 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .hero-title {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       font-weight: 700;
       color: #1a1a1a;
       line-height: 1.2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
     }
     
     .hero-subtitle {
-      font-size: 1.15rem;
+      font-size: 1rem;
       color: #6c757d;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
       max-width: 480px;
     }
     
@@ -125,38 +125,22 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     @media (max-width: 991px) {
-      .logo-text {
-        font-size: 3rem;
-      }
-      
-      .logo-subtitle {
-        font-size: 1.25rem;
-      }
-      
-      .hero-title {
-        font-size: 2.5rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.1rem;
-      }
-    }
-    
-    @media (max-width: 780px) {
-      .logo-text {
-        font-size: 2.5rem;
-      }
-      
-      .logo-subtitle {
-        font-size: 1rem;
-      }
-      
       .hero-title {
         font-size: 2rem;
       }
       
       .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
+      }
+    }
+    
+    @media (max-width: 780px) {
+      .hero-title {
+        font-size: 1.75rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 0.9rem;
       }
       
       .hero-buttons {
@@ -173,14 +157,6 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     @media (max-width: 576px) {
-      .logo-text {
-        font-size: 2.5rem;
-      }
-      
-      .logo-subtitle {
-        font-size: 1rem;
-      }
-      
       .preview-header {
         flex-direction: column;
         gap: 0.75rem;
@@ -260,17 +236,17 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .hero-buttons .btn-primary {
-      background: linear-gradient(90deg, #ffb347, #ff6b6b);
+      background: linear-gradient(90deg, #667eea, #764ba2);
       color: #120f23;
       border: none;
-      box-shadow: 0 18px 35px rgba(255, 107, 107, 0.25);
+      box-shadow: 0 18px 35px rgba(118, 75, 162, 0.25);
     }
     
     .hero-buttons .btn-primary:hover {
-      background: linear-gradient(90deg, #ffc066, #ff7a7a);
+      background: linear-gradient(90deg, #667eea, #764ba2);
       color: #120f23;
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 25px 45px rgba(255, 107, 107, 0.35);
+      box-shadow: 0 25px 45px rgba(118, 75, 162, 0.35);
     }
     
     .hero-buttons .btn-outline-primary {
@@ -303,16 +279,37 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     @media (max-width: 576px) {
       .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
       }
       
       .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.875rem;
       }
       
       .hero-buttons .btn {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+      }
+      
+      /* Manter imagem ao lado no mobile */
+      .hero-section .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+      .hero-section .col-12 {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+      
+      .hero-illustration {
+        padding: 0.5rem;
+      }
+      
+      .hero-illustration svg {
+        max-width: 100%;
+        height: auto;
       }
     }
     
@@ -331,10 +328,10 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .services-shell {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.9);
       border: 1px solid #e9ecef;
       border-radius: 32px;
-      padding: 3rem;
+      padding: 2.5rem;
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
@@ -351,40 +348,97 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .services-shell::after {
-      background: radial-gradient(circle at 80% 0%, rgba(255, 179, 71, 0.05), transparent 55%);
+      background: radial-gradient(circle at 80% 0%, rgba(102, 126, 234, 0.05), transparent 55%);
     }
 
     @media (max-width: 768px) {
       .services-shell {
-        padding: 2rem;
+        padding: 1.75rem;
+      }
+      
+      .services-title {
+        font-size: 1.75rem;
+      }
+      
+      .services-description {
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .services-shell {
+        padding: 1.5rem;
+      }
+      
+      .services-title {
+        font-size: 1.5rem;
+      }
+      
+      .services-description {
+        font-size: 0.85rem;
+      }
+      
+      /* Manter imagem ao lado no mobile */
+      .services-shell .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+      .services-shell .col-12 {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0.5rem;
+      }
+      
+      .services-preview {
+        padding: 1rem;
+      }
+      
+      .preview-header {
+        font-size: 0.75rem;
+      }
+      
+      .preview-card h4 {
+        font-size: 1rem;
+      }
+      
+      .preview-card ul {
+        font-size: 0.8rem;
       }
     }
     
     .services-title {
       color: #1a1a1a;
-      font-size: 2.75rem;
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      line-height: 1.3;
+      margin-bottom: 0.875rem;
     }
     
     .services-description {
       color: #6c757d;
-      font-size: 1.05rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
     }
     
     .services-list {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 2rem;
     }
     
     .service-item {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       align-items: flex-start;
-      padding: 1rem 0;
-      border-bottom: 1px solid #e9ecef;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(233, 236, 239, 0.6);
+      transition: all var(--transition-normal);
+    }
+    
+    .service-item:hover {
+      padding-left: 0.5rem;
+      border-bottom-color: rgba(102, 126, 234, 0.3);
     }
     
     .service-item:last-child {
@@ -393,32 +447,62 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .service-item h5 {
       color: #1a1a1a;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.5rem;
       font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.4;
     }
     
     .service-item p {
       color: #6c757d;
       margin-bottom: 0;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
     }
     
     .service-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      background: linear-gradient(140deg, rgba(102, 126, 234, 0.1), rgba(255, 179, 71, 0.1));
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.08));
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.15));
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+    
+    .service-item:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.25);
+    }
+    
+    .service-item:hover .service-icon::before {
+      opacity: 1;
+    }
+    
+    .service-icon svg {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
     }
     
     .services-preview {
-      background: #f8f9fa;
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 28px;
-      border: 1px solid #e9ecef;
+      border: 1px solid rgba(233, 236, 239, 0.5);
       padding: 2rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       position: relative;
@@ -450,10 +534,10 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .preview-card {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 20px;
       padding: 1.5rem;
-      border: 1px solid #e9ecef;
+      border: 1px solid rgba(233, 236, 239, 0.5);
     }
     
     .preview-card ul {
@@ -477,10 +561,10 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .preview-board {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 20px;
       padding: 1.5rem;
-      border: 1px dashed #dee2e6;
+      border: 1px dashed rgba(222, 226, 230, 0.5);
     }
     
     .tag {
@@ -503,7 +587,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .preview-graph .bar {
-      background: linear-gradient(180deg, #ffb347 0%, #ff6b6b 100%);
+      background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
       border-radius: 12px 12px 4px 4px;
       animation: pulse 4s ease-in-out infinite;
     }
@@ -516,7 +600,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     .planos-section {
       margin-top: 4.5rem;
       padding-top: 5rem;
-      background: #f8f9fa;
+      background: transparent;
       border-radius: 24px;
     }
     
@@ -543,11 +627,11 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .plano-card {
-      border: 2px solid #e9ecef;
+      border: 2px solid rgba(233, 236, 239, 0.5);
       transition: all var(--transition-normal);
       height: 100%;
       border-radius: 16px;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.8);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: relative;
       overflow: hidden;
@@ -570,21 +654,21 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .plano-card:hover {
-      border-color: rgba(255, 179, 71, 0.5);
-      box-shadow: 0 20px 50px rgba(255, 107, 107, 0.25);
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 20px 50px rgba(118, 75, 162, 0.25);
       transform: translateY(-8px) scale(1.02);
     }
     
     .plano-card.featured {
-      border-color: rgba(255, 179, 71, 0.6);
-      box-shadow: 0 20px 50px rgba(255, 107, 107, 0.3);
-      background: linear-gradient(135deg, rgba(255, 179, 71, 0.15) 0%, rgba(255, 107, 107, 0.15) 100%);
+      border-color: rgba(102, 126, 234, 0.6);
+      box-shadow: 0 20px 50px rgba(118, 75, 162, 0.3);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
       animation: pulse 3s ease-in-out infinite;
     }
     
     .plano-card.featured:hover {
       transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 25px 60px rgba(255, 107, 107, 0.4);
+      box-shadow: 0 25px 60px rgba(118, 75, 162, 0.4);
     }
     
     .plano-card .card-body {
@@ -594,27 +678,27 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .plano-card .btn-primary {
-      background: linear-gradient(90deg, #ffb347, #ff6b6b);
+      background: linear-gradient(90deg, #667eea, #764ba2);
       color: #120f23;
       border: none;
-      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+      box-shadow: 0 8px 20px rgba(118, 75, 162, 0.2);
       font-weight: 600;
     }
     
     .plano-card .btn-primary:hover {
-      background: linear-gradient(90deg, #ffc066, #ff7a7a);
+      background: linear-gradient(90deg, #667eea, #764ba2);
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(255, 107, 107, 0.3);
+      box-shadow: 0 12px 30px rgba(118, 75, 162, 0.3);
     }
     
     .plano-card .card-header {
-      background: linear-gradient(90deg, rgba(255, 179, 71, 0.2), rgba(255, 107, 107, 0.2)) !important;
+      background: linear-gradient(90deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2)) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
     
     .plano-card .badge {
       background: rgba(255, 255, 255, 0.95) !important;
-      color: #ff6b6b !important;
+      color: #764ba2 !important;
     }
     
     .plano-card .card-title {
@@ -648,7 +732,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .check-icon {
-      color: #ffb347;
+      color: #667eea;
       font-weight: 700;
       font-size: 1.2rem;
       display: inline-block;
@@ -658,7 +742,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .benefit-item:hover .check-icon {
       transform: scale(1.3) rotate(15deg);
-      color: #ff6b6b;
+      color: #764ba2;
     }
     
     .benefit-item:hover {
@@ -667,9 +751,9 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .section-title {
-      font-size: 2.75rem;
+      font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       color: #1a1a1a;
       letter-spacing: -0.02em;
       line-height: 1.2;
@@ -677,10 +761,10 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .section-subtitle {
-      font-size: 1.3rem;
+      font-size: 1rem;
       color: #6c757d;
-      margin-bottom: 3.5rem;
-      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
@@ -691,15 +775,15 @@ import { Plano } from '../../../../../core/models/plano.model';
     .diferenciais-section {
       padding-top: 5rem;
       /* Espaço extra para o CTA do footer "invadir" sem cobrir o conteúdo */
-      padding-bottom: 14rem;
-      background: #f8f9fa;
+      padding-bottom: 8rem;
+      background: transparent;
     }
     
     .diferenciais-title {
-      font-size: 2.75rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #1a1a1a;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.5rem;
       text-align: center;
       letter-spacing: -0.02em;
       line-height: 1.2;
@@ -710,8 +794,8 @@ import { Plano } from '../../../../../core/models/plano.model';
       padding: 2.5rem;
       height: 100%;
       transition: all var(--transition-normal);
-      background: #ffffff;
-      border: 1px solid #e9ecef;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(233, 236, 239, 0.5);
       border-radius: 16px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: relative;
@@ -728,7 +812,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       left: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(135deg, #ffb347, #ff6b6b);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       transform: scaleY(0);
       transition: transform var(--transition-normal);
       transform-origin: top;
@@ -740,8 +824,8 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .diferencial-card:hover {
       transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.15);
-      border-color: rgba(255, 179, 71, 0.3);
+      box-shadow: 0 10px 30px rgba(118, 75, 162, 0.15);
+      border-color: rgba(102, 126, 234, 0.3);
     }
     
     .diferencial-icon {
@@ -758,12 +842,12 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .diferencial-card:hover .diferencial-icon svg {
-      fill: #ffb347;
-      filter: drop-shadow(0 4px 12px rgba(255, 179, 71, 0.4));
+      fill: #667eea;
+      filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.4));
     }
     
     .diferencial-subtitle {
-      font-size: 1.6rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #1a1a1a;
       margin-bottom: 0;
@@ -772,9 +856,9 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .diferencial-text {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       color: #6c757d;
-      line-height: 1.7;
+      line-height: 1.6;
       margin-bottom: 0;
       text-align: left;
       font-weight: 400;
@@ -782,16 +866,16 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     @media (max-width: 991px) {
       .diferenciais-title {
-        font-size: 2rem;
-        margin-bottom: 2.5rem;
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
       }
       
       .diferencial-subtitle {
-        font-size: 1.3rem;
+        font-size: 1.15rem;
       }
       
       .diferencial-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       
       .diferencial-card {
@@ -811,18 +895,18 @@ import { Plano } from '../../../../../core/models/plano.model';
       }
       
       .diferenciais-title {
-        font-size: 1.75rem;
-        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 1.75rem;
       }
       
       .diferencial-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         margin-bottom: 0.75rem;
       }
       
       .diferencial-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.875rem;
+        line-height: 1.5;
       }
       
       .diferencial-card {
@@ -862,8 +946,7 @@ export class Home implements OnInit {
   planos: Plano[] = [];
 
   constructor(
-    private planosService: PlanosService,
-    private router: Router
+    private planosService: PlanosService
   ) {}
 
   ngOnInit(): void {
@@ -957,25 +1040,4 @@ export class Home implements OnInit {
       icone: 'monitor'
     }
   ];
-
-  scrollToPlanos(): void {
-    // Se já estiver na home, fazer scroll suave até a seção de planos
-    if (this.router.url === '/' || this.router.url === '/home') {
-      const planosSection = document.getElementById('planos');
-      if (planosSection) {
-        planosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      // Se estiver em outra página, navegar para home e depois fazer scroll
-      this.router.navigate(['/']).then(() => {
-        setTimeout(() => {
-          const planosSection = document.getElementById('planos');
-          if (planosSection) {
-            planosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 100);
-      });
-    }
-  }
-
 }

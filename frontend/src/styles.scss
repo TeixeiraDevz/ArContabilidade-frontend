@@ -34,6 +34,11 @@ html[data-bs-theme='light'] {
 
 html[data-bs-theme='dark'] {
   color-scheme: dark;
+  /* Fundo coerente para o tema escuro (caso o toggle seja usado) */
+  --site-bg: linear-gradient(180deg, #0b1220 0%, #0b1220 45%, #0e1a33 100%);
+  --site-blob-1: radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.22) 0%, transparent 55%);
+  --site-blob-2: radial-gradient(circle at 70% 65%, rgba(37, 99, 235, 0.18) 0%, transparent 60%);
+  --site-grid: radial-gradient(rgba(160, 181, 255, 0.06) 1px, transparent 1px);
 }
 
 /* Paleta de Cores - AR Gestão Contábil */
@@ -46,6 +51,12 @@ html[data-bs-theme='dark'] {
   --color-gray-light: #f8f9fa;
   --color-gray: #6c757d;
   --color-gray-dark: #495057;
+
+  /* Background do site (azul claro) */
+  --site-bg: linear-gradient(180deg, #e3f2fd 0%, #e8f4fd 55%, #e3f2fd 100%);
+  --site-blob-1: radial-gradient(circle at 30% 20%, rgba(33, 150, 243, 0.18) 0%, transparent 55%);
+  --site-blob-2: radial-gradient(circle at 70% 65%, rgba(66, 165, 245, 0.15) 0%, transparent 60%);
+  --site-grid: radial-gradient(rgba(33, 150, 243, 0.08) 1px, transparent 1px);
   
   /* Gradientes */
   --gradient-primary: linear-gradient(135deg, #2563eb 0%, #667eea 50%, #764ba2 100%);
@@ -256,16 +267,43 @@ body {
   flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
-  background: #ffffff;
+  background: var(--site-bg);
+  position: relative;
   color: #1a1a1a;
 }
 
+/* Fundo decorativo suave (não interfere com clique) */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Blobs / glow azul */
+body::before {
+  background: var(--site-blob-1), var(--site-blob-2);
+}
+
+/* Grid pontilhado bem sutil (só no topo) */
+body::after {
+  background-image: var(--site-grid);
+  background-size: 34px 34px;
+  opacity: 0.7;
+  mask-image: radial-gradient(circle at 50% 15%, rgba(0, 0, 0, 0.9) 0%, transparent 62%);
+}
+
 app-root {
-  display: contents;
+  display: block;
+  width: 100%;
+  position: relative;
 }
 
 .page-container {
   flex: 1 1 auto;
+  width: 100%;
 }
 
 /* Tipografia melhorada */

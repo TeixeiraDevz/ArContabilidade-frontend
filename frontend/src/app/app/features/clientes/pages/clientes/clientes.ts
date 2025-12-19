@@ -17,7 +17,7 @@ import { catchError, map } from 'rxjs/operators';
     :host {
       display: block;
       min-height: 100vh;
-      background: var(--color-gray-light, #f8f9fa);
+      background: transparent;
     }
 
     .clientes-hero {
@@ -42,14 +42,14 @@ import { catchError, map } from 'rxjs/operators';
 
     .partners-section {
       padding: 5rem 0;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.6);
     }
     
     .partners-wrapper {
       border-radius: 32px;
       padding: 2.5rem;
-      background: #f8f9fa;
-      border: 1px solid #e9ecef;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(233, 236, 239, 0.5);
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     }
     

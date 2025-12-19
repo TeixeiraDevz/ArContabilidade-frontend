@@ -15,7 +15,7 @@ import { Component, Input } from '@angular/core';
       height: 1px;
     }
 
-    /* Faixa branca atrás da parte do CTA que fica "para fora" (evita pegar o fundo cinza da seção anterior) */
+    /* Faixa azul claro atrás da parte do CTA que fica "para fora" */
     .footer-cta-shell::before {
       content: '';
       position: absolute;
@@ -23,7 +23,7 @@ import { Component, Input } from '@angular/core';
       right: 0;
       top: 0;
       height: var(--cta-overlap);
-      background: #ffffff;
+      background: transparent;
       z-index: 0;
       pointer-events: none;
     }

@@ -17,13 +17,15 @@ import { filter } from 'rxjs/operators';
     }
     
     .footer-content {
-      /* Sobe o fundo roxo por trás do CTA (sem cortar o card) */
-      margin-top: calc(-1 * var(--footer-bg-pull));
-      padding: calc(var(--footer-bg-pull) + 4.25rem) 0 2.25rem;
-      background: linear-gradient(135deg, #160c3a 0%, #2c0f6d 45%, #1a0f3f 100%);
+      /* Fundo azul escuro do footer */
+      margin-top: 0;
+      padding: 4.25rem 0 2.25rem;
+      padding-top: calc(var(--cta-overlap, 6rem) + 2.5rem);
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 45%, #0d1b2a 100%);
       position: relative;
       z-index: 1;
       overflow: hidden;
+      margin-bottom: 0;
     }
     
     .footer-content::before {
@@ -75,8 +77,8 @@ import { filter } from 'rxjs/operators';
     .footer-illustration {
       width: 180px;
       height: 140px;
-      background: #f8f9fa;
-      border: 1px solid #e9ecef;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 24px;
       display: flex;
       align-items: center;
@@ -102,7 +104,7 @@ import { filter } from 'rxjs/operators';
     }
     
     .footer-link:hover {
-      color: #ffb347;
+      color: #667eea;
       transform: translateX(5px);
       text-decoration: underline;
     }
@@ -112,7 +114,7 @@ import { filter } from 'rxjs/operators';
     }
     
     .footer-contact .footer-link:hover {
-      color: #ffb347;
+      color: #667eea;
       text-decoration: underline;
     }
     
@@ -121,6 +123,9 @@ import { filter } from 'rxjs/operators';
       background: rgba(255, 255, 255, 0.12);
       border: none;
       margin: 2rem 0;
+      margin-top: calc(var(--cta-overlap, 6rem) * 0.4);
+      position: relative;
+      z-index: 2;
     }
     
     .footer-copyright {
@@ -131,6 +136,45 @@ import { filter } from 'rxjs/operators';
     .footer-contact svg {
       color: #d5d8e6;
       flex-shrink: 0;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #d5d8e6;
+      transition: all var(--transition-normal);
+      text-decoration: none;
+    }
+    
+    .social-link:hover {
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+      transform: translateY(-3px) scale(1.1);
+    }
+    
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-social {
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
     }
     
     @media (max-width: 991px) {
@@ -144,6 +188,16 @@ import { filter } from 'rxjs/operators';
       
       .footer-title {
         font-size: 1.2rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+      }
+      
+      .col-12.col-lg-5 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
       }
       

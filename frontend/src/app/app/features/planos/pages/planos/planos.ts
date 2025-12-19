@@ -14,7 +14,7 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
   styles: [`
     :host {
       display: block;
-      background: var(--color-gray-light);
+      background: transparent;
     }
 
     .planos-hero {
