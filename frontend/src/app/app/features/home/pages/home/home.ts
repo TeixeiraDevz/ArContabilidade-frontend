@@ -21,14 +21,14 @@ import { Plano } from '../../../../../core/models/plano.model';
       display: flex;
       align-items: center;
       overflow: hidden;
-      padding-top: 250px;
+      padding-top: 170px;
       padding-bottom: 80px;
     }
     
     @media (max-width: 768px) {
       .hero-section {
         min-height: 60vh;
-        padding-top: 115px;
+        padding-top: 90px;
         padding-bottom: 60px;
       }
     }
@@ -84,6 +84,11 @@ import { Plano } from '../../../../../core/models/plano.model';
       position: relative;
       z-index: 2;
     }
+
+    /* Aproxima texto e imagem na hero (reduz gutter do Bootstrap só aqui) */
+    .hero-row {
+      --bs-gutter-x: 0.75rem;
+    }
     
     .services-section {
       margin-top: 5rem;
@@ -98,7 +103,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       font-weight: 700;
       color: #1a1a1a;
       line-height: 1.2;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       letter-spacing: -0.02em;
     }
 
@@ -124,7 +129,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       font-size: 1rem;
       color: #6c757d;
       line-height: 1.6;
-      margin-bottom: 2rem;
+      margin-bottom: 0.75rem;
       max-width: 480px;
     }
     
@@ -133,7 +138,14 @@ import { Plano } from '../../../../../core/models/plano.model';
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 0;
+    }
+
+    /* No desktop, encostar mais a ilustração no texto (lado esquerdo da coluna) */
+    @media (min-width: 992px) {
+      .hero-illustration {
+        justify-content: flex-start;
+      }
     }
     
     /* Visual do Hero (CSS-only, sem SVG/IMG) */
