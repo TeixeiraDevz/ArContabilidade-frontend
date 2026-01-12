@@ -21,23 +21,94 @@ import { catchError, map } from 'rxjs/operators';
     }
 
     .clientes-hero {
-      padding: 7rem 0 4rem;
-      background: linear-gradient(140deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.18) 100%);
+      padding: 7rem 0 5rem;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      width: 100%;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
 
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--color-black, #212529);
-      margin-bottom: 1rem;
+    .clientes-hero::before,
+    .clientes-hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      pointer-events: none;
     }
 
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--color-gray, #6c757d);
-      max-width: 600px;
+    .clientes-hero::before {
+      width: 360px;
+      height: 360px;
+      background: rgba(102, 126, 234, 0.6);
+      top: -120px;
+      left: -80px;
+    }
+
+    .clientes-hero::after {
+      width: 420px;
+      height: 420px;
+      background: rgba(118, 75, 162, 0.5);
+      bottom: -160px;
+      right: -120px;
+    }
+
+    .hero-badge {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      width: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-main-text {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      max-width: 900px;
       margin: 0 auto;
+      letter-spacing: -0.02em;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+
+    .hero-main-text span {
+      display: inline;
+      text-align: center;
+    }
+
+    .hero-main-text .text-blue {
+      color: #333366;
+    }
+
+    .hero-main-text .text-white {
+      color: rgb(95, 151, 235);
     }
 
     .partners-section {
@@ -86,13 +157,19 @@ import { catchError, map } from 'rxjs/operators';
       color: #6c757d;
     }
 
+    @media (max-width: 991px) {
+      .hero-main-text {
+        font-size: 1.75rem;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2rem;
+      .clientes-hero {
+        padding: 5.5rem 0 3.5rem;
       }
 
-      .hero-subtitle {
-        font-size: 1rem;
+      .hero-main-text {
+        font-size: 1.5rem;
       }
     }
   `]

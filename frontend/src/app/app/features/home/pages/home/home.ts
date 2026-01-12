@@ -1324,7 +1324,7 @@ export class Home implements OnInit {
       },
       {
         id: '3',
-        nome: 'Personalizado',
+        nome: 'Enterprise',
         publicoIdeal: 'Médias e grandes empresas',
         regimesAtendidos: ['Lucro Presumido', 'Lucro Real'],
         faturamentoMedioMensal: 'Acima de R$ 400.000,00',

@@ -5,7 +5,7 @@ export interface RecursoPlano {
 
 export interface Plano {
   id: string;
-  nome: 'Básico' | 'Intermediário' | 'Personalizado';
+  nome: 'Básico' | 'Intermediário' | 'Enterprise';
   publicoIdeal: string;
   regimesAtendidos: string[];
   faturamentoMedioMensal: string;
@@ -13,12 +13,16 @@ export interface Plano {
   canaisAtendimento: string[];
   relatoriosGerenciais: string;
   recursos: RecursoPlano[];
+  imagemUrl?: string;
+  descricaoResumida?: string;
+  recursosPrincipais?: string[];
+  diferenciais?: string[];
   createdAt?: string;
   updatedAt?: string;
 }
 
 export interface PlanoDTO {
-  nome: 'Básico' | 'Intermediário' | 'Personalizado';
+  nome: 'Básico' | 'Intermediário' | 'Enterprise';
   publicoIdeal: string;
   regimesAtendidos: string[];
   faturamentoMedioMensal: string;
@@ -26,5 +30,9 @@ export interface PlanoDTO {
   canaisAtendimento: string[];
   relatoriosGerenciais: string;
   recursos: RecursoPlano[];
+  imagemUrl?: string;
+  descricaoResumida?: string;
+  recursosPrincipais?: string[];
+  diferenciais?: string[];
 }
 
