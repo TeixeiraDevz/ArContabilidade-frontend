@@ -8,5 +8,6 @@ export const routes: Routes = [
   { path: 'login/pessoa-fisica', loadComponent: () => import('./app/features/auth/pages/login-pf/login-pf').then(m => m.LoginPf) },
   { path: 'login/pessoa-juridica', loadComponent: () => import('./app/features/auth/pages/login-pj/login-pj').then(m => m.LoginPj) },
   { path: 'login', loadComponent: () => import('./app/features/auth/pages/login/login').then(m => m.Login) },
+  { path: 'cadastro', loadComponent: () => import('./app/features/auth/pages/cadastro/cadastro').then(m => m.Cadastro) },
   { path: '**', redirectTo: '' }
 ];

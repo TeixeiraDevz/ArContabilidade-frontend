@@ -1,12 +1,32 @@
-<div class="login-container">
-  <div class="login-wrapper">
-    <!-- Left side: Login Card -->
-    <div class="login-form-section" [class.animate]="imageLoaded">
-      <div class="login-card">
-        <h2 class="login-title">Welcome</h2>
-        <p class="login-subtitle">Log in to your account to continue</p>
+<div class="cadastro-container">
+  <div class="cadastro-wrapper">
+    <!-- Left side: Office Image -->
+    <div class="cadastro-image-section" [class.animate]="true">
+      <img 
+        src="office - login -image.jpg" 
+        alt="Modern Office" 
+        class="office-image"
+        (load)="onImageLoad()"
+        (error)="onImageError()"
+        *ngIf="!imageError"
+      />
+      <div class="office-placeholder" *ngIf="imageError"></div>
+    </div>
+
+    <!-- Wavy separator (Cobrinha) -->
+    <div class="wavy-separator">
+      <svg viewBox="0 0 120 1000" preserveAspectRatio="none" class="wavy-svg">
+        <path d="M120,0 C95,100 95,200 120,350 C95,500 95,600 120,750 C95,900 95,1000 120,1000 L0,1000 L0,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <!-- Right side: Cadastro Card -->
+    <div class="cadastro-form-section" [class.animate]="imageLoaded">
+      <div class="cadastro-card">
+        <h2 class="cadastro-title">Welcome</h2>
+        <p class="cadastro-subtitle">Create an account to get started</p>
         
-        <form class="login-form" (ngSubmit)="onSubmit()">
+        <form class="cadastro-form" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <div class="input-wrapper">
               <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -39,14 +59,13 @@
                 required
               />
             </div>
-            <a href="#" class="forgot-link">Forgot your password?</a>
           </div>
 
-          <button type="submit" class="login-button">Log In</button>
+          <button type="submit" class="cadastro-button">Create account</button>
         </form>
 
-        <p class="signup-link">
-          Don't have an account? <a routerLink="/cadastro">Sign up!</a>
+        <p class="login-link">
+          Already have an account? <a routerLink="/login">Log in!</a>
         </p>
 
         <div class="social-icons">
@@ -63,26 +82,6 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <!-- Wavy separator (Cobrinha) -->
-    <div class="wavy-separator">
-      <svg viewBox="0 0 120 1000" preserveAspectRatio="none" class="wavy-svg">
-        <path d="M0,0 C25,100 25,200 0,350 C25,500 25,600 0,750 C25,900 25,1000 0,1000 L120,1000 L120,0 Z" fill="#ffffff"/>
-      </svg>
-    </div>
-
-    <!-- Right side: Office Image -->
-    <div class="login-image-section" [class.animate]="true">
-      <img 
-        src="office - login -image.jpg" 
-        alt="Modern Office" 
-        class="office-image"
-        (load)="onImageLoad()"
-        (error)="onImageError()"
-        *ngIf="!imageError"
-      />
-      <div class="office-placeholder" *ngIf="imageError"></div>
     </div>
   </div>
 </div>
