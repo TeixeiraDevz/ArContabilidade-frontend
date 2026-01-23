@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-cadastro',
   standalone: true,
   imports: [RouterLink, FormsModule, CommonModule],
-  templateUrl: './login.html',
+  templateUrl: './cadastro.html',
   styles: [`
     :host {
       display: block;
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
       background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
     }
 
-    .login-container {
+    .cadastro-container {
       min-height: 100vh;
       display: flex;
       align-items: flex-start;
@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
       margin-top: 0;
     }
 
-    .login-wrapper {
+    .cadastro-wrapper {
       display: flex;
       width: 100%;
       max-width: 1200px;
@@ -38,7 +38,7 @@ import { CommonModule } from '@angular/common';
       position: relative;
     }
     
-    .login-wrapper::after {
+    .cadastro-wrapper::after {
       content: '';
       position: absolute;
       top: 0;
@@ -51,22 +51,7 @@ import { CommonModule } from '@angular/common';
       box-shadow: inset 0 0 0 0 transparent;
     }
 
-    .login-form-section {
-      flex: 0 0 50%;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 3rem;
-      padding-top: 4rem;
-      background: #ffffff;
-      position: relative;
-      z-index: 2;
-      overflow-y: auto;
-      min-height: 600px;
-      border-radius: 24px 0 0 24px;
-    }
-
-    .login-image-section {
+    .cadastro-image-section {
       flex: 0 0 50%;
       position: relative;
       overflow: hidden;
@@ -79,7 +64,7 @@ import { CommonModule } from '@angular/common';
       height: 100%;
       min-height: 600px;
       object-fit: cover;
-      object-position: left center;
+      object-position: right center;
       display: block;
     }
 
@@ -91,31 +76,34 @@ import { CommonModule } from '@angular/common';
       background-image: 
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd;stop-opacity:1" /><stop offset="100%" style="stop-color:%23bbdefb;stop-opacity:1" /></linearGradient><linearGradient id="window" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23b3e5fc;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%2390caf9;stop-opacity:0.6" /></linearGradient></defs><rect width="1600" height="1000" fill="url(%23bg)"/><rect x="0" y="700" width="1600" height="300" fill="%23f5f5f5"/><rect x="50" y="200" width="500" height="400" fill="url(%23window)" rx="4"/><rect x="600" y="200" width="500" height="400" fill="url(%23window)" rx="4"/><rect x="1150" y="200" width="400" height="400" fill="url(%23window)" rx="4"/><rect x="80" y="250" width="440" height="320" fill="%23ffffff" opacity="0.3"/><rect x="630" y="250" width="440" height="320" fill="%23ffffff" opacity="0.3"/><rect x="1180" y="250" width="340" height="320" fill="%23ffffff" opacity="0.3"/><rect x="100" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="450" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="800" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="1150" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="120" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="220" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="470" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="570" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="820" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="920" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="1170" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="1270" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><circle cx="160" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="260" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="510" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="610" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="860" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="960" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="1210" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="1310" cy="740" r="12" fill="%23667eea" opacity="0.6"/><rect x="150" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="250" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="350" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="700" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="800" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="900" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="1250" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="1350" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="200" y="450" width="200" height="150" fill="%23e3f2fd" opacity="0.4" rx="6"/><rect x="750" y="450" width="200" height="150" fill="%23e3f2fd" opacity="0.4" rx="6"/><rect x="1300" y="450" width="150" height="150" fill="%23e3f2fd" opacity="0.4" rx="6"/></svg>');
       background-size: cover;
-      background-position: left center;
+      background-position: right center;
     }
 
     .placeholder-content {
       display: none;
     }
 
-    .placeholder-content svg {
-      width: 64px;
-      height: 64px;
-      stroke: #ffffff;
+    .cadastro-form-section {
+      flex: 0 0 50%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 3rem;
+      padding-top: 4rem;
+      background: #ffffff;
+      position: relative;
+      z-index: 2;
+      overflow-y: auto;
+      min-height: 600px;
+      border-radius: 0 24px 24px 0;
     }
 
-    .placeholder-content p {
-      font-size: 1rem;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    .login-card {
+    .cadastro-card {
       width: 100%;
       max-width: 400px;
     }
 
-    .login-title {
+    .cadastro-title {
       font-size: 2.5rem;
       font-weight: 700;
       color: #667eea;
@@ -123,14 +111,14 @@ import { CommonModule } from '@angular/common';
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
-    .login-subtitle {
+    .cadastro-subtitle {
       font-size: 1rem;
       color: #666;
       margin-bottom: 2rem;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
-    .login-form {
+    .cadastro-form {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -173,20 +161,7 @@ import { CommonModule } from '@angular/common';
       background: #ffffff;
     }
 
-    .forgot-link {
-      align-self: flex-end;
-      font-size: 0.875rem;
-      color: #667eea;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .forgot-link:hover {
-      color: #5568d3;
-    }
-
-    .login-button {
+    .cadastro-button {
       width: 100%;
       padding: 0.875rem 1.5rem;
       background: #667eea;
@@ -201,16 +176,16 @@ import { CommonModule } from '@angular/common';
       margin-top: 0.5rem;
     }
 
-    .login-button:hover {
+    .cadastro-button:hover {
       background: #5568d3;
       transform: translateY(-2px);
     }
 
-    .login-button:active {
+    .cadastro-button:active {
       transform: translateY(0);
     }
 
-    .signup-link {
+    .login-link {
       margin-top: 1.5rem;
       text-align: center;
       font-size: 0.9rem;
@@ -218,14 +193,14 @@ import { CommonModule } from '@angular/common';
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
-    .signup-link a {
+    .login-link a {
       color: #667eea;
       text-decoration: underline;
       font-weight: 600;
       transition: color 0.2s;
     }
 
-    .signup-link a:hover {
+    .login-link a:hover {
       color: #5568d3;
     }
 
@@ -262,37 +237,41 @@ import { CommonModule } from '@angular/common';
     }
 
     @media (max-width: 991px) {
-      .login-wrapper {
+      .cadastro-wrapper {
         flex-direction: column;
         min-height: auto;
       }
 
-      .login-form-section {
+      .cadastro-image-section {
+        flex: 1;
+      }
+
+      .cadastro-form-section {
         flex: 1;
         padding: 2rem 1.5rem;
       }
 
-      .login-image-section {
+      .cadastro-image-section {
         display: none;
       }
     }
 
     @media (max-width: 576px) {
-      .login-container {
+      .cadastro-container {
         padding: 1rem;
       }
 
-      .login-form-section {
+      .cadastro-form-section {
         padding: 1.5rem 1rem;
       }
 
-      .login-title {
+      .cadastro-title {
         font-size: 2rem;
       }
     }
   `]
 })
-export class Login implements OnInit {
+export class Cadastro implements OnInit {
   email = '';
   password = '';
   showPassword = false;
@@ -302,7 +281,7 @@ export class Login implements OnInit {
   ngOnInit() {
     // Se a imagem já estiver carregada, ativar animação imediatamente
     const img = new Image();
-    img.src = '/officer-login.png';
+    img.src = '/officer-logincadastro.png';
     if (img.complete) {
       this.imageLoaded = true;
     } else {
@@ -331,7 +310,12 @@ export class Login implements OnInit {
   }
 
   onSubmit(): void {
-    // TODO: Implementar lógica de login
-    console.log('Login submitted', { email: this.email, password: this.password });
+    // TODO: Implementar lógica de cadastro
+    console.log('Cadastro submitted', { email: this.email, password: this.password });
+  }
+
+  loginWithGoogle(): void {
+    // TODO: Implementar login com Google
+    console.log('Login with Google');
   }
 }

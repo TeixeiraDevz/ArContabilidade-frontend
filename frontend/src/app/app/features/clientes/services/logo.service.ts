@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,49 @@ export class LogoService {
   private readonly clearbitApi = 'https://logo.clearbit.com';
   private readonly faviconApi = 'https://www.google.com/s2/favicons?domain=';
   private readonly brasilApi = 'https://brasilapi.com.br/api/cnpj/v1';
+  
+  // Mapeamento de logos conhecidos por CNPJ
+  private readonly logosConhecidos: Map<string, string> = new Map([
+    // AR Contabilidade
+    ['09410506000143', 'https://logo.clearbit.com/arcontabilidade.com.br'],
+    
+    // Impacto Infovias (dois CNPJs)
+    ['37606962000107', 'https://logo.clearbit.com/impactoinfovias.com.br'],
+    ['42635090000137', 'https://logo.clearbit.com/impactoinfovias.com.br'],
+    
+    // Construtora Savassi
+    ['03952190000135', 'https://logo.clearbit.com/construtorasavassi.com.br'],
+    
+    // Cohen Comunicação
+    ['43286487000123', 'https://logo.clearbit.com/cohencomunicacao.com.br'],
+    
+    // Arteprintbox
+    ['03516849000100', 'https://logo.clearbit.com/arteprintbox.com.br'],
+    
+    // Paperbox
+    ['17230003000114', 'https://logo.clearbit.com/paperbox.com.br'],
+    
+    // Trans Pantanal
+    ['64126758000404', 'https://logo.clearbit.com/transpantanal.com.br'],
+    
+    // Transbrito
+    ['13053658000103', 'https://logo.clearbit.com/transbrito.com.br'],
+    
+    // ILS Logistics
+    ['04866319000155', 'https://logo.clearbit.com/ilslogistics.com.br'],
+    
+    // IEX Comissaria
+    ['09639773000197', 'https://logo.clearbit.com/iexcomissaria.com.br'],
+    
+    // Belíssimas Lentes
+    ['36110703000110', 'https://logo.clearbit.com/belissimaslentes.com.br'],
+    
+    // Ambient Clear
+    ['37465173000195', 'https://logo.clearbit.com/ambientclear.com.br'],
+    
+    // Ambient Office
+    ['35637190000137', 'https://logo.clearbit.com/ambientoffice.com.br'],
+  ]);
 
   constructor(private http: HttpClient) {}
 
@@ -18,36 +61,9 @@ export class LogoService {
    * Tenta múltiplas fontes em ordem de prioridade
    */
   buscarLogo(nomeEmpresa: string, cnpj?: string): Observable<string | null> {
-    // 1. Tentar buscar por domínio extraído do nome usando Clearbit
-    const dominio = this.extrairDominio(nomeEmpresa);
-    if (dominio) {
-      const clearbitUrl = `${this.clearbitApi}/${dominio}`;
-      // Verificar se a imagem existe
-      return this.http.head(clearbitUrl, { observe: 'response' }).pipe(
-        map(() => clearbitUrl),
-        catchError(() => {
-          // Se Clearbit falhar, tentar favicon como fallback
-          return of(`${this.faviconApi}${dominio}&sz=128`);
-        })
-      );
-    }
-
-    // 2. Tentar buscar por CNPJ usando BrasilAPI para obter mais informações
-    if (cnpj) {
-      return this.buscarPorCNPJ(cnpj).pipe(
-        catchError(() => {
-          // Se falhar, tentar construir domínio do nome
-          const dominioCNPJ = this.construirDominioPorCNPJ(nomeEmpresa);
-          if (dominioCNPJ) {
-            return of(`${this.faviconApi}${dominioCNPJ}&sz=128`);
-          }
-          return of(null);
-        })
-      );
-    }
-
-    return of(null);
+    return this.buscarLogoMultiplo(nomeEmpresa, cnpj);
   }
+
 
   /**
    * Tenta construir domínio baseado no nome da empresa
@@ -145,6 +161,68 @@ export class LogoService {
       map(response => response.status === 200),
       catchError(() => of(false))
     );
+  }
+
+  /**
+   * Busca logo usando múltiplas estratégias sequencialmente e retorna a primeira válida
+   */
+  buscarLogoMultiplo(nomeEmpresa: string, cnpj?: string): Observable<string | null> {
+    // Estratégia 1: Logo conhecido no mapeamento
+    if (cnpj) {
+      const cnpjLimpo = cnpj.replace(/\D/g, '');
+      const logoConhecido = this.logosConhecidos.get(cnpjLimpo);
+      if (logoConhecido) {
+        return this.verificarImagemValida(logoConhecido).pipe(
+          switchMap(valida => valida ? of(logoConhecido) : this.tentarProximasEstrategias(nomeEmpresa, cnpj))
+        );
+      }
+    }
+
+    return this.tentarProximasEstrategias(nomeEmpresa, cnpj);
+  }
+
+  /**
+   * Tenta as próximas estratégias de busca de logo
+   */
+  private tentarProximasEstrategias(nomeEmpresa: string, cnpj?: string): Observable<string | null> {
+    const dominio = this.extrairDominio(nomeEmpresa);
+    
+    // Estratégia 2: Clearbit com domínio extraído
+    if (dominio) {
+      const clearbitUrl = `${this.clearbitApi}/${dominio}`;
+      return this.http.head(clearbitUrl, { observe: 'response' }).pipe(
+        map(() => clearbitUrl),
+        catchError(() => {
+          // Se Clearbit falhar, tentar BrasilAPI
+          if (cnpj) {
+            return this.buscarPorCNPJ(cnpj).pipe(
+              catchError(() => {
+                // Último recurso: favicon
+                return of(`${this.faviconApi}${dominio}&sz=256`);
+              })
+            );
+          }
+          // Último recurso: favicon
+          return of(`${this.faviconApi}${dominio}&sz=256`);
+        })
+      );
+    }
+
+    // Estratégia 3: BrasilAPI + Clearbit (se não tiver domínio extraído)
+    if (cnpj) {
+      return this.buscarPorCNPJ(cnpj).pipe(
+        catchError(() => {
+          // Tentar construir domínio do nome como último recurso
+          const dominioCNPJ = this.construirDominioPorCNPJ(nomeEmpresa);
+          if (dominioCNPJ) {
+            return of(`${this.faviconApi}${dominioCNPJ}&sz=256`);
+          }
+          return of(null);
+        })
+      );
+    }
+
+    return of(null);
   }
 }
 

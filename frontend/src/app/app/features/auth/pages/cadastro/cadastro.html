@@ -1,12 +1,25 @@
-<div class="login-container">
-  <div class="login-wrapper">
-    <!-- Left side: Login Card -->
-    <div class="login-form-section">
-      <div class="login-card">
-        <h2 class="login-title">Login</h2>
-        <p class="login-subtitle">Entre na sua conta para continuar</p>
+<div class="cadastro-container">
+  <div class="cadastro-wrapper">
+    <!-- Left side: Office Image -->
+    <div class="cadastro-image-section">
+      <img 
+        src="/officer-logincadastro.png" 
+        alt="Modern Office" 
+        class="office-image"
+        (load)="onImageLoad()"
+        (error)="onImageError()"
+        *ngIf="!imageError"
+      />
+      <div class="office-placeholder" *ngIf="imageError"></div>
+    </div>
+
+    <!-- Right side: Cadastro Card -->
+    <div class="cadastro-form-section">
+      <div class="cadastro-card">
+        <h2 class="cadastro-title">Cadastro</h2>
+        <p class="cadastro-subtitle">Crie sua conta para começar</p>
         
-        <form class="login-form" (ngSubmit)="onSubmit()">
+        <form class="cadastro-form" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <div class="input-wrapper">
               <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -39,14 +52,13 @@
                 required
               />
             </div>
-            <a href="#" class="forgot-link">Esqueceu sua senha?</a>
           </div>
 
-          <button type="submit" class="login-button">Entrar</button>
+          <button type="submit" class="cadastro-button">Criar conta</button>
         </form>
 
-        <p class="signup-link">
-          Não tem uma conta? <a routerLink="/cadastro">Cadastre-se!</a>
+        <p class="login-link">
+          Já tem uma conta? <a routerLink="/login">Entrar</a>
         </p>
 
         <div class="social-icons">
@@ -67,19 +79,6 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <!-- Right side: Office Image -->
-    <div class="login-image-section">
-      <img 
-        src="/officer-login.png" 
-        alt="Modern Office" 
-        class="office-image"
-        (load)="onImageLoad()"
-        (error)="onImageError()"
-        *ngIf="!imageError"
-      />
-      <div class="office-placeholder" *ngIf="imageError"></div>
     </div>
   </div>
 </div>

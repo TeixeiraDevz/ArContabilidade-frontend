@@ -7,11 +7,7 @@ import { filter } from 'rxjs/operators';
   imports: [RouterLink],
   templateUrl: './header.html',
   styles: [`
-    .navbar {
-      background: transparent !important;
-      box-shadow: none;
-      padding: 1rem 0;
-      transition: all var(--transition-normal);
+    .navbar-wrapper {
       position: fixed;
       top: 0;
       left: 0;
@@ -19,11 +15,46 @@ import { filter } from 'rxjs/operators';
       z-index: 1000;
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      pointer-events: none;
+    }
+    
+    .navbar {
+      background: transparent !important;
+      box-shadow: none;
+      padding: 0;
+      transition: all var(--transition-normal);
+      position: relative;
+      z-index: 1000;
+      width: auto;
+      display: flex;
+      pointer-events: auto;
+    }
+    
+    .navbar-left {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .navbar-left.hidden {
+      transform: translateX(-50%) translateY(-100%);
+    }
+    
+    .navbar-right {
+      justify-content: flex-end;
+      margin-left: auto;
     }
     
     .navbar.hidden {
       pointer-events: none;
+      opacity: 0;
+    }
+    
+    .navbar-right.hidden {
+      transform: translateY(-100%);
     }
     
     .navbar.hidden .container {
@@ -31,7 +62,7 @@ import { filter } from 'rxjs/operators';
     }
     
     .navbar .container {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
@@ -40,7 +71,6 @@ import { filter } from 'rxjs/operators';
       padding: 0.4rem 1.25rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
       width: auto;
-      margin: 0 auto;
       gap: 0.5rem;
       transition: all var(--transition-normal);
     }
@@ -57,31 +87,44 @@ import { filter } from 'rxjs/operators';
       border: 1px solid rgba(102, 126, 234, 0.1);
     }
     
-    .navbar:not(.scrolling) .nav-link {
+    .navbar.over-hero .container {
+      background: rgba(255, 255, 255, 0.1) !important;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .navbar.over-hero .navbar-brand {
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    
+    .navbar:not(.scrolling):not(.over-hero) .nav-link {
       color: var(--color-black) !important;
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
     }
     
-    .navbar:not(.scrolling) .navbar-brand {
+    .navbar:not(.scrolling):not(.over-hero) .navbar-brand {
       filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
     }
     
-    .navbar.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .navbar.hidden {
-      opacity: 0;
-      transform: translateY(-100%);
-      pointer-events: none;
-    }
-    
     .navbar-brand {
+      flex-shrink: 0;
       padding: 0;
       margin: 0;
       margin-right: 0.5rem;
       transition: transform var(--transition-normal);
+    }
+    
+    .navbar.visible {
+      opacity: 1;
+    }
+    
+    .navbar-left.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .navbar-right.visible {
+      transform: translateY(0);
     }
     
     .navbar-brand:hover {
@@ -94,12 +137,25 @@ import { filter } from 'rxjs/operators';
       justify-content: center;
     }
     
+    .logo-container {
+      background: transparent;
+      padding: 0;
+    }
+    
     .logo-container .brand-logo {
-      width: 40px;
+      width: auto;
       height: 40px;
+      max-width: 140px;
       object-fit: contain;
       display: block;
       transition: transform var(--transition-normal);
+      background: transparent;
+      mix-blend-mode: normal;
+    }
+    
+    .navbar.over-hero .logo-container .brand-logo {
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
     }
     
     .navbar-brand:hover .logo-container .brand-logo {
@@ -123,6 +179,16 @@ import { filter } from 'rxjs/operators';
     .nav-link:hover {
       color: var(--color-purple) !important;
       transform: translateY(-1px);
+    }
+    
+    .navbar.over-hero .nav-link,
+    .navbar.over-hero .nav-link:hover {
+      color: #ffffff !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .navbar.over-hero .nav-link:hover {
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
     
     .dropdown {
@@ -298,13 +364,33 @@ import { filter } from 'rxjs/operators';
     /* Floating toggler controlado via showFloatingToggler no componente */
     
     @media (max-width: 991px) {
+      .navbar-wrapper {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+      }
+      
       .navbar {
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        right: 0;
+        position: relative !important;
         width: 100%;
-        z-index: 1030;
+      }
+      
+      .navbar-left {
+        position: relative;
+        left: auto;
+        transform: none;
+      }
+      
+      .navbar-left.hidden {
+        transform: translateY(-100%);
+      }
+      
+      .navbar-left.visible {
+        transform: translateY(0);
+      }
+      
+      .navbar-right {
+        margin-left: 0;
       }
       
       .navbar .container {
@@ -312,8 +398,8 @@ import { filter } from 'rxjs/operators';
         padding: 0.75rem 1.5rem;
         width: 100%;
         max-width: 100%;
-        margin: 0.5rem;
-        width: calc(100% - 1rem);
+        margin: 0;
+        min-width: auto;
       }
       
       /* Esconder o hambúrguer normal quando a navbar está escondida */
@@ -324,8 +410,6 @@ import { filter } from 'rxjs/operators';
       .navbar.hidden .navbar-toggler {
         display: none !important;
       }
-      
-      /* Floating toggler controlado via [class.d-none] no template baseado em showFloatingToggler */
       
       .navbar-collapse {
         margin-top: 1rem;
@@ -387,15 +471,24 @@ import { filter } from 'rxjs/operators';
     }
     
     @media (max-width: 576px) {
+      .navbar-wrapper {
+        padding: 0.5rem;
+      }
+      
       .navbar .container {
         border-radius: 16px;
         padding: 0.625rem 1rem;
-        margin: 0.5rem;
-        width: calc(100% - 1rem);
+        margin: 0;
+        width: 100%;
       }
       
       .navbar-collapse {
         padding: 0.75rem;
+      }
+
+      .logo-container .brand-logo {
+        height: 34px;
+        max-width: 120px;
       }
     }
   `]
@@ -403,17 +496,21 @@ import { filter } from 'rxjs/operators';
 export class Header implements OnInit, OnDestroy {
   @ViewChild('navbarCollapse') navbarCollapse?: ElementRef<HTMLElement>;
   @ViewChild('navbarRoot') navbarRoot?: ElementRef<HTMLElement>;
+  @ViewChild('navbarRight') navbarRight?: ElementRef<HTMLElement>;
   private lastScrollY = 0;
   navbarClass = 'navbar visible';
 
   isNavOpen = false;
-  isLoginDropdownOpen = false;
   showFloatingToggler = false;
   
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
   
   ngOnInit() {
     this.lastScrollY = window.scrollY;
+    
+    // Verificar se está sobre a hero section com imagem de fundo
+    const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
+    const isOverHero = heroSection && window.scrollY < (heroSection as HTMLElement).offsetHeight;
     
     // No mobile, sempre iniciar com navbar escondida
     if (this.isMobileOrTablet()) {
@@ -423,7 +520,7 @@ export class Header implements OnInit, OnDestroy {
         this.navbarClass = 'navbar scrolling hidden';
       }
     } else {
-      this.navbarClass = 'navbar visible';
+      this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
     }
     
     // Atualizar floating toggler após definir o estado inicial da navbar
@@ -434,6 +531,14 @@ export class Header implements OnInit, OnDestroy {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         this.closeNavbar();
+        // Verificar novamente após navegação
+        setTimeout(() => {
+          const heroSectionAfterNav = document.querySelector('.hero-section[data-has-background-image="true"]');
+          const isOverHeroAfterNav = heroSectionAfterNav && window.scrollY < (heroSectionAfterNav as HTMLElement).offsetHeight;
+          if (isOverHeroAfterNav && !this.isMobileOrTablet()) {
+            this.navbarClass = 'navbar visible over-hero';
+          }
+        }, 100);
       });
   }
   
@@ -442,9 +547,11 @@ export class Header implements OnInit, OnDestroy {
   
   closeNavbar(): void {
     this.isNavOpen = false;
-    this.isLoginDropdownOpen = false;
 
     const scrollY = window.scrollY;
+    const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
+    const isOverHero = heroSection && scrollY < (heroSection as HTMLElement).offsetHeight;
+    
     if (this.isMobileOrTablet()) {
       // No mobile, sempre esconder quando fecha
       if (scrollY >= 50) {
@@ -455,9 +562,9 @@ export class Header implements OnInit, OnDestroy {
     } else {
       // Desktop: manter estado baseado no scroll
       if (scrollY >= 50) {
-        this.navbarClass = 'navbar scrolling visible';
+        this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
       } else {
-        this.navbarClass = 'navbar visible';
+        this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
       }
     }
 
@@ -483,7 +590,6 @@ export class Header implements OnInit, OnDestroy {
       }
     } else {
       // Ao fechar, sempre esconder no mobile/tablet
-      this.isLoginDropdownOpen = false;
       if (this.isMobileOrTablet()) {
         // No mobile, sempre esconder quando fecha
         if (scrollY >= 50 || isNearFooter) {
@@ -494,10 +600,12 @@ export class Header implements OnInit, OnDestroy {
         }
       } else {
         // Desktop: manter estado baseado no scroll
+        const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
+        const isOverHero = heroSection && scrollY < (heroSection as HTMLElement).offsetHeight;
         if (scrollY >= 50) {
-          this.navbarClass = 'navbar scrolling visible';
+          this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
         } else {
-          this.navbarClass = 'navbar visible';
+          this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
         }
       }
     }
@@ -505,10 +613,6 @@ export class Header implements OnInit, OnDestroy {
     this.updateFloatingToggler(scrollY);
   }
 
-  toggleLoginDropdown(event: MouseEvent): void {
-    event.preventDefault();
-    this.isLoginDropdownOpen = !this.isLoginDropdownOpen;
-  }
 
   private isMobileOrTablet(): boolean {
     return window.matchMedia('(max-width: 991px)').matches;
@@ -536,10 +640,11 @@ export class Header implements OnInit, OnDestroy {
   onDocumentClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
     const clickedInsideNavbar = this.navbarRoot?.nativeElement.contains(target) ?? false;
+    const clickedInsideNavbarRight = this.navbarRight?.nativeElement.contains(target) ?? false;
     const clickedFloatingToggler = !!target.closest('.floating-navbar-toggler');
 
-    // Se clicou fora do header, fechar menu + dropdown (mobile/tablet)
-    if ((this.isNavOpen || this.isLoginDropdownOpen) && !clickedInsideNavbar && !clickedFloatingToggler) {
+    // Se clicou fora do header, fechar menu (mobile/tablet)
+    if (this.isNavOpen && !clickedInsideNavbar && !clickedInsideNavbarRight && !clickedFloatingToggler) {
       this.closeNavbar();
     }
   }
@@ -557,6 +662,10 @@ export class Header implements OnInit, OnDestroy {
     const windowHeight = window.innerHeight;
     const scrollPercentage = (documentHeight - windowHeight > 0) ? (currentScrollY / (documentHeight - windowHeight)) * 100 : 0;
     const isNearFooter = scrollPercentage > 80; // Se está nos últimos 20% da página (próximo do footer)
+    
+    // Verificar se está sobre a hero section com imagem de fundo
+    const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
+    const isOverHero = heroSection && currentScrollY < (heroSection as HTMLElement).offsetHeight;
 
     // Mobile/tablet: comportamento especial
     if (this.isMobileOrTablet()) {
@@ -564,9 +673,9 @@ export class Header implements OnInit, OnDestroy {
       if (this.isNavOpen) {
         // Menu aberto: mostrar
         if (currentScrollY >= 50 || isNearFooter) {
-          this.navbarClass = 'navbar scrolling visible';
+          this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
         } else {
-          this.navbarClass = 'navbar visible';
+          this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
         }
       } else {
         // Menu fechado: sempre esconder
@@ -579,12 +688,12 @@ export class Header implements OnInit, OnDestroy {
     } else {
       // Desktop: comportamento padrão
       if (currentScrollY < 50) {
-        this.navbarClass = 'navbar visible';
+        this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
       } else {
         if (scrollingDown) {
           this.navbarClass = 'navbar scrolling hidden';
         } else {
-          this.navbarClass = 'navbar scrolling visible';
+          this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
         }
       }
     }

@@ -1,0 +1,34 @@
+<div class="staircase-container">
+  @for (plano of planos; track plano.id; let i = $index) {
+    <div class="plano-card" 
+         [class.align-left]="getAlinhamento(i) === 'left'" 
+         [class.align-right]="getAlinhamento(i) === 'right'">
+      <div class="plano-image">
+        @if (plano.imagemUrl) {
+          <img [src]="plano.imagemUrl" [alt]="plano.nome">
+        } @else {
+          <span>Foto</span>
+        }
+      </div>
+      <div class="plano-content">
+        <div class="plano-header">
+          @if (plano.nome === 'Básico') {
+            <span class="plano-subtitle">Crescimento</span>
+          }
+          <h3 class="plano-nome">{{ plano.nome }}</h3>
+        </div>
+        <div class="plano-recursos">
+          @for (recurso of getRecursosPrincipais(plano); track recurso) {
+            <div class="plano-recursos-item">
+              <span class="check-icon">✓</span>
+              <span>{{ recurso }}</span>
+            </div>
+          }
+        </div>
+        <button class="btn-saiba-mais" (click)="selecionarPlano(plano)">
+          SAIBA MAIS
+        </button>
+      </div>
+    </div>
+  }
+</div>

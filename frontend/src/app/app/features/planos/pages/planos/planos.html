@@ -1,28 +1,16 @@
 <section class="planos-hero">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-10">
-        <div class="hero-content text-center">
-          <h1 class="hero-title">Planos contábeis pensados para cada fase da sua empresa</h1>
-          <p class="hero-subtitle">
-            Do primeiro CNPJ às operações consolidadas, oferecemos serviços completos, tecnologia integrada e uma equipe
-            que acompanha o crescimento do seu negócio.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" routerLink="/clientes">Quero ser cliente</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="hero-content">
+    <h2 class="hero-badge">Planos</h2>
+    <h1 class="hero-main-text">
+      <span class="text-blue">Descomplique a contabilidade da sua empresa</span>
+      <span class="text-white"> e impulsione seu negócio com segurança e tecnologia.</span>
+    </h1>
   </div>
 </section>
 
 <section class="comparison-section">
   <div class="container">
     <h2 class="section-title">Compare nossos planos</h2>
-    <p class="section-subtitle">
-      Escolha o plano ideal para o tamanho e necessidade da sua empresa. Todos os planos incluem suporte especializado e tecnologia de ponta.
-    </p>
 
     <app-loading *ngIf="loading" message="Carregando planos..."></app-loading>
 
@@ -30,10 +18,169 @@
       {{ error }}
     </div>
 
-    <app-plano-table *ngIf="!loading && !error && planos.length > 0" [planos]="planos"></app-plano-table>
+    <app-plano-staircase 
+      *ngIf="!loading && !error && planos.length > 0" 
+      [planos]="planos"
+      (planoSelecionado)="selecionarPlano($event)">
+    </app-plano-staircase>
 
     <div *ngIf="!loading && !error && planos.length === 0" class="text-center text-muted py-5">
       <p>Nenhum plano encontrado.</p>
     </div>
   </div>
 </section>
+
+<!-- Seções Detalhadas dos Planos -->
+@if (planoSelecionado) {
+  @for (plano of planos; track plano.id) {
+    @if (plano.id === planoSelecionado) {
+      <section [id]="'plano-' + plano.id" class="plano-detalhes-section">
+        <div class="container">
+          <h2 class="plano-detalhes-title">{{ plano.nome }}</h2>
+          
+          <!-- Tabela de Recursos -->
+          <div class="plano-tabela-wrapper">
+            <table class="plano-detalhes-table">
+              <thead>
+                <tr>
+                  <th>Recursos</th>
+                  <th>{{ plano.nome }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Público ideal</strong></td>
+                  <td>{{ plano.publicoIdeal }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Regimes atendidos</strong></td>
+                  <td>{{ plano.regimesAtendidos.join(', ') }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Faturamento médio mensal</strong></td>
+                  <td>{{ plano.faturamentoMedioMensal }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Atividade da empresa</strong></td>
+                  <td>{{ plano.atividadeEmpresa.join(', ') }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Canais de atendimento</strong></td>
+                  <td>{{ plano.canaisAtendimento.join(', ') }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Relatórios gerenciais</strong></td>
+                  <td>{{ plano.relatoriosGerenciais }}</td>
+                </tr>
+                @for (recurso of plano.recursos; track recurso.nome) {
+                  <tr>
+                    <td>{{ recurso.nome }}</td>
+                    <td class="text-center">
+                      @if (recurso.incluido) {
+                        <span class="check-icon">✓</span>
+                      } @else {
+                        <span class="cross-icon">✗</span>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diferenciais -->
+      @if (plano.diferenciais && plano.diferenciais.length > 0) {
+        <section class="diferenciais-section">
+          <div class="diferenciais-container">
+            <div class="diferenciais-header">
+              <div class="diferenciais-header-content">
+                <h3 class="diferenciais-title">Diferenciais</h3>
+                <p class="diferenciais-description">
+                  Uma nova maneira de entregar soluções contábeis pensada para atender as necessidades dos empresários com conforto e segurança
+                </p>
+              </div>
+              <div class="diferenciais-header-buttons">
+                @if (plano.nome === 'Básico') {
+                  <button class="btn-plano-nav-header" (click)="navegarParaPlano('Intermediário')">
+                    Ver plano Intermediário
+                  </button>
+                  <button class="btn-plano-nav-header-secondary" (click)="navegarParaPlano('Enterprise')">
+                    Ver plano Enterprise
+                  </button>
+                }
+                @if (plano.nome === 'Intermediário') {
+                  <button class="btn-plano-nav-header" (click)="navegarParaPlano('Básico')">
+                    Ver plano Básico
+                  </button>
+                  <button class="btn-plano-nav-header-secondary" (click)="navegarParaPlano('Enterprise')">
+                    Ver plano Enterprise
+                  </button>
+                }
+                @if (plano.nome === 'Enterprise') {
+                  <button class="btn-plano-nav-header" (click)="navegarParaPlano('Básico')">
+                    Ver plano Básico
+                  </button>
+                  <button class="btn-plano-nav-header-secondary" (click)="navegarParaPlano('Intermediário')">
+                    Ver plano Intermediário
+                  </button>
+                }
+              </div>
+            </div>
+            <div class="diferenciais-divider"></div>
+            <div class="diferenciais-grid">
+              @for (diferencial of plano.diferenciais; track $index) {
+                <div class="diferencial-card">
+                  <div class="diferencial-icon-wrapper">
+                    <div class="diferencial-icon">
+                      @if ($index === 0) {
+                        <!-- Ícone de comunicação rápida -->
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 1H4C2.9 1 2 1.9 2 3V21C2 22.1 2.9 23 4 23H20C21.1 23 22 22.1 22 21V3C22 1.9 21.1 1 20 1ZM20 19H4V5H20V19Z" fill="currentColor"/>
+                          <path d="M12 7V9H16V7H12ZM12 11V13H16V11H12ZM12 15V17H14V15H12Z" fill="currentColor"/>
+                          <circle cx="18" cy="4" r="2" fill="currentColor"/>
+                        </svg>
+                      } @else if ($index === 1) {
+                        <!-- Ícone de simplicidade e autonomia -->
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2L2 7L12 12L22 7L12 2ZM2 17L12 22L22 17V12L12 17L2 12V17Z" fill="currentColor"/>
+                          <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                        </svg>
+                      } @else {
+                        <!-- Ícone de empresas em crescimento -->
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 7V3H2V21H22V7H12ZM6 19H4V17H6V19ZM6 15H4V13H6V15ZM6 11H4V9H6V11ZM6 7H4V5H6V7ZM10 19H8V17H10V19ZM10 15H8V13H10V15ZM10 11H8V9H10V11ZM10 7H8V5H10V7ZM20 19H12V17H14V15H12V13H14V11H12V9H14V7H20V19ZM18 11H16V13H18V11ZM18 15H16V17H18V15Z" fill="currentColor"/>
+                        </svg>
+                      }
+                    </div>
+                  </div>
+                  <div class="diferencial-content">
+                    <h4 class="diferencial-title">{{ diferencial }}</h4>
+                    <p class="diferencial-text">
+                      @if ($index === 0) {
+                        Atendimento por WhatsApp, telefone e e-mail, com foco na agilidade e clareza na troca de informações.
+                      } @else if ($index === 1) {
+                        Guias, relatórios e obrigações acessórias enviadas por canais digitais.
+                      } @else {
+                        Processos pensados para a realidade de micro e pequenas empresas, com linguagem simples, preços acessíveis e suporte humanizado.
+                      }
+                    </p>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="diferenciais-cta">
+              <button class="btn-plano-cta">
+                Quero plano {{ plano.nome }}
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 0.5rem;">
+                  <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      }
+    }
+  }
+}

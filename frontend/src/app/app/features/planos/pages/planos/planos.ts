@@ -3,13 +3,13 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlanosService } from '../../services/planos.service';
 import { Plano } from '../../../../../core/models/plano.model';
-import { PlanoTableComponent } from '../../components/plano-table/plano-table';
+import { PlanoStaircaseComponent } from '../../components/plano-staircase/plano-staircase';
 import { LoadingComponent } from '../../../../../shared/components/loading/loading';
 
 @Component({
   selector: 'app-planos',
   standalone: true,
-  imports: [RouterLink, CommonModule, PlanoTableComponent, LoadingComponent],
+  imports: [RouterLink, CommonModule, PlanoStaircaseComponent, LoadingComponent],
   templateUrl: './planos.html',
   styles: [`
     :host {
@@ -19,17 +19,28 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
 
     .planos-hero {
       padding: 7rem 0 5rem;
-      background: linear-gradient(140deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.18) 100%);
+      background: #ffffff;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
+      justify-content: center;
       min-height: 60vh;
+      width: 100%;
     }
     
     .hero-content {
       position: relative;
       z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .planos-hero::before,
@@ -58,83 +69,43 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
       right: -120px;
     }
 
-    .badge-soft {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1.1rem;
-      border-radius: 999px;
-      background: rgba(102, 126, 234, 0.15);
-      color: var(--color-purple);
+    .hero-badge {
+      font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      color: #6c757d;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin-bottom: 1.5rem;
-    }
-
-    .hero-title {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--color-black);
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.025em;
-      line-height: 1.3;
-      max-width: 900px;
+      text-align: center;
+      width: 100%;
+      display: block;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--color-gray);
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      font-weight: 400;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
+    .hero-main-text {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      max-width: 900px;
+      margin: 0 auto;
+      letter-spacing: -0.02em;
+      text-align: center;
+      display: block;
       width: 100%;
     }
 
-    .hero-actions .btn {
-      min-width: 220px;
-      padding: 1rem 2.75rem;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 1.05rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
+    .hero-main-text span {
+      display: inline;
+      text-align: center;
     }
 
-    .hero-actions .btn-primary {
-      background: var(--gradient-primary);
-      color: white;
-      border: none;
-      box-shadow: 0 22px 40px rgba(102, 126, 234, 0.28);
+    .hero-main-text .text-blue {
+      color: #333366;
     }
 
-    .hero-actions .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 26px 48px rgba(118, 75, 162, 0.35);
-    }
-
-    .hero-actions .btn-outline {
-      background: rgba(255, 255, 255, 0.85);
-      color: var(--color-purple);
-      border: 1.5px solid rgba(102, 126, 234, 0.3);
-    }
-
-    .hero-actions .btn-outline:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 40px rgba(102, 126, 234, 0.18);
+    .hero-main-text .text-white {
+      color:rgb(95, 151, 235);
     }
 
     .comparison-section {
@@ -147,21 +118,292 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
       font-weight: 700;
       color: var(--color-black);
       text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .plano-detalhes-section {
+      padding: 5rem 0;
+      background: linear-gradient(180deg, #ffffff 0%, rgba(102, 126, 234, 0.05) 100%);
+    }
+
+    .plano-detalhes-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-black);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .plano-tabela-wrapper {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .plano-detalhes-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .plano-detalhes-table thead {
+      background: linear-gradient(140deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    }
+
+    .plano-detalhes-table th {
+      padding: 1.5rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--color-black);
+      font-size: 1.1rem;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .plano-detalhes-table th:first-child {
+      width: 40%;
+      padding-left: 2rem;
+    }
+
+    .plano-detalhes-table th:last-child {
+      text-align: center;
+      padding-right: 2rem;
+    }
+
+    .plano-detalhes-table td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--color-gray-dark, #495057);
+    }
+
+    .plano-detalhes-table td:first-child {
+      padding-left: 2rem;
+      font-weight: 500;
+      color: var(--color-black, #212529);
+    }
+
+    .plano-detalhes-table td:last-child {
+      text-align: center;
+      padding-right: 2rem;
+    }
+
+    .plano-detalhes-table tbody tr:hover {
+      background: rgba(102, 126, 234, 0.03);
+    }
+
+    .plano-detalhes-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .check-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(40, 167, 69, 0.15);
+      color: #28a745;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .cross-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(220, 53, 69, 0.15);
+      color: #dc3545;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .diferenciais-section {
+      width: 100%;
+      background: var(--color-white);
+      padding: 4rem 0;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .diferenciais-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .diferenciais-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .diferenciais-header-content {
+      flex: 1;
+    }
+
+    .diferenciais-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-black);
+      text-align: left;
       margin-bottom: 1rem;
     }
 
-    .section-subtitle {
+    .diferenciais-description {
       font-size: 1.1rem;
-      color: var(--color-gray);
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      line-height: 1.7;
+      color: var(--color-gray-dark);
+      line-height: 1.6;
+      margin: 0;
     }
 
+    .diferenciais-header-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .btn-plano-nav-header {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(140deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-plano-nav-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-plano-nav-header-secondary {
+      padding: 0.75rem 1.5rem;
+      background: var(--color-black);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-plano-nav-header-secondary:hover {
+      background: #000000;
+      transform: translateY(-2px);
+    }
+
+    .diferenciais-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+    }
+
+    .diferenciais-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .diferencial-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .diferencial-icon-wrapper {
+      margin-bottom: 0.5rem;
+    }
+
+    .diferencial-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: rgba(102, 126, 234, 0.1);
+      color: var(--color-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      flex-shrink: 0;
+    }
+
+    .diferencial-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .diferencial-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .diferencial-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-black);
+      margin: 0;
+    }
+
+    .diferencial-text {
+      margin: 0;
+      color: var(--color-gray-dark);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .diferenciais-cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .btn-plano-cta {
+      padding: 1rem 2.5rem;
+      background: linear-gradient(140deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-plano-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+
     @media (max-width: 991px) {
-      .hero-title {
-        font-size: 2.4rem;
+      .hero-main-text {
+        font-size: 1.75rem;
       }
     }
 
@@ -170,22 +412,66 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
         padding: 5.5rem 0 3.5rem;
       }
 
-      .hero-title {
-        font-size: 2rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.05rem;
+      .hero-main-text {
+        font-size: 1.5rem;
       }
 
       .section-title {
         font-size: 2rem;
       }
-    }
 
-    @media (max-width: 576px) {
-      .hero-actions .btn {
+      .plano-detalhes-title {
+        font-size: 2rem;
+      }
+
+      .diferenciais-section {
+        padding: 3rem 0;
+      }
+
+      .diferenciais-container {
+        padding: 0 1.5rem;
+      }
+
+      .diferenciais-header {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .diferenciais-title {
+        font-size: 2rem;
+      }
+
+      .diferenciais-description {
+        font-size: 1rem;
+      }
+
+      .diferenciais-header-buttons {
+        flex-direction: column;
         width: 100%;
+      }
+
+      .btn-plano-nav-header,
+      .btn-plano-nav-header-secondary {
+        width: 100%;
+      }
+
+      .diferenciais-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .plano-detalhes-table {
+        font-size: 0.9rem;
+      }
+
+      .plano-detalhes-table th,
+      .plano-detalhes-table td {
+        padding: 0.75rem 0.5rem;
+      }
+
+      .plano-detalhes-table th:first-child,
+      .plano-detalhes-table td:first-child {
+        padding-left: 1rem;
       }
     }
   `]
@@ -194,6 +480,7 @@ export class Planos implements OnInit {
   planos: Plano[] = [];
   loading = false;
   error: string | null = null;
+  planoSelecionado: string | null = null;
 
   constructor(private planosService: PlanosService) {}
 
@@ -224,6 +511,34 @@ export class Planos implements OnInit {
     });
   }
 
+  selecionarPlano(plano: Plano): void {
+    this.planoSelecionado = plano.id;
+    this.scrollParaPlano(plano.id);
+  }
+
+  scrollParaPlano(planoId: string): void {
+    setTimeout(() => {
+      const elemento = document.getElementById(`plano-${planoId}`);
+      if (elemento) {
+        const headerOffset = 100;
+        const elementPosition = elemento.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  }
+
+  navegarParaPlano(planoNome: string): void {
+    const plano = this.planos.find(p => p.nome === planoNome);
+    if (plano) {
+      this.selecionarPlano(plano);
+    }
+  }
+
   private getPlanosMockados(): Plano[] {
     return [
       {
@@ -235,6 +550,20 @@ export class Planos implements OnInit {
         atividadeEmpresa: ['Comércio', 'Serviço'],
         canaisAtendimento: ['WhatsApp', 'E-mail', 'Telefone'],
         relatoriosGerenciais: 'Padrão',
+        imagemUrl: '/imagem-planobásico.png',
+        recursosPrincipais: [
+          'Portal do Cliente on-line (24 horas disponível)',
+          'Atendimento com especialistas em seu segmento',
+          'Suporte via WhatsApp, e-mail e telefone',
+          'Folha de pagamento e encargos',
+          'Apuração das obrigações fiscais',
+          'Contabilidade e relatórios gerenciais'
+        ],
+        diferenciais: [
+          'Comunicação rápida e sem burocracia',
+          'Foco total em simplicidade e autonomia',
+          'Especialização em empresas em crescimento'
+        ],
         recursos: [
           { nome: 'Abertura de empresa e serviços societários', incluido: false },
           { nome: 'Apuração fiscal, folha de pagamento e contabilidade', incluido: true },
@@ -261,6 +590,23 @@ export class Planos implements OnInit {
         atividadeEmpresa: ['Comércio', 'Serviço', 'Indústria'],
         canaisAtendimento: ['WhatsApp', 'E-mail', 'Telefone', 'Portal do cliente'],
         relatoriosGerenciais: 'Personalizados com dashboards (BI)',
+        imagemUrl: '/imagem-planointermediário.png',
+        recursosPrincipais: [
+          'Portal do Cliente on-line (24 horas disponível)',
+          'Atendimento com especialistas em seu segmento',
+          'Suporte via WhatsApp, e-mail e telefone',
+          'Folha de pagamento e encargos',
+          'Apuração das obrigações fiscais',
+          'Contabilidade e relatórios gerenciais',
+          'Atendimento consultivo',
+          'Fechamentos no seu ERP',
+          'Certificado Digital'
+        ],
+        diferenciais: [
+          'Comunicação rápida e sem burocracia',
+          'Foco total em simplicidade e autonomia',
+          'Especialização em empresas em crescimento'
+        ],
         recursos: [
           { nome: 'Abertura de empresa e serviços societários', incluido: false },
           { nome: 'Apuração fiscal, folha de pagamento e contabilidade', incluido: true },
@@ -280,13 +626,31 @@ export class Planos implements OnInit {
       },
       {
         id: '3',
-        nome: 'Personalizado',
+        nome: 'Enterprise',
         publicoIdeal: 'Médias e grandes empresas',
         regimesAtendidos: ['Lucro Presumido', 'Lucro Real'],
         faturamentoMedioMensal: 'Acima de R$ 400.000,00',
         atividadeEmpresa: ['Comércio', 'Serviço', 'Indústria'],
         canaisAtendimento: ['WhatsApp', 'E-mail', 'Telefone', 'Portal do cliente', 'Atendimento personalizado'],
         relatoriosGerenciais: 'Personalizados com dashboards (BI)',
+        imagemUrl: '/imagem-planointerprise.png',
+        recursosPrincipais: [
+          'Portal do Cliente on-line (24 horas disponível)',
+          'Atendimento com especialistas em seu segmento',
+          'Suporte via WhatsApp, e-mail e telefone',
+          'Folha de pagamento e encargos',
+          'Apuração das obrigações fiscais',
+          'Contabilidade e relatórios gerenciais',
+          'Abertura de empresa e serviços societários',
+          'Certificado Digital',
+          'Emissão de NFs-e',
+          'Parcelamento e simulação'
+        ],
+        diferenciais: [
+          'Comunicação rápida e sem burocracia',
+          'Foco total em simplicidade e autonomia',
+          'Especialização em empresas em crescimento'
+        ],
         recursos: [
           { nome: 'Abertura de empresa e serviços societários', incluido: true },
           { nome: 'Apuração fiscal, folha de pagamento e contabilidade', incluido: true },
