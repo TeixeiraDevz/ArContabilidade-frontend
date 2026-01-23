@@ -52,6 +52,22 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     
+    .footer-logo-section {
+      margin-bottom: 1.5rem;
+      background: transparent;
+    }
+    
+    .footer-logo-img {
+      max-width: 240px;
+      max-height: 110px;
+      width: 100%;
+      height: auto;
+      display: block;
+      background: transparent;
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+    }
+    
     .footer-title {
       color: #f5f6fa;
       font-size: 1.35rem;
@@ -77,7 +93,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
     .footer-map-container {
       width: 100%;
-      max-width: 280px;
+      max-width: 450px;
       height: 200px;
       border-radius: 16px;
       overflow: hidden;
@@ -122,11 +138,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       transform: translateX(5px);
       text-decoration: underline;
     }
+
     
     .footer-contact .footer-link {
       color: #d5d8e6;
     }
     
+    .footer-contact .footer-text {
+      gap: 0.6rem;
+    }
+
     .footer-contact .footer-link:hover {
       color: #667eea;
       text-decoration: underline;
@@ -157,7 +178,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       gap: 1rem;
       align-items: center;
       justify-content: flex-start;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
     }
     
     .social-link {
@@ -200,6 +221,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
         padding: 3rem 0 1.5rem;
       }
       
+      .footer-logo-img {
+        margin: 0 auto;
+        max-width: 230px;
+        max-height: 96px;
+      }
+      
       .footer-title {
         font-size: 1.2rem;
         text-align: center;
@@ -208,7 +235,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
         max-width: 100%;
       }
       
-      .col-12.col-lg-5 {
+      .col-12.col-lg-4 {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -261,6 +288,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       
       .footer-copyright {
         font-size: 0.8rem;
+      }
+
+      .footer-logo-img {
+        max-width: 220px;
+        max-height: 90px;
       }
     }
   `]

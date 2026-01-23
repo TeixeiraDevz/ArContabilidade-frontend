@@ -1,15 +1,11 @@
 <!-- Hero Section -->
-<section class="hero-section">
-  <!-- Formas roxas suaves e borradas no fundo -->
-  <div class="hero-blur-shapes">
-    <div class="blur-shape shape-1"></div>
-    <div class="blur-shape shape-2"></div>
-    <div class="blur-shape shape-3"></div>
-  </div>
+<section class="hero-section" data-has-background-image="true">
+  <!-- Imagem de fundo da empresa -->
+  <div class="hero-background-image"></div>
   
   <div class="container">
     <div class="row hero-row align-items-center min-vh-75">
-      <div class="col-12 col-lg-6 order-1 order-lg-1">
+      <div class="col-12 col-lg-8">
         <!-- Conteúdo do hero -->
         <div class="hero-content animate-fade-in-up">
           <h1 class="hero-title">
@@ -22,65 +18,6 @@
           </p>
           <div class="hero-buttons">
             <a routerLink="/planos" class="btn btn-primary btn-lg hero-btn-planos">Conheça nossos planos</a>
-            <a routerLink="/equipe" class="btn btn-outline-primary btn-lg hero-btn-equipe">Fale com nossa equipe</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-6">
-        <!-- Visual do hero (CSS-only) -->
-        <div class="hero-illustration animate-fade-in-up" style="animation-delay: 0.3s">
-          <div class="hero-visual" role="img" aria-label="Dashboard financeiro com indicadores e gráfico de crescimento">
-            <div class="hv-bubble hv-bubble--1">R$</div>
-            <div class="hv-bubble hv-bubble--2">$</div>
-            <div class="hv-bubble hv-bubble--3">$</div>
-
-            <div class="hv-card hv-card--main">
-              <div class="hv-card-header">
-                <span class="hv-dot hv-dot--1"></span>
-                <span class="hv-dot hv-dot--2"></span>
-                <span class="hv-dot hv-dot--3"></span>
-                <span class="hv-card-title">Financeiro</span>
-              </div>
-
-              <div class="hv-kpis">
-                <div class="hv-kpi">
-                  <span class="hv-kpi-label">Receita</span>
-                  <span class="hv-kpi-value">R$ 128k</span>
-                </div>
-                <div class="hv-kpi">
-                  <span class="hv-kpi-label">Crescimento</span>
-                  <span class="hv-kpi-value hv-kpi-value--up">+18%</span>
-                </div>
-              </div>
-
-              <div class="hv-chart" aria-hidden="true">
-                <div class="hv-bars">
-                  <div class="hv-bar hv-bar--1"></div>
-                  <div class="hv-bar hv-bar--2"></div>
-                  <div class="hv-bar hv-bar--3"></div>
-                  <div class="hv-bar hv-bar--4"></div>
-                  <div class="hv-bar hv-bar--5"></div>
-                </div>
-                <div class="hv-axis"></div>
-                <div class="hv-line"></div>
-              </div>
-            </div>
-
-            <div class="hv-card hv-card--side" aria-hidden="true">
-              <div class="hv-pill">Relatórios</div>
-              <div class="hv-side-row">
-                <span class="hv-side-dot"></span>
-                <span class="hv-side-text">Impostos em dia</span>
-              </div>
-              <div class="hv-side-row">
-                <span class="hv-side-dot"></span>
-                <span class="hv-side-text">Folha integrada</span>
-              </div>
-              <div class="hv-side-row">
-                <span class="hv-side-dot"></span>
-                <span class="hv-side-text">Conciliação</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -100,46 +37,56 @@
         <ul class="services-list list-unstyled">
           @for (servico of servicos; track servico.titulo) {
             <li class="service-item">
-              <div class="service-icon">
-                @if (servico.icone === 'chart') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
-                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="#667eea" stroke-width="2.5" stroke-linecap="round"/>
-                  </svg>
-                } @else if (servico.icone === 'users') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="#667eea" stroke-width="2.5"/>
-                    <circle cx="12" cy="9" r="3.5" stroke="#667eea" stroke-width="2.5"/>
-                  </svg>
-                } @else if (servico.icone === 'file') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
-                    <path d="M14 2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8z" stroke="#667eea" stroke-width="2.5"/>
-                    <polyline points="14 2 14 8 20 8" stroke="#667eea" stroke-width="2.5"/>
-                  </svg>
-                } @else if (servico.icone === 'building') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
-                    <path d="M6 20V8l6-4v16M12 20v-8l6-3v11" stroke="#667eea" stroke-width="2.5"/>
-                  </svg>
-                } @else if (servico.icone === 'link') {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
-                    <path d="M8 12h8M12 8v8" stroke="#667eea" stroke-width="2.5"/>
-                    <circle cx="12" cy="12" r="3.5" stroke="#667eea" stroke-width="2.5" fill="rgba(102, 126, 234, 0.1)"/>
-                  </svg>
-                } @else {
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
-                    <rect x="5" y="6" width="14" height="10" rx="2" stroke="#667eea" stroke-width="2.5"/>
-                    <line x1="9" y1="20" x2="15" y2="20" stroke="#667eea" stroke-width="2.5"/>
-                  </svg>
-                }
+              <div class="service-icon-wrapper">
+                <div class="service-icon">
+                  @if (servico.icone === 'chart') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" x2="12" y1="20" y2="10"></line>
+                      <line x1="18" x2="18" y1="20" y2="4"></line>
+                      <line x1="6" x2="6" y1="20" y2="16"></line>
+                    </svg>
+                  } @else if (servico.icone === 'users') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  } @else if (servico.icone === 'file') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" x2="8" y1="13" y2="13"></line>
+                      <line x1="16" x2="8" y1="17" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  } @else if (servico.icone === 'building') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 21h18"></path>
+                      <path d="M5 21V7l8-4v18"></path>
+                      <path d="M19 21V11l-6-4"></path>
+                      <line x1="9" x2="9" y1="9" y2="9"></line>
+                      <line x1="9" x2="9" y1="12" y2="12"></line>
+                      <line x1="9" x2="9" y1="15" y2="15"></line>
+                      <line x1="9" x2="9" y1="18" y2="18"></line>
+                    </svg>
+                  } @else if (servico.icone === 'link') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                  } @else {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                      <line x1="8" x2="16" y1="21" y2="21"></line>
+                      <line x1="12" x2="12" y1="17" y2="21"></line>
+                    </svg>
+                  }
+                </div>
               </div>
-              <div>
-                <h5>{{ servico.titulo }}</h5>
-                <p>{{ servico.descricao }}</p>
+              <div class="service-content">
+                <h5 class="service-title">{{ servico.titulo }}</h5>
+                <p class="service-description">{{ servico.descricao }}</p>
               </div>
             </li>
           }
@@ -225,8 +172,8 @@
       <div class="col-md-6 col-lg-4">
         <div class="diferencial-card">
           <div class="diferencial-icon mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
-              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
             </svg>
           </div>
           <h5 class="diferencial-subtitle">Gestão estratégica</h5>
@@ -238,8 +185,10 @@
       <div class="col-md-6 col-lg-4">
         <div class="diferencial-card">
           <div class="diferencial-icon mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
-              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm-1 2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" x2="16" y1="21" y2="21"></line>
+              <line x1="12" x2="12" y1="17" y2="21"></line>
             </svg>
           </div>
           <h5 class="diferencial-subtitle">Tecnologia</h5>
@@ -251,8 +200,11 @@
       <div class="col-md-6 col-lg-4">
         <div class="diferencial-card">
           <div class="diferencial-icon mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
-              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.933-3.674A3.74 3.74 0 0 1 8 9c2.71 0 5.238 1.221 5.784 3H1.784Z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
           <h5 class="diferencial-subtitle">Atendimento diferenciado</h5>

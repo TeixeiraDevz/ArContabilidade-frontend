@@ -281,7 +281,7 @@ export class Cadastro implements OnInit {
   ngOnInit() {
     // Se a imagem já estiver carregada, ativar animação imediatamente
     const img = new Image();
-    img.src = 'office - login -image.jpg';
+    img.src = '/officer-logincadastro.png';
     if (img.complete) {
       this.imageLoaded = true;
     } else {
