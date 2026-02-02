@@ -181,6 +181,9 @@ import { Component } from '@angular/core';
       background: rgba(255, 255, 255, 0.92);
       color: var(--color-purple);
       border: 1.5px solid rgba(102, 126, 234, 0.35);
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
     }
 
     .btn-outline:hover {

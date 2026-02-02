@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlanosService } from '../../services/planos.service';
 import { Plano } from '../../../../../core/models/plano.model';
 import { PlanoStaircaseComponent } from '../../components/plano-staircase/plano-staircase';
 import { LoadingComponent } from '../../../../../shared/components/loading/loading';
 
+const WHATSAPP_BASE = 'https://wa.me/559291359003';
+
 @Component({
   selector: 'app-planos',
   standalone: true,
-  imports: [RouterLink, CommonModule, PlanoStaircaseComponent, LoadingComponent],
+  imports: [CommonModule, PlanoStaircaseComponent, LoadingComponent],
   templateUrl: './planos.html',
   styles: [`
     :host {
@@ -390,10 +391,11 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
       font-size: 1.1rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      text-decoration: none;
     }
 
     .btn-plano-cta:hover {
@@ -538,6 +540,11 @@ export class Planos implements OnInit {
     if (plano) {
       this.selecionarPlano(plano);
     }
+  }
+
+  getWhatsAppUrl(planoNome: string): string {
+    const mensagem = encodeURIComponent(`Olá! Tenho interesse no plano ${planoNome}.`);
+    return `${WHATSAPP_BASE}?text=${mensagem}`;
   }
 
   private getPlanosMockados(): Plano[] {
