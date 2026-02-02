@@ -487,11 +487,6 @@ export class Planos implements OnInit {
 
   constructor(private planosService: PlanosService) {}
 
-  getWhatsAppUrl(planoNome: string): string {
-    const texto = encodeURIComponent(`Olá, gostaria de saber mais sobre o plano ${planoNome}.`);
-    return `${WHATSAPP_BASE}?text=${texto}`;
-  }
-
   ngOnInit(): void {
     this.carregarPlanos();
   }
