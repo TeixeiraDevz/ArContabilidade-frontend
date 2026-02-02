@@ -145,7 +145,40 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .footer-contact .footer-text {
-      gap: 0.6rem;
+      gap: 0;
+    }
+
+    .footer-contact-phone-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+    }
+
+    .footer-contact-phone-row .footer-contact-icon-phone {
+      margin-top: 0;
+      align-self: flex-start;
+    }
+
+    .footer-contact-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-right: 0.75rem;
+      margin-top: 0.2rem;
+    }
+
+    .footer-contact-content {
+      min-width: 0;
+      line-height: 1.6;
+    }
+
+    .footer-contact-content.d-flex.flex-column {
+      gap: 0.2rem;
+    }
+
+    .footer-contact-content.flex-column .footer-link {
+      display: block;
     }
 
     .footer-contact .footer-link:hover {
@@ -168,7 +201,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       font-size: 0.875rem;
     }
     
-    .footer-contact svg {
+    .footer-contact svg,
+    .footer-contact .footer-contact-icon {
       color: #d5d8e6;
       flex-shrink: 0;
     }

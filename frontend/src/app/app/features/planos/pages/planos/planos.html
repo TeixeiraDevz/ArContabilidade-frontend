@@ -171,12 +171,12 @@
               }
             </div>
             <div class="diferenciais-cta">
-              <button class="btn-plano-cta">
+              <a [href]="getWhatsAppUrl(plano.nome)" target="_blank" rel="noopener noreferrer" class="btn-plano-cta">
                 Quero plano {{ plano.nome }}
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 0.5rem;">
                   <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </section>
