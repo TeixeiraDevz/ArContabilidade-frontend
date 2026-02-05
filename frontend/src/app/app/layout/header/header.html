@@ -1,0 +1,55 @@
+<button
+  class="navbar-toggler floating-navbar-toggler"
+  type="button"
+  aria-controls="mainNavbar"
+  [attr.aria-expanded]="isNavOpen"
+  aria-label="Toggle navigation"
+  [class.d-none]="!showFloatingToggler"
+  (click)="toggleNavbar()"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="navbar-wrapper">
+  <!-- Navbar Left: Logo + Cliente + Planos -->
+  <nav #navbarRoot [class]="navbarClass + ' navbar-expand-lg navbar-light navbar-left'">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+        <div class="logo-container">
+          <img
+            class="brand-logo"
+            src="/logo-ar.png"
+            alt="AR Gestão Contábil e Financeira"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </a>
+      
+      <button
+        class="navbar-toggler"
+        type="button"
+        aria-controls="mainNavbar"
+        [attr.aria-expanded]="isNavOpen"
+        aria-label="Toggle navigation"
+        (click)="toggleNavbar()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div
+        class="navbar-collapse"
+        id="mainNavbar"
+        #navbarCollapse
+        [class.collapse]="true"
+        [class.show]="isNavOpen"
+      >
+        <div class="navbar-nav d-flex align-items-center gap-3">
+          <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Clientes</a>
+          <a class="nav-link" routerLink="/planos" (click)="closeNavbar()">Planos</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</div>

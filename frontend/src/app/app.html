@@ -1,0 +1,23 @@
+<app-header />
+<div class="page-container">
+  <router-outlet />
+</div>
+<app-footer-cta [isHomePage]="isHomePage()" />
+@if (isHomePage()) {
+  <div class="footer-cta-card">
+    <div class="footer-cta-content text-center">
+      <h2 class="footer-cta-title">Pronto para transformar sua gestão contábil?</h2>
+      <p class="footer-cta-subtitle">
+        Unimos especialistas e tecnologia para implantar rotinas financeiras completas, com a segurança que seu negócio
+        precisa.
+      </p>
+      <div class="footer-cta-buttons">
+        <a routerLink="/clientes" class="btn footer-cta-btn-primary">
+          Comece gratuitamente
+        </a>
+      </div>
+    </div>
+  </div>
+}
+<app-footer />
+<app-assistant-widget />
