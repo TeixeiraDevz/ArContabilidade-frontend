@@ -45,6 +45,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       position: relative;
       z-index: 1;
     }
+
+    .footer-content .row.g-4 {
+      align-items: flex-start;
+    }
     
     .footer-content.no-cta {
       margin-top: 0;
@@ -52,20 +56,39 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     
-    .footer-logo-section {
-      margin-bottom: 1.5rem;
-      background: transparent;
+    .footer-content .row.g-4 > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
-    
+
+    .footer-logo-section {
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+      background: transparent;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
     .footer-logo-img {
-      max-width: 240px;
-      max-height: 110px;
-      width: 100%;
-      height: auto;
+      width: 260px;
+      height: 260px;
+      max-width: 100%;
       display: block;
+      margin-top: 0;
       background: transparent;
       mix-blend-mode: normal;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+      object-fit: contain;
+      /* Corta sobras transparentes do PNG para alinhar com "Links"/"Nossos contatos" */
+      clip-path: inset(10% 10% 12% 10%);
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+    }
+
+    @media (min-width: 992px) {
+      .footer-brand {
+        transform: translateY(-46px);
+      }
     }
     
     .footer-title {
@@ -77,9 +100,13 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .footer-subtitle {
+      font-family: 'Poppins', sans-serif;
       color: #f5f6fa;
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      margin-top: 0;
       margin-bottom: 1rem;
     }
     
@@ -89,6 +116,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       line-height: 1.6;
       margin-bottom: 0.5rem;
       max-width: 21rem;
+    }
+
+    .footer-text.footer-slogan-spaced {
+      margin-top: 0;
+      margin-bottom: 0.35rem !important;
+      max-width: 20rem;
     }
 
     .footer-map-container {
@@ -106,7 +139,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     .footer-map-container:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-      border-color: rgba(102, 126, 234, 0.4);
+      border-color: rgba(212, 175, 55, 0.42);
     }
     
     .footer-map {
@@ -134,7 +167,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .footer-link:hover {
-      color: #667eea;
+      color: #d4af37;
       transform: translateX(5px);
       text-decoration: underline;
     }
@@ -175,9 +208,27 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     .footer-contact-content.d-flex.flex-column .footer-link {
       display: block;
     }
+    .footer-contact-hours-row {
+      display: inline-flex !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 0.2rem;
+      width: auto !important;
+    }
+    .footer-contact-hours-row .footer-contact-icon {
+      margin-top: 0.12rem;
+      margin-right: 0.12rem;
+      align-self: flex-start;
+    }
+    .footer-contact-hours-content {
+      display: inline-block;
+      line-height: 1.55;
+      margin-left: 0 !important;
+      text-align: left;
+    }
 
     .footer-contact .footer-link:hover {
-      color: #667eea;
+      color: #d4af37;
       text-decoration: underline;
     }
     
@@ -209,6 +260,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       justify-content: flex-start;
       margin-bottom: 0;
     }
+
+    .footer-social.footer-social-below {
+      margin-top: -0.1rem;
+    }
     
     .social-link {
       display: inline-flex;
@@ -224,8 +279,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .social-link:hover {
-      background: rgba(102, 126, 234, 0.2);
-      color: #667eea;
+      background: rgba(212, 175, 55, 0.2);
+      color: #f3d97b;
       transform: translateY(-3px) scale(1.1);
     }
     
@@ -249,11 +304,17 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       .footer-content {
         padding: 3rem 0 1.5rem;
       }
-      
+
+      .footer-logo-section {
+        margin-top: 0;
+        justify-content: center;
+      }
+
       .footer-logo-img {
         margin: 0 auto;
-        max-width: 230px;
-        max-height: 96px;
+        margin-top: -4px;
+        width: clamp(170px, 56vw, 230px);
+        clip-path: inset(8% 8% 10% 8%);
       }
       
       .footer-title {
@@ -283,12 +344,59 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       
       .footer-contact {
         text-align: center;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       
       .footer-text {
         font-size: 0.9rem;
         margin-left: auto;
         margin-right: auto;
+      }
+
+      .footer-contact .footer-text {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .footer-contact .footer-text.footer-contact-hours-row {
+        width: auto !important;
+        max-width: none;
+        justify-content: flex-start !important;
+        gap: 0.2rem;
+        text-align: left;
+      }
+
+      .footer-contact-icon {
+        margin-right: 0;
+        margin-top: 0.25rem;
+        justify-self: center;
+      }
+
+      .footer-contact-content {
+        flex: initial;
+        max-width: 18rem;
+        text-align: center;
+        word-break: break-word;
+      }
+
+      .footer-contact-content.d-flex.flex-column {
+        align-items: center;
+      }
+
+      .footer-contact .footer-link {
+        text-align: center;
       }
 
       .footer-map-container {
@@ -302,7 +410,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       .footer-content {
         padding: 2.5rem 0 1.25rem;
       }
-      
+
       .footer-title {
         font-size: 1.1rem;
       }
@@ -320,8 +428,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       }
 
       .footer-logo-img {
-        max-width: 220px;
-        max-height: 90px;
+        width: clamp(155px, 62vw, 205px);
       }
     }
   `]

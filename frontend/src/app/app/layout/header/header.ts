@@ -56,9 +56,9 @@ import { filter } from 'rxjs/operators';
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(8, 10, 16, 0.78);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(102, 126, 234, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.22);
       border-radius: 50px;
       padding: 0.4rem 1.25rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
@@ -68,22 +68,22 @@ import { filter } from 'rxjs/operators';
     }
     
     .navbar.scrolling .container {
-      background: rgba(255, 255, 255, 0.98);
-      border: 1px solid rgba(102, 126, 234, 0.2);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background: rgba(8, 10, 16, 0.95);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     }
     
     .navbar:not(.scrolling) .container {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(8, 10, 16, 0.72);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(102, 126, 234, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.18);
     }
     
     .navbar.over-hero .container {
-      background: rgba(255, 255, 255, 0.1) !important;
+      background: rgba(5, 7, 13, 0.58) !important;
       backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
     }
     
     .navbar.over-hero .navbar-brand {
@@ -91,8 +91,8 @@ import { filter } from 'rxjs/operators';
     }
     
     .navbar:not(.scrolling):not(.over-hero) .nav-link {
-      color: var(--color-black) !important;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+      color: #e8dbc0 !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
     }
     
     .navbar:not(.scrolling):not(.over-hero) .navbar-brand {
@@ -129,13 +129,18 @@ import { filter } from 'rxjs/operators';
     .logo-container {
       background: transparent;
       padding: 0;
+      border-radius: 0;
+      overflow: visible;
+      border: none;
+      box-shadow: none;
     }
     
     .logo-container .brand-logo {
       width: auto;
-      height: 40px;
-      max-width: 140px;
+      height: 65px;
+      max-width: 150px;
       object-fit: contain;
+      object-position: center;
       display: block;
       transition: transform var(--transition-normal);
       background: transparent;
@@ -146,16 +151,12 @@ import { filter } from 'rxjs/operators';
       mix-blend-mode: normal;
       filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
     }
-    :host-context(body.page-landing) .navbar.over-hero .logo-container .brand-logo {
-      filter: brightness(0) invert(1);
-    }
-    
     .navbar-brand:hover .logo-container .brand-logo {
       transform: scale(1.03);
     }
     
     .nav-link {
-      color: var(--color-black) !important;
+      color: #e8dbc0 !important;
       font-weight: 500;
       font-size: 0.9rem;
       padding: 0.4rem 0.9rem !important;
@@ -189,19 +190,19 @@ import { filter } from 'rxjs/operators';
       gap: 0.5rem;
       padding: 0.5rem 1.25rem;
       border-radius: 50px;
-      background: #22c55e;
+      background: linear-gradient(135deg, #c89e2f 0%, #f3d97b 50%, #b48b24 100%);
       color: #fff !important;
       font-weight: 600;
       text-decoration: none;
       border: none;
       transition: all var(--transition-normal);
-      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+      box-shadow: 0 4px 14px rgba(200, 158, 47, 0.4);
     }
     .nav-cta.btn-nav-cta:hover {
-      background: #16a34a;
+      background: linear-gradient(135deg, #b48b24 0%, #f3d97b 50%, #a47a18 100%);
       color: #fff !important;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+      box-shadow: 0 6px 20px rgba(200, 158, 47, 0.55);
     }
     .navbar.over-hero .nav-cta.btn-nav-cta {
       color: #fff !important;
@@ -239,15 +240,15 @@ import { filter } from 'rxjs/operators';
     }
     
     .dropdown-menu {
-      border: 1px solid rgba(102, 126, 234, 0.15);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
       border-radius: 12px;
       padding: 0.5rem;
       margin-top: 0.75rem;
       min-width: 220px;
       left: 84px;
       top: 16px;
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(8, 10, 16, 0.98);
       backdrop-filter: blur(10px);
       animation: dropdownFadeIn 0.2s ease-out;
     }
@@ -265,7 +266,7 @@ import { filter } from 'rxjs/operators';
     
     .dropdown-item {
       padding: 0.875rem 1rem;
-      color: var(--color-black);
+      color: #e8dbc0;
       transition: all var(--transition-fast);
       font-size: 0.9rem;
       display: flex;
@@ -276,7 +277,7 @@ import { filter } from 'rxjs/operators';
     }
     
     .dropdown-item:hover {
-      background: linear-gradient(90deg, rgba(102, 126, 234, 0.08) 0%, rgba(102, 126, 234, 0.05) 100%);
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.1) 0%, rgba(34, 52, 95, 0.14) 100%);
       color: var(--color-purple);
       transform: translateX(4px);
     }
@@ -288,13 +289,13 @@ import { filter } from 'rxjs/operators';
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+      background: linear-gradient(135deg, rgba(34, 52, 95, 0.25), rgba(212, 175, 55, 0.12));
       flex-shrink: 0;
       transition: all var(--transition-fast);
     }
     
     .dropdown-item:hover .dropdown-item-icon {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.2));
+      background: linear-gradient(135deg, rgba(34, 52, 95, 0.35), rgba(212, 175, 55, 0.2));
       transform: scale(1.1);
     }
     
@@ -308,14 +309,14 @@ import { filter } from 'rxjs/operators';
     .dropdown-item-title {
       font-weight: 600;
       font-size: 0.95rem;
-      color: var(--color-black);
+      color: #f3e7c9;
       line-height: 1.3;
     }
     
     .dropdown-item-subtitle {
       font-weight: 400;
       font-size: 0.8rem;
-      color: var(--color-gray);
+      color: #a8afbf;
       line-height: 1.2;
     }
     
@@ -349,7 +350,7 @@ import { filter } from 'rxjs/operators';
     }
     
     .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      background-image: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28243, 217, 123, 0.95%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\");
     }
 
     .floating-navbar-toggler {
@@ -357,8 +358,8 @@ import { filter } from 'rxjs/operators';
       top: 0.75rem;
       left: 0.75rem;
       z-index: 1100;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(102, 126, 234, 0.2);
+      background: rgba(8, 10, 16, 0.94);
+      border: 1px solid rgba(212, 175, 55, 0.25);
       border-radius: 12px;
       padding: 0.5rem 0.6rem;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
@@ -367,7 +368,7 @@ import { filter } from 'rxjs/operators';
     }
 
     .floating-navbar-toggler:hover {
-      background: rgba(255, 255, 255, 1);
+      background: rgba(12, 15, 24, 1);
     }
 
     /* Garantia: o floating toggler NUNCA deve aparecer no desktop */
@@ -381,9 +382,11 @@ import { filter } from 'rxjs/operators';
     
     @media (max-width: 991px) {
       .navbar-wrapper {
+        top: 0.75rem;
         flex-direction: column;
         gap: 0.5rem;
         align-items: stretch;
+        padding-left: 4.2rem;
       }
       
       .navbar {
@@ -395,6 +398,7 @@ import { filter } from 'rxjs/operators';
         position: relative;
         left: auto;
         transform: none;
+        margin-left: 0;
       }
       
       .navbar-left.hidden {
@@ -427,8 +431,8 @@ import { filter } from 'rxjs/operators';
       .navbar-collapse {
         margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        background: rgba(255, 255, 255, 0.98);
+        border-top: 1px solid rgba(212, 175, 55, 0.18);
+        background: rgba(8, 10, 16, 0.98);
         border-radius: 12px;
         padding: 1rem;
         margin-left: -1rem;
@@ -457,7 +461,7 @@ import { filter } from 'rxjs/operators';
       }
       
       .nav-link:hover {
-        background-color: var(--color-gray-light);
+        background-color: rgba(212, 175, 55, 0.08);
       }
       
       .dropdown-menu {
@@ -466,9 +470,9 @@ import { filter } from 'rxjs/operators';
         width: 100%;
         margin-top: 0.5rem;
         margin-left: 0;
-        border: 1px solid rgba(102, 126, 234, 0.15);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        background: rgba(255, 255, 255, 0.98);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        background: rgba(8, 10, 16, 0.98);
         left: 0 !important;
         top: auto !important;
         border-radius: 12px;
@@ -488,6 +492,7 @@ import { filter } from 'rxjs/operators';
     @media (max-width: 576px) {
       .navbar-wrapper {
         padding: 0.5rem;
+        padding-left: 4rem;
       }
       
       .navbar .container {
@@ -504,8 +509,8 @@ import { filter } from 'rxjs/operators';
       }
 
       .logo-container .brand-logo {
-        height: 34px;
-        max-width: 120px;
+        height: 40px;
+        max-width: 122px;
       }
 
       .nav-link {
