@@ -1,8 +1,5 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardTiltDirective } from '../../../../../shared/directives/card-tilt.directive';
-import { HomeLandingService } from '../../services/home-landing.service';
-import { LandingContactRequestDto } from '../../../../../core/models/landing-contact.model';
 
 interface RecursoItem {
   titulo: string;
@@ -43,7 +40,7 @@ interface ServicoItem {
 
 @Component({
   selector: 'app-home',
-  imports: [CardTiltDirective, ReactiveFormsModule],
+  imports: [CardTiltDirective],
   templateUrl: './home.html',
   styles: [`
     .landing-page { background: var(--site-bg); min-height: 100vh; color: #e2e8f0; }
@@ -235,6 +232,102 @@ interface ServicoItem {
     .landing-card-inicial { font-size: 1.25rem; font-weight: 700; color: #f3d97b; }
     .landing-card-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
     .landing-card-desc { color: #94a3b8; font-size: 0.9rem; line-height: 1.55; margin: 0; }
+    .landing-certificado-a1 { position: relative; overflow: hidden; }
+    .landing-certificado-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 2.5rem;
+    }
+    .landing-certificado-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; color: #fff; margin-bottom: 0.25rem;
+    }
+    .landing-certificado-subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 1rem; }
+    .landing-certificado-desc {
+      color: #cbd5e1; font-size: 1rem; line-height: 1.65; margin-bottom: 1.5rem; max-width: 520px;
+    }
+    .landing-certificado-list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .landing-certificado-list li {
+      display: flex; align-items: center; gap: 0.75rem; color: #e2e8f0; font-size: 0.95rem; margin-bottom: 0.85rem;
+    }
+    .landing-certificado-list li::before {
+      content: ''; flex-shrink: 0; width: 20px; height: 20px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2'%3E%3Cpath d='M21.801 10A10 10 0 1 1 17 3.335'/%3E%3Cpath d='m9 11 3 3L22 4'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .landing-certificado-devices {
+      position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 1rem; min-height: 280px;
+    }
+    @keyframes certificado-float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-12px) translateX(4px); }
+    }
+    @keyframes certificado-float-phone {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-8px) translateX(-3px); }
+    }
+    .landing-certificado-laptop {
+      position: relative; z-index: 2;
+      animation: certificado-float 5s ease-in-out infinite;
+    }
+    .landing-certificado-laptop .landing-certificado-screen {
+      width: 260px; padding: 0.75rem; border-radius: 8px; background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      border: 1px solid rgba(212, 175, 55, 0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .landing-certificado-screen-bar {
+      height: 8px; border-radius: 4px; background: rgba(212, 175, 55, 0.2); margin-bottom: 0.75rem;
+    }
+    .landing-certificado-screen-title {
+      font-size: 0.75rem; color: #f3d97b; font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .landing-certificado-screen-options { margin-bottom: 0.6rem; }
+    .landing-certificado-check {
+      display: block; font-size: 0.7rem; color: #94a3b8; padding-left: 1.1rem; margin-bottom: 0.25rem;
+      position: relative;
+    }
+    .landing-certificado-check::before {
+      content: ''; position: absolute; left: 0; top: 0.1rem; width: 12px; height: 12px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2.5'%3E%3Cpath d='m9 11 3 3L22 4'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .landing-certificado-screen-btn {
+      display: inline-block; padding: 0.4rem 0.75rem; border-radius: 6px;
+      background: linear-gradient(135deg, #c89e2f 0%, #f3d97b 100%); color: #111; font-size: 0.7rem; font-weight: 700;
+    }
+    .landing-certificado-phone {
+      position: relative; z-index: 1; margin-bottom: 1rem;
+      animation: certificado-float-phone 6s ease-in-out infinite 0.5s;
+    }
+    .landing-certificado-phone-screen {
+      width: 120px; padding: 0.6rem; border-radius: 16px; background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+      border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    }
+    .landing-certificado-phone-bar {
+      height: 6px; width: 28px; margin: 0 auto 0.75rem; border-radius: 3px; background: rgba(148, 163, 184, 0.4);
+    }
+    .landing-certificado-phone-icon {
+      display: flex; align-items: center; justify-content: center; color: #d4af37; margin-bottom: 0.5rem;
+    }
+    .landing-certificado-phone-label {
+      display: block; text-align: center; font-size: 0.6rem; color: #e2e8f0; font-weight: 600;
+    }
+    .landing-certificado-cta {
+      text-align: center; padding: 1.75rem 2rem; border-radius: 1rem;
+      background: rgba(11, 15, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.25); backdrop-filter: blur(10px);
+    }
+    .landing-certificado-cta-text {
+      font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem;
+    }
+    .landing-certificado-cta-sub { color: #94a3b8; font-size: 0.95rem; margin: 0 0 1.25rem; }
+    .landing-certificado-btn { margin: 0 auto; }
+    @media (max-width: 992px) {
+      .landing-certificado-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .landing-certificado-devices { order: -1; min-height: 220px; }
+      .landing-certificado-content { text-align: center; }
+      .landing-certificado-desc { margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 768px) {
+      .landing-certificado-devices { flex-direction: column; min-height: auto; gap: 1.5rem; }
+      .landing-certificado-laptop .landing-certificado-screen { width: 220px; }
+      .landing-certificado-phone-screen { width: 100px; }
+    }
     .landing-contato-wrap {
       max-width: 980px;
       margin: 0 auto;
@@ -389,20 +482,8 @@ interface ServicoItem {
   `]
 })
 export class Home implements OnInit {
-  private readonly formBuilder = inject(FormBuilder);
-  private readonly homeLandingService = inject(HomeLandingService);
   readonly estadualPreviewCount = 8;
   private estadualExpanded = false;
-  contactSubmitting = false;
-  contactSuccessMessage = '';
-  contactErrorMessage = '';
-  contactForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
-    email: ['', [Validators.required, Validators.email, Validators.maxLength(180)]],
-    phone: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
-    company: ['', [Validators.maxLength(150)]],
-    message: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(2000)]]
-  });
 
   /** Serviços baseados em https://arcontabilidade-am.com.br/index4165.html?pg=servicos.php */
   servicos: ServicoItem[] = [
@@ -636,57 +717,5 @@ export class Home implements OnInit {
 
   ngOnDestroy(): void {
     if (typeof document !== 'undefined') document.body.classList.remove('page-landing');
-  }
-
-  getFieldError(fieldName: 'name' | 'email' | 'phone' | 'company' | 'message'): string {
-    const field = this.contactForm.get(fieldName);
-    if (!field || !field.touched || !field.errors) {
-      return '';
-    }
-
-    if (field.errors['required']) return 'Campo obrigatório.';
-    if (field.errors['email']) return 'E-mail inválido.';
-    if (field.errors['minlength']) return 'Valor muito curto.';
-    if (field.errors['maxlength']) return 'Valor muito longo.';
-    return 'Campo inválido.';
-  }
-
-  submitContactForm(): void {
-    this.contactSuccessMessage = '';
-    this.contactErrorMessage = '';
-
-    if (this.contactForm.invalid) {
-      this.contactForm.markAllAsTouched();
-      return;
-    }
-
-    const raw = this.contactForm.getRawValue();
-    const payload: LandingContactRequestDto = {
-      name: (raw.name ?? '').trim(),
-      email: (raw.email ?? '').trim(),
-      phone: (raw.phone ?? '').trim(),
-      message: (raw.message ?? '').trim(),
-      company: (raw.company ?? '').trim() || undefined
-    };
-
-    this.contactSubmitting = true;
-
-    this.homeLandingService.sendContact(payload).subscribe({
-      next: () => {
-        this.contactSubmitting = false;
-        this.contactSuccessMessage = 'Mensagem enviada com sucesso! Em breve nossa equipe entrará em contato.';
-        this.contactForm.reset({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          message: ''
-        });
-      },
-      error: () => {
-        this.contactSubmitting = false;
-        this.contactErrorMessage = 'Não foi possível enviar agora. Tente novamente em instantes.';
-      }
-    });
   }
 }
