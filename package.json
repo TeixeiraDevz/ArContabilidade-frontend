@@ -1,0 +1,9 @@
+{
+  "name": "ar-gestao-contabil",
+  "private": true,
+  "description": "Landing AR Gestão Contábil – frontend + API serverless no Vercel",
+  "dependencies": {
+    "@upstash/redis": "^1.34.3",
+    "zod": "^3.24.1"
+  }
+}
