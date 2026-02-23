@@ -78,11 +78,16 @@ interface ServicoItem {
     .landing-hero-wave-svg { width: 100%; height: 80px; display: block; }
     .landing-hero .container { position: relative; z-index: 2; }
     .landing-hero-content { max-width: 720px; text-align: center; padding-bottom: 1rem; }
+    .landing-hero-brand {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
     .landing-hero-tagline {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       color: rgba(255, 255, 255, 0.9); font-size: 1.125rem; font-weight: 600; margin-bottom: 1.5rem;
       text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
+    .landing-hero-tagline:first-child { margin-top: 0; }
     @keyframes tagline-icon-spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -100,19 +105,21 @@ interface ServicoItem {
       animation: tagline-icon-spin 4s linear infinite;
     }
     .landing-hero-logo {
-      display: block; margin: 0 auto 1.25rem; max-width: 200px; height: auto;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      display: block; flex-shrink: 0;
+      max-width: min(280px, 55vw); height: auto;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.35));
     }
     .landing-hero-title {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.5rem, 3.8vw, 2.25rem); font-weight: 700; line-height: 1.3; margin-bottom: 1rem; color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.2); text-align: center; margin-left: auto; margin-right: auto;
-      text-transform: uppercase; letter-spacing: 0.02em;
+      display: flex; flex-direction: column; gap: 0.15rem;
+      font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 600; line-height: 1.2; margin: 0; color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2); text-align: left;
     }
+    .landing-hero-title-line { display: block; }
     .landing-hero-title-accent { color: #fcd34d; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
     .landing-hero-desc {
-      color: rgba(255, 255, 255, 0.9); font-size: 1.25rem; line-height: 1.65; margin-bottom: 2rem; max-width: 48rem;
-      margin-left: auto; margin-right: auto; text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      color: rgba(255, 255, 255, 0.92); font-size: 1.25rem; line-height: 1.75; margin-bottom: 1rem; max-width: 42rem;
+      margin-left: auto; margin-right: auto; text-align: center; text-shadow: 0 1px 4px rgba(0,0,0,0.2);
     }
     .landing-hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.75rem; }
     .btn-landing {
@@ -522,6 +529,24 @@ interface ServicoItem {
         animation: none;
       }
       .landing-hero { padding-top: 100px; padding-bottom: 60px; }
+      .landing-hero-brand {
+        gap: 0.35rem;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+      .landing-hero-logo {
+        max-width: 125px;
+        width: 125px;
+      }
+      .landing-hero-title {
+        font-size: clamp(1.15rem, 5vw, 1.5rem);
+      }
+      .landing-hero-desc {
+        font-size: 1rem;
+        line-height: 1.4;
+        max-width: 100%;
+        padding: 0 0.5rem;
+      }
       .landing-hero-buttons { flex-direction: column; }
       .landing-contato-wrap { padding: 1.25rem; }
       .landing-contato-grid { grid-template-columns: 1fr; }

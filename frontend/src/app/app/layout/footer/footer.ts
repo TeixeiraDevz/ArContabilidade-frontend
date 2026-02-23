@@ -212,12 +212,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       display: inline-flex !important;
       align-items: flex-start !important;
       justify-content: flex-start !important;
-      gap: 0.2rem;
+      gap: 0.2rem !important;
       width: auto !important;
     }
-    .footer-contact-hours-row .footer-contact-icon {
-      margin-top: 0.12rem;
-      margin-right: 0.12rem;
+    .footer-contact-hours-row .footer-contact-icon,
+    .footer-contact-icon-hours {
+      margin-top: 0.12rem !important;
+      margin-right: 0.2rem !important;
+      min-width: 18px;
       align-self: flex-start;
     }
     .footer-contact-hours-content {
@@ -293,6 +295,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       .footer-social {
         justify-content: center;
         margin-bottom: 2rem;
+      }
+      .footer-brand .footer-slogan-spaced.footer-slogan-mobile {
+        margin-bottom: 0 !important;
+      }
+      .footer-brand .footer-social.footer-social-below {
+        margin-top: 0.05rem !important;
       }
     }
     
@@ -374,7 +382,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
         width: auto !important;
         max-width: none;
         justify-content: flex-start !important;
-        gap: 0.2rem;
+        gap: 0.15rem !important;
         text-align: left;
       }
 
@@ -382,6 +390,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
         margin-right: 0;
         margin-top: 0.25rem;
         justify-self: center;
+      }
+      .footer-contact-hours-row .footer-contact-icon,
+      .footer-contact-icon-hours {
+        margin-right: 0.2rem !important;
       }
 
       .footer-contact-content {
