@@ -3,3 +3,12 @@ mcp/
 
 # Scripts de merge one-off (já removidos do repo)
 merge-feature-*.ps1
+
+# Segurança: nunca commitar variáveis de ambiente e dados sensíveis
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/data/
+*.pem

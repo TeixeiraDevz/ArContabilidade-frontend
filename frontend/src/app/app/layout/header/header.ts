@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './header.html',
   styles: [`
     .navbar-wrapper {

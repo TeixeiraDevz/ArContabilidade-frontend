@@ -16,7 +16,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
             errorMessage = 'Requisição inválida. Verifique os dados enviados.';
             break;
           case 401:
-            errorMessage = 'Não autorizado. Faça login novamente.';
+            errorMessage = 'Acesso não autorizado.';
             localStorage.removeItem('token');
             break;
           case 403:
