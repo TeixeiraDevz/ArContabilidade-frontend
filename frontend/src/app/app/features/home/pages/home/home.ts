@@ -682,9 +682,9 @@ export class Home implements OnInit {
       icone: 'municipal',
       links: [
         { label: 'Junta Comercial do Amazonas (JUCEA)', url: 'https://www.jucea.am.gov.br/' },
-        { label: 'NFS-e Manaus', url: 'https://nfse.manaus.am.gov.br/' },
+        { label: 'NFS-e Manaus', url: 'https://nota.manaus.am.gov.br/' },
         { label: 'Serviços Manaus', url: 'https://servicos.manaus.am.gov.br/' },
-        { label: 'SEMEF Manaus', url: 'https://semef.manaus.am.gov.br/' }
+        { label: 'SEMEF Manaus', url: 'https://semefatende.manaus.am.gov.br/' }
       ]
     },
     {
