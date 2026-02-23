@@ -120,6 +120,13 @@ import { filter } from 'rxjs/operators';
       transform: scale(1.05);
     }
     
+    .navbar-brand-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: inherit;
+      letter-spacing: 0.02em;
+    }
+    
     .logo-container {
       display: flex;
       align-items: center;

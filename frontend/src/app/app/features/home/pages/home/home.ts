@@ -99,10 +99,15 @@ interface ServicoItem {
       color: #fcd34d;
       animation: tagline-icon-spin 4s linear infinite;
     }
+    .landing-hero-logo {
+      display: block; margin: 0 auto 1.25rem; max-width: 200px; height: auto;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
     .landing-hero-title {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2.1rem, 5.5vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-size: clamp(1.5rem, 3.8vw, 2.25rem); font-weight: 700; line-height: 1.3; margin-bottom: 1rem; color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2); text-align: center; margin-left: auto; margin-right: auto;
+      text-transform: uppercase; letter-spacing: 0.02em;
     }
     .landing-hero-title-accent { color: #fcd34d; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
     .landing-hero-desc {
@@ -357,14 +362,14 @@ interface ServicoItem {
     .landing-certificado-btn:focus { outline: none; }
     @media (max-width: 992px) {
       .landing-certificado-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .landing-certificado-devices { order: -1; min-height: 220px; }
+      .landing-certificado-devices { order: -1; min-height: 220px; align-items: center; justify-content: center; }
       .landing-certificado-content { text-align: center; }
       .landing-certificado-desc { margin-left: auto; margin-right: auto; }
     }
     @media (max-width: 768px) {
-      .landing-certificado-devices { flex-direction: column; min-height: auto; gap: 1.5rem; }
+      .landing-certificado-devices { flex-direction: column; min-height: auto; gap: 1.5rem; align-items: center; justify-content: center; }
       .landing-certificado-phone { transform: none; margin-right: 0; margin-bottom: 0; }
-      .landing-certificado-laptop-wrap { transform: none; }
+      .landing-certificado-laptop-wrap { transform: none; margin: 0 auto; }
       .landing-certificado-laptop-screen { width: 220px; }
       .landing-certificado-laptop-base { width: 240px; }
       .landing-certificado-phone-screen { width: 100px; padding: 0.45rem; }
